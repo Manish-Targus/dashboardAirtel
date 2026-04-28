@@ -1,0 +1,579 @@
+{
+  "metadata": {
+    "generatedAt": "2026-04-22T00:00:00Z",
+    "totalSubscribers": 84750000,
+    "activeSubscribers": 74200000,
+    "totalActiveTowers": 128,
+    "networkCoverage": 98.4,
+    "avgSignalStrength": -72.4,
+    "dataVersion": "2.1.0"
+  },
+  "states": {
+    "Maharashtra": {
+      "code": "MH",
+      "totalSubscribers": 18450000,
+      "activeSubscribers": 16200000,
+      "churnRate": 2.1,
+      "growthRate": 8.4,
+      "revenueArpu": 312,
+      "districts": {
+        "Mumbai": {
+          "subscribers": 6800000,
+          "activeSubscribers": 5950000,
+          "lat": 19.0760,
+          "lng": 72.8777,
+          "towers": [
+            { "id": "MH-MUM-001", "name": "Andheri West Tower", "lat": 19.1136, "lng": 72.8697, "subscribers": 82000, "activeConnections": 24500, "signalStrength": -68, "bandwidth": "5G", "status": "active", "handoffRate": 4.2, "dataUsageGB": 18400, "uptime": 99.8 },
+            { "id": "MH-MUM-002", "name": "Bandra East Tower", "lat": 19.0596, "lng": 72.8656, "subscribers": 75000, "activeConnections": 21200, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.1, "dataUsageGB": 16200, "uptime": 99.5 },
+            { "id": "MH-MUM-003", "name": "Dharavi Hub Tower", "lat": 19.0425, "lng": 72.8564, "subscribers": 91000, "activeConnections": 28700, "signalStrength": -69, "bandwidth": "5G", "status": "active", "handoffRate": 3.8, "dataUsageGB": 21500, "uptime": 99.9 },
+            { "id": "MH-MUM-004", "name": "Worli Sea Link Tower", "lat": 19.0176, "lng": 72.8162, "subscribers": 63000, "activeConnections": 18900, "signalStrength": -74, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.5, "dataUsageGB": 14100, "uptime": 98.9 }
+          ]
+        },
+        "Pune": {
+          "subscribers": 4200000,
+          "activeSubscribers": 3700000,
+          "lat": 18.5204,
+          "lng": 73.8567,
+          "towers": [
+            { "id": "MH-PUN-001", "name": "Hinjewadi IT Park Tower", "lat": 18.5912, "lng": 73.7389, "subscribers": 68000, "activeConnections": 19800, "signalStrength": -70, "bandwidth": "5G", "status": "active", "handoffRate": 3.2, "dataUsageGB": 15800, "uptime": 99.7 },
+            { "id": "MH-PUN-002", "name": "Koregaon Park Tower", "lat": 18.5362, "lng": 73.8938, "subscribers": 54000, "activeConnections": 15400, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.8, "dataUsageGB": 12300, "uptime": 99.3 },
+            { "id": "MH-PUN-003", "name": "Kothrud Central Tower", "lat": 18.5074, "lng": 73.8077, "subscribers": 47000, "activeConnections": 13200, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 7.1, "dataUsageGB": 10400, "uptime": 98.6 },
+            { "id": "MH-PUN-004", "name": "Hadapsar Tower", "lat": 18.5018, "lng": 73.9259, "subscribers": 39000, "activeConnections": 11000, "signalStrength": -77, "bandwidth": "4G", "status": "maintenance", "handoffRate": 9.3, "dataUsageGB": 8900, "uptime": 95.2 }
+          ]
+        },
+        "Nagpur": {
+          "subscribers": 2100000,
+          "activeSubscribers": 1850000,
+          "lat": 21.1458,
+          "lng": 79.0882,
+          "towers": [
+            { "id": "MH-NAG-001", "name": "Sitabuldi Tower", "lat": 21.1497, "lng": 79.0832, "subscribers": 42000, "activeConnections": 12100, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.6, "dataUsageGB": 9800, "uptime": 99.1 },
+            { "id": "MH-NAG-002", "name": "Dharampeth Tower", "lat": 21.1234, "lng": 79.0567, "subscribers": 36000, "activeConnections": 10200, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 6.8, "dataUsageGB": 8100, "uptime": 98.8 },
+            { "id": "MH-NAG-003", "name": "Hingna Road Tower", "lat": 21.1700, "lng": 78.9800, "subscribers": 28000, "activeConnections": 7900, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 8.4, "dataUsageGB": 6200, "uptime": 98.3 },
+            { "id": "MH-NAG-004", "name": "Wadi Junction Tower", "lat": 21.0800, "lng": 79.1200, "subscribers": 22000, "activeConnections": 6200, "signalStrength": -80, "bandwidth": "4G", "status": "active", "handoffRate": 10.1, "dataUsageGB": 4900, "uptime": 97.9 }
+          ]
+        },
+        "Nashik": {
+          "subscribers": 1800000,
+          "activeSubscribers": 1580000,
+          "lat": 19.9975,
+          "lng": 73.7898,
+          "towers": [
+            { "id": "MH-NSK-001", "name": "Gangapur Road Tower", "lat": 20.0113, "lng": 73.7709, "subscribers": 31000, "activeConnections": 8900, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.9, "dataUsageGB": 7100, "uptime": 99.0 },
+            { "id": "MH-NSK-002", "name": "College Road Tower", "lat": 19.9785, "lng": 73.7951, "subscribers": 27000, "activeConnections": 7700, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.2, "dataUsageGB": 6200, "uptime": 98.5 },
+            { "id": "MH-NSK-003", "name": "Satpur MIDC Tower", "lat": 20.0300, "lng": 73.8200, "subscribers": 24000, "activeConnections": 6800, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.0, "dataUsageGB": 5400, "uptime": 98.2 },
+            { "id": "MH-NSK-004", "name": "Dwarka Tower", "lat": 19.9600, "lng": 73.8100, "subscribers": 19000, "activeConnections": 5400, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 9.5, "dataUsageGB": 4300, "uptime": 97.8 }
+          ]
+        }
+      }
+    },
+    "Delhi": {
+      "code": "DL",
+      "totalSubscribers": 14200000,
+      "activeSubscribers": 12900000,
+      "churnRate": 1.8,
+      "growthRate": 6.2,
+      "revenueArpu": 368,
+      "districts": {
+        "Central Delhi": {
+          "subscribers": 3200000,
+          "activeSubscribers": 2900000,
+          "lat": 28.6517,
+          "lng": 77.2219,
+          "towers": [
+            { "id": "DL-CEN-001", "name": "Connaught Place Tower", "lat": 28.6315, "lng": 77.2167, "subscribers": 78000, "activeConnections": 23000, "signalStrength": -66, "bandwidth": "5G", "status": "active", "handoffRate": 3.1, "dataUsageGB": 19200, "uptime": 99.9 },
+            { "id": "DL-CEN-002", "name": "Paharganj Hub Tower", "lat": 28.6432, "lng": 77.2120, "subscribers": 65000, "activeConnections": 18700, "signalStrength": -69, "bandwidth": "5G", "status": "active", "handoffRate": 4.5, "dataUsageGB": 15900, "uptime": 99.7 },
+            { "id": "DL-CEN-003", "name": "Chandni Chowk Tower", "lat": 28.6505, "lng": 77.2303, "subscribers": 71000, "activeConnections": 21100, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.0, "dataUsageGB": 17300, "uptime": 99.5 },
+            { "id": "DL-CEN-004", "name": "ITO Metro Tower", "lat": 28.6270, "lng": 77.2411, "subscribers": 58000, "activeConnections": 16800, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.8, "dataUsageGB": 13600, "uptime": 99.2 }
+          ]
+        },
+        "South Delhi": {
+          "subscribers": 4100000,
+          "activeSubscribers": 3750000,
+          "lat": 28.5244,
+          "lng": 77.1855,
+          "towers": [
+            { "id": "DL-STH-001", "name": "Saket Mall Tower", "lat": 28.5275, "lng": 77.2099, "subscribers": 84000, "activeConnections": 25200, "signalStrength": -67, "bandwidth": "5G", "status": "active", "handoffRate": 3.4, "dataUsageGB": 20800, "uptime": 99.8 },
+            { "id": "DL-STH-002", "name": "Hauz Khas Tower", "lat": 28.5494, "lng": 77.1992, "subscribers": 72000, "activeConnections": 21400, "signalStrength": -69, "bandwidth": "5G", "status": "active", "handoffRate": 4.1, "dataUsageGB": 17600, "uptime": 99.6 },
+            { "id": "DL-STH-003", "name": "Malviya Nagar Tower", "lat": 28.5310, "lng": 77.2087, "subscribers": 61000, "activeConnections": 17800, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.3, "dataUsageGB": 14900, "uptime": 99.3 },
+            { "id": "DL-STH-004", "name": "Greater Kailash Tower", "lat": 28.5484, "lng": 77.2411, "subscribers": 55000, "activeConnections": 15900, "signalStrength": -73, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.2, "dataUsageGB": 13200, "uptime": 99.0 }
+          ]
+        },
+        "North Delhi": {
+          "subscribers": 3400000,
+          "activeSubscribers": 3080000,
+          "lat": 28.7041,
+          "lng": 77.1025,
+          "towers": [
+            { "id": "DL-NTH-001", "name": "Rohini Sector 3 Tower", "lat": 28.7330, "lng": 77.0986, "subscribers": 67000, "activeConnections": 19200, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.7, "dataUsageGB": 16100, "uptime": 99.4 },
+            { "id": "DL-NTH-002", "name": "Pitampura Tower", "lat": 28.7021, "lng": 77.1310, "subscribers": 59000, "activeConnections": 17100, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.6, "dataUsageGB": 14200, "uptime": 99.1 },
+            { "id": "DL-NTH-003", "name": "Model Town Tower", "lat": 28.7170, "lng": 77.1892, "subscribers": 48000, "activeConnections": 13900, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.0, "dataUsageGB": 11500, "uptime": 98.7 },
+            { "id": "DL-NTH-004", "name": "Shalimar Bagh Tower", "lat": 28.7213, "lng": 77.1476, "subscribers": 43000, "activeConnections": 12400, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.1, "dataUsageGB": 10200, "uptime": 98.4 }
+          ]
+        },
+        "East Delhi": {
+          "subscribers": 3500000,
+          "activeSubscribers": 3170000,
+          "lat": 28.6500,
+          "lng": 77.3100,
+          "towers": [
+            { "id": "DL-EST-001", "name": "Laxmi Nagar Tower", "lat": 28.6320, "lng": 77.2780, "subscribers": 64000, "activeConnections": 18600, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.1, "dataUsageGB": 15400, "uptime": 99.2 },
+            { "id": "DL-EST-002", "name": "Mayur Vihar Tower", "lat": 28.6118, "lng": 77.2906, "subscribers": 57000, "activeConnections": 16500, "signalStrength": -73, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.0, "dataUsageGB": 13700, "uptime": 98.9 },
+            { "id": "DL-EST-003", "name": "Preet Vihar Tower", "lat": 28.6389, "lng": 77.2937, "subscribers": 49000, "activeConnections": 14200, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 7.4, "dataUsageGB": 11800, "uptime": 98.5 },
+            { "id": "DL-EST-004", "name": "Shahdara Tower", "lat": 28.6743, "lng": 77.2887, "subscribers": 44000, "activeConnections": 12700, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 8.9, "dataUsageGB": 10500, "uptime": 98.1 }
+          ]
+        }
+      }
+    },
+    "Karnataka": {
+      "code": "KA",
+      "totalSubscribers": 12800000,
+      "activeSubscribers": 11400000,
+      "churnRate": 2.4,
+      "growthRate": 11.2,
+      "revenueArpu": 298,
+      "districts": {
+        "Bengaluru Urban": {
+          "subscribers": 7200000,
+          "activeSubscribers": 6500000,
+          "lat": 12.9716,
+          "lng": 77.5946,
+          "towers": [
+            { "id": "KA-BLR-001", "name": "Whitefield Tech Park Tower", "lat": 12.9698, "lng": 77.7500, "subscribers": 95000, "activeConnections": 28500, "signalStrength": -67, "bandwidth": "5G", "status": "active", "handoffRate": 2.9, "dataUsageGB": 23800, "uptime": 99.9 },
+            { "id": "KA-BLR-002", "name": "Koramangala Hub Tower", "lat": 12.9352, "lng": 77.6245, "subscribers": 88000, "activeConnections": 26200, "signalStrength": -68, "bandwidth": "5G", "status": "active", "handoffRate": 3.3, "dataUsageGB": 21900, "uptime": 99.8 },
+            { "id": "KA-BLR-003", "name": "Electronic City Tower", "lat": 12.8399, "lng": 77.6770, "subscribers": 82000, "activeConnections": 24500, "signalStrength": -70, "bandwidth": "5G", "status": "active", "handoffRate": 3.8, "dataUsageGB": 20400, "uptime": 99.7 },
+            { "id": "KA-BLR-004", "name": "MG Road Central Tower", "lat": 12.9757, "lng": 77.6093, "subscribers": 76000, "activeConnections": 22600, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.4, "dataUsageGB": 18900, "uptime": 99.5 }
+          ]
+        },
+        "Mysuru": {
+          "subscribers": 1900000,
+          "activeSubscribers": 1680000,
+          "lat": 12.2958,
+          "lng": 76.6394,
+          "towers": [
+            { "id": "KA-MYS-001", "name": "Mysuru Palace Tower", "lat": 12.3052, "lng": 76.6552, "subscribers": 44000, "activeConnections": 12800, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.4, "dataUsageGB": 10500, "uptime": 99.2 },
+            { "id": "KA-MYS-002", "name": "Vijayanagar Tower", "lat": 12.3050, "lng": 76.5869, "subscribers": 38000, "activeConnections": 11000, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 6.7, "dataUsageGB": 9000, "uptime": 98.9 },
+            { "id": "KA-MYS-003", "name": "Kuvempunagar Tower", "lat": 12.2787, "lng": 76.6473, "subscribers": 32000, "activeConnections": 9200, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 7.9, "dataUsageGB": 7500, "uptime": 98.5 },
+            { "id": "KA-MYS-004", "name": "Hebbal Tower", "lat": 12.3200, "lng": 76.6100, "subscribers": 27000, "activeConnections": 7800, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 9.2, "dataUsageGB": 6200, "uptime": 98.1 }
+          ]
+        },
+        "Dharwad": {
+          "subscribers": 1400000,
+          "activeSubscribers": 1230000,
+          "lat": 15.3647,
+          "lng": 75.1240,
+          "towers": [
+            { "id": "KA-DHW-001", "name": "Hubli Station Tower", "lat": 15.3590, "lng": 75.1350, "subscribers": 35000, "activeConnections": 10200, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.0, "dataUsageGB": 8200, "uptime": 99.0 },
+            { "id": "KA-DHW-002", "name": "Dharwad College Tower", "lat": 15.4589, "lng": 75.0078, "subscribers": 29000, "activeConnections": 8400, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.3, "dataUsageGB": 6800, "uptime": 98.6 },
+            { "id": "KA-DHW-003", "name": "Gokul Road Tower", "lat": 15.3800, "lng": 75.1100, "subscribers": 24000, "activeConnections": 6900, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.7, "dataUsageGB": 5600, "uptime": 98.2 },
+            { "id": "KA-DHW-004", "name": "Navanagar Tower", "lat": 15.3300, "lng": 75.1500, "subscribers": 19000, "activeConnections": 5500, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 10.1, "dataUsageGB": 4400, "uptime": 97.8 }
+          ]
+        },
+        "Dakshina Kannada": {
+          "subscribers": 1100000,
+          "activeSubscribers": 970000,
+          "lat": 12.9141,
+          "lng": 74.8560,
+          "towers": [
+            { "id": "KA-DK-001", "name": "Mangaluru Port Tower", "lat": 12.9141, "lng": 74.8560, "subscribers": 31000, "activeConnections": 8900, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.7, "dataUsageGB": 7300, "uptime": 99.1 },
+            { "id": "KA-DK-002", "name": "Kankanady Tower", "lat": 12.8738, "lng": 74.8425, "subscribers": 26000, "activeConnections": 7500, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.0, "dataUsageGB": 6100, "uptime": 98.7 },
+            { "id": "KA-DK-003", "name": "Pumpwell Tower", "lat": 12.9000, "lng": 74.8700, "subscribers": 21000, "activeConnections": 6100, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.4, "dataUsageGB": 4900, "uptime": 98.3 },
+            { "id": "KA-DK-004", "name": "Surathkal Tower", "lat": 13.0111, "lng": 74.7884, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -78, "bandwidth": "4G", "status": "maintenance", "handoffRate": 11.2, "dataUsageGB": 3900, "uptime": 94.8 }
+          ]
+        }
+      }
+    },
+    "Tamil Nadu": {
+      "code": "TN",
+      "totalSubscribers": 11600000,
+      "activeSubscribers": 10200000,
+      "churnRate": 2.7,
+      "growthRate": 7.8,
+      "revenueArpu": 285,
+      "districts": {
+        "Chennai": {
+          "subscribers": 5800000,
+          "activeSubscribers": 5150000,
+          "lat": 13.0827,
+          "lng": 80.2707,
+          "towers": [
+            { "id": "TN-CHN-001", "name": "T. Nagar Hub Tower", "lat": 13.0418, "lng": 80.2341, "subscribers": 86000, "activeConnections": 25700, "signalStrength": -68, "bandwidth": "5G", "status": "active", "handoffRate": 3.5, "dataUsageGB": 21400, "uptime": 99.8 },
+            { "id": "TN-CHN-002", "name": "Anna Nagar Tower", "lat": 13.0850, "lng": 80.2101, "subscribers": 74000, "activeConnections": 21900, "signalStrength": -70, "bandwidth": "5G", "status": "active", "handoffRate": 4.2, "dataUsageGB": 18400, "uptime": 99.6 },
+            { "id": "TN-CHN-003", "name": "OMR Sholinganallur Tower", "lat": 12.9010, "lng": 80.2279, "subscribers": 69000, "activeConnections": 20400, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.9, "dataUsageGB": 17100, "uptime": 99.4 },
+            { "id": "TN-CHN-004", "name": "Porur Junction Tower", "lat": 13.0346, "lng": 80.1572, "subscribers": 58000, "activeConnections": 17000, "signalStrength": -73, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.8, "dataUsageGB": 14300, "uptime": 99.1 }
+          ]
+        },
+        "Coimbatore": {
+          "subscribers": 2100000,
+          "activeSubscribers": 1860000,
+          "lat": 11.0168,
+          "lng": 76.9558,
+          "towers": [
+            { "id": "TN-CBE-001", "name": "RS Puram Tower", "lat": 11.0050, "lng": 76.9595, "subscribers": 51000, "activeConnections": 14700, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.2, "dataUsageGB": 12100, "uptime": 99.2 },
+            { "id": "TN-CBE-002", "name": "Gandhipuram Tower", "lat": 11.0168, "lng": 76.9558, "subscribers": 44000, "activeConnections": 12800, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.3, "dataUsageGB": 10400, "uptime": 98.9 },
+            { "id": "TN-CBE-003", "name": "Peelamedu Tower", "lat": 11.0259, "lng": 77.0079, "subscribers": 37000, "activeConnections": 10700, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.6, "dataUsageGB": 8700, "uptime": 98.5 },
+            { "id": "TN-CBE-004", "name": "Saibaba Colony Tower", "lat": 11.0300, "lng": 76.9700, "subscribers": 29000, "activeConnections": 8400, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 9.0, "dataUsageGB": 6800, "uptime": 98.1 }
+          ]
+        },
+        "Madurai": {
+          "subscribers": 1600000,
+          "activeSubscribers": 1410000,
+          "lat": 9.9252,
+          "lng": 78.1198,
+          "towers": [
+            { "id": "TN-MDU-001", "name": "Meenakshi Temple Tower", "lat": 9.9195, "lng": 78.1194, "subscribers": 39000, "activeConnections": 11200, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.9, "dataUsageGB": 9200, "uptime": 99.0 },
+            { "id": "TN-MDU-002", "name": "Anna Nagar Madurai Tower", "lat": 9.9394, "lng": 78.1350, "subscribers": 33000, "activeConnections": 9500, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.1, "dataUsageGB": 7700, "uptime": 98.6 },
+            { "id": "TN-MDU-003", "name": "Tallakulam Tower", "lat": 9.9450, "lng": 78.1100, "subscribers": 28000, "activeConnections": 8100, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.5, "dataUsageGB": 6500, "uptime": 98.2 },
+            { "id": "TN-MDU-004", "name": "Bypass Road Tower", "lat": 9.9100, "lng": 78.0900, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 10.0, "dataUsageGB": 5100, "uptime": 97.8 }
+          ]
+        },
+        "Salem": {
+          "subscribers": 1200000,
+          "activeSubscribers": 1060000,
+          "lat": 11.6643,
+          "lng": 78.1460,
+          "towers": [
+            { "id": "TN-SLM-001", "name": "Fairlands Tower", "lat": 11.6700, "lng": 78.1600, "subscribers": 28000, "activeConnections": 8100, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.2, "dataUsageGB": 6600, "uptime": 98.8 },
+            { "id": "TN-SLM-002", "name": "Shevapet Tower", "lat": 11.6500, "lng": 78.1400, "subscribers": 24000, "activeConnections": 6900, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.5, "dataUsageGB": 5600, "uptime": 98.4 },
+            { "id": "TN-SLM-003", "name": "Suramangalam Tower", "lat": 11.6900, "lng": 78.1500, "subscribers": 19000, "activeConnections": 5500, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 9.0, "dataUsageGB": 4400, "uptime": 98.0 },
+            { "id": "TN-SLM-004", "name": "Hasthampatti Tower", "lat": 11.6400, "lng": 78.1700, "subscribers": 15000, "activeConnections": 4300, "signalStrength": -80, "bandwidth": "4G", "status": "active", "handoffRate": 11.4, "dataUsageGB": 3500, "uptime": 97.5 }
+          ]
+        }
+      }
+    },
+    "Uttar Pradesh": {
+      "code": "UP",
+      "totalSubscribers": 16800000,
+      "activeSubscribers": 14600000,
+      "churnRate": 3.1,
+      "growthRate": 9.4,
+      "revenueArpu": 241,
+      "districts": {
+        "Lucknow": {
+          "subscribers": 4100000,
+          "activeSubscribers": 3580000,
+          "lat": 26.8467,
+          "lng": 80.9462,
+          "towers": [
+            { "id": "UP-LKW-001", "name": "Hazratganj Tower", "lat": 26.8509, "lng": 80.9468, "subscribers": 73000, "activeConnections": 21200, "signalStrength": -69, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.3, "dataUsageGB": 17500, "uptime": 99.5 },
+            { "id": "UP-LKW-002", "name": "Gomti Nagar Tower", "lat": 26.8500, "lng": 81.0000, "subscribers": 65000, "activeConnections": 18900, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.2, "dataUsageGB": 15600, "uptime": 99.2 },
+            { "id": "UP-LKW-003", "name": "Alambagh Tower", "lat": 26.7946, "lng": 80.8857, "subscribers": 54000, "activeConnections": 15700, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 6.5, "dataUsageGB": 12900, "uptime": 98.8 },
+            { "id": "UP-LKW-004", "name": "Aashiyana Tower", "lat": 26.8700, "lng": 80.9800, "subscribers": 46000, "activeConnections": 13400, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 7.8, "dataUsageGB": 11000, "uptime": 98.4 }
+          ]
+        },
+        "Kanpur": {
+          "subscribers": 3200000,
+          "activeSubscribers": 2800000,
+          "lat": 26.4499,
+          "lng": 80.3319,
+          "towers": [
+            { "id": "UP-KNP-001", "name": "Naveen Market Tower", "lat": 26.4499, "lng": 80.3319, "subscribers": 62000, "activeConnections": 18000, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.0, "dataUsageGB": 14800, "uptime": 99.3 },
+            { "id": "UP-KNP-002", "name": "Kidwai Nagar Tower", "lat": 26.4800, "lng": 80.3100, "subscribers": 54000, "activeConnections": 15700, "signalStrength": -72, "bandwidth": "4G", "status": "active", "handoffRate": 6.2, "dataUsageGB": 12800, "uptime": 99.0 },
+            { "id": "UP-KNP-003", "name": "Rawatpur Tower", "lat": 26.4200, "lng": 80.3600, "subscribers": 45000, "activeConnections": 13100, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.5, "dataUsageGB": 10600, "uptime": 98.6 },
+            { "id": "UP-KNP-004", "name": "Govind Nagar Tower", "lat": 26.4600, "lng": 80.3900, "subscribers": 38000, "activeConnections": 11000, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.9, "dataUsageGB": 8900, "uptime": 98.2 }
+          ]
+        },
+        "Agra": {
+          "subscribers": 2400000,
+          "activeSubscribers": 2100000,
+          "lat": 27.1767,
+          "lng": 78.0081,
+          "towers": [
+            { "id": "UP-AGR-001", "name": "Taj Mahal Area Tower", "lat": 27.1751, "lng": 78.0421, "subscribers": 55000, "activeConnections": 16000, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.4, "dataUsageGB": 13200, "uptime": 99.1 },
+            { "id": "UP-AGR-002", "name": "Sikandra Tower", "lat": 27.2000, "lng": 77.9700, "subscribers": 47000, "activeConnections": 13700, "signalStrength": -72, "bandwidth": "4G", "status": "active", "handoffRate": 6.7, "dataUsageGB": 11100, "uptime": 98.8 },
+            { "id": "UP-AGR-003", "name": "Bodla Tower", "lat": 27.1600, "lng": 78.0300, "subscribers": 39000, "activeConnections": 11300, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 8.0, "dataUsageGB": 9100, "uptime": 98.4 },
+            { "id": "UP-AGR-004", "name": "Kamla Nagar Tower", "lat": 27.1900, "lng": 78.0000, "subscribers": 31000, "activeConnections": 9000, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 9.6, "dataUsageGB": 7200, "uptime": 97.9 }
+          ]
+        },
+        "Varanasi": {
+          "subscribers": 1900000,
+          "activeSubscribers": 1660000,
+          "lat": 25.3176,
+          "lng": 82.9739,
+          "towers": [
+            { "id": "UP-VNS-001", "name": "Dashashwamedh Ghat Tower", "lat": 25.3100, "lng": 83.0100, "subscribers": 43000, "activeConnections": 12500, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.8, "dataUsageGB": 10200, "uptime": 99.0 },
+            { "id": "UP-VNS-002", "name": "Sigra Tower", "lat": 25.3300, "lng": 82.9800, "subscribers": 37000, "activeConnections": 10700, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.0, "dataUsageGB": 8600, "uptime": 98.6 },
+            { "id": "UP-VNS-003", "name": "Lanka Tower", "lat": 25.2700, "lng": 82.9900, "subscribers": 30000, "activeConnections": 8700, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.5, "dataUsageGB": 7000, "uptime": 98.2 },
+            { "id": "UP-VNS-004", "name": "BHU Campus Tower", "lat": 25.2676, "lng": 82.9913, "subscribers": 25000, "activeConnections": 7200, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 10.2, "dataUsageGB": 5800, "uptime": 97.7 }
+          ]
+        }
+      }
+    },
+    "Gujarat": {
+      "code": "GJ",
+      "totalSubscribers": 9800000,
+      "activeSubscribers": 8700000,
+      "churnRate": 2.0,
+      "growthRate": 10.1,
+      "revenueArpu": 319,
+      "districts": {
+        "Ahmedabad": {
+          "subscribers": 4500000,
+          "activeSubscribers": 4000000,
+          "lat": 23.0225,
+          "lng": 72.5714,
+          "towers": [
+            { "id": "GJ-AMD-001", "name": "CG Road Tower", "lat": 23.0225, "lng": 72.5714, "subscribers": 82000, "activeConnections": 24000, "signalStrength": -68, "bandwidth": "5G", "status": "active", "handoffRate": 3.7, "dataUsageGB": 20300, "uptime": 99.7 },
+            { "id": "GJ-AMD-002", "name": "Satellite Tower", "lat": 23.0310, "lng": 72.5400, "subscribers": 71000, "activeConnections": 20700, "signalStrength": -70, "bandwidth": "5G", "status": "active", "handoffRate": 4.4, "dataUsageGB": 17600, "uptime": 99.5 },
+            { "id": "GJ-AMD-003", "name": "Naroda Tower", "lat": 23.0700, "lng": 72.6400, "subscribers": 60000, "activeConnections": 17400, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.5, "dataUsageGB": 14800, "uptime": 99.2 },
+            { "id": "GJ-AMD-004", "name": "Bopal Tower", "lat": 23.0000, "lng": 72.4700, "subscribers": 52000, "activeConnections": 15100, "signalStrength": -74, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.7, "dataUsageGB": 12800, "uptime": 98.8 }
+          ]
+        },
+        "Surat": {
+          "subscribers": 2800000,
+          "activeSubscribers": 2490000,
+          "lat": 21.1702,
+          "lng": 72.8311,
+          "towers": [
+            { "id": "GJ-SRT-001", "name": "Adajan Tower", "lat": 21.1975, "lng": 72.7914, "subscribers": 61000, "activeConnections": 17700, "signalStrength": -69, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.8, "dataUsageGB": 14800, "uptime": 99.4 },
+            { "id": "GJ-SRT-002", "name": "Varachha Tower", "lat": 21.2000, "lng": 72.8600, "subscribers": 53000, "activeConnections": 15400, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.9, "dataUsageGB": 12900, "uptime": 99.1 },
+            { "id": "GJ-SRT-003", "name": "Althan Tower", "lat": 21.1600, "lng": 72.7800, "subscribers": 44000, "activeConnections": 12800, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.2, "dataUsageGB": 10600, "uptime": 98.7 },
+            { "id": "GJ-SRT-004", "name": "Udhna Tower", "lat": 21.1500, "lng": 72.8400, "subscribers": 36000, "activeConnections": 10500, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.8, "dataUsageGB": 8600, "uptime": 98.3 }
+          ]
+        },
+        "Vadodara": {
+          "subscribers": 1600000,
+          "activeSubscribers": 1420000,
+          "lat": 22.3072,
+          "lng": 73.1812,
+          "towers": [
+            { "id": "GJ-VDR-001", "name": "Alkapuri Tower", "lat": 22.3072, "lng": 73.1812, "subscribers": 38000, "activeConnections": 11000, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.5, "dataUsageGB": 9100, "uptime": 99.1 },
+            { "id": "GJ-VDR-002", "name": "Fatehgunj Tower", "lat": 22.3300, "lng": 73.1900, "subscribers": 32000, "activeConnections": 9300, "signalStrength": -72, "bandwidth": "4G", "status": "active", "handoffRate": 6.8, "dataUsageGB": 7600, "uptime": 98.7 },
+            { "id": "GJ-VDR-003", "name": "Karelibaug Tower", "lat": 22.3000, "lng": 73.2100, "subscribers": 27000, "activeConnections": 7800, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 8.2, "dataUsageGB": 6300, "uptime": 98.3 },
+            { "id": "GJ-VDR-004", "name": "Manjalpur Tower", "lat": 22.2800, "lng": 73.1700, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 9.7, "dataUsageGB": 5100, "uptime": 97.9 }
+          ]
+        },
+        "Rajkot": {
+          "subscribers": 1100000,
+          "activeSubscribers": 980000,
+          "lat": 22.3039,
+          "lng": 70.8022,
+          "towers": [
+            { "id": "GJ-RJK-001", "name": "Kalawad Road Tower", "lat": 22.3039, "lng": 70.8022, "subscribers": 26000, "activeConnections": 7500, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.1, "dataUsageGB": 6100, "uptime": 98.9 },
+            { "id": "GJ-RJK-002", "name": "Raiya Road Tower", "lat": 22.3200, "lng": 70.7800, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.4, "dataUsageGB": 5200, "uptime": 98.5 },
+            { "id": "GJ-RJK-003", "name": "Mavdi Tower", "lat": 22.2900, "lng": 70.8200, "subscribers": 18000, "activeConnections": 5200, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.9, "dataUsageGB": 4200, "uptime": 98.1 },
+            { "id": "GJ-RJK-004", "name": "University Road Tower", "lat": 22.3300, "lng": 70.8100, "subscribers": 14000, "activeConnections": 4100, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 10.6, "dataUsageGB": 3300, "uptime": 97.6 }
+          ]
+        }
+      }
+    },
+    "West Bengal": {
+      "code": "WB",
+      "totalSubscribers": 8400000,
+      "activeSubscribers": 7300000,
+      "churnRate": 2.9,
+      "growthRate": 5.6,
+      "revenueArpu": 261,
+      "districts": {
+        "Kolkata": {
+          "subscribers": 4200000,
+          "activeSubscribers": 3700000,
+          "lat": 22.5726,
+          "lng": 88.3639,
+          "towers": [
+            { "id": "WB-KOL-001", "name": "Park Street Tower", "lat": 22.5498, "lng": 88.3563, "subscribers": 79000, "activeConnections": 23100, "signalStrength": -69, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.0, "dataUsageGB": 19300, "uptime": 99.6 },
+            { "id": "WB-KOL-002", "name": "Salt Lake City Tower", "lat": 22.5744, "lng": 88.4148, "subscribers": 68000, "activeConnections": 19800, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.9, "dataUsageGB": 16700, "uptime": 99.3 },
+            { "id": "WB-KOL-003", "name": "Esplanade Tower", "lat": 22.5646, "lng": 88.3522, "subscribers": 72000, "activeConnections": 21000, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.5, "dataUsageGB": 17800, "uptime": 99.4 },
+            { "id": "WB-KOL-004", "name": "Rajarhat Tower", "lat": 22.6157, "lng": 88.4699, "subscribers": 58000, "activeConnections": 16900, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.7, "dataUsageGB": 14200, "uptime": 99.1 }
+          ]
+        },
+        "Howrah": {
+          "subscribers": 1800000,
+          "activeSubscribers": 1570000,
+          "lat": 22.5958,
+          "lng": 88.2636,
+          "towers": [
+            { "id": "WB-HWR-001", "name": "Howrah Station Tower", "lat": 22.5855, "lng": 88.3421, "subscribers": 45000, "activeConnections": 13100, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.3, "dataUsageGB": 10900, "uptime": 99.2 },
+            { "id": "WB-HWR-002", "name": "Shibpur Tower", "lat": 22.5800, "lng": 88.3100, "subscribers": 38000, "activeConnections": 11000, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 6.5, "dataUsageGB": 9100, "uptime": 98.8 },
+            { "id": "WB-HWR-003", "name": "Bally Tower", "lat": 22.6300, "lng": 88.2700, "subscribers": 30000, "activeConnections": 8700, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 7.9, "dataUsageGB": 7100, "uptime": 98.4 },
+            { "id": "WB-HWR-004", "name": "Santragachi Tower", "lat": 22.6100, "lng": 88.2400, "subscribers": 24000, "activeConnections": 7000, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 9.4, "dataUsageGB": 5700, "uptime": 97.9 }
+          ]
+        },
+        "Durgapur": {
+          "subscribers": 1100000,
+          "activeSubscribers": 960000,
+          "lat": 23.4800,
+          "lng": 87.3200,
+          "towers": [
+            { "id": "WB-DGP-001", "name": "City Centre Tower", "lat": 23.5204, "lng": 87.3119, "subscribers": 26000, "activeConnections": 7600, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.0, "dataUsageGB": 6200, "uptime": 98.9 },
+            { "id": "WB-DGP-002", "name": "Steel Plant Tower", "lat": 23.4900, "lng": 87.3400, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.3, "dataUsageGB": 5200, "uptime": 98.5 },
+            { "id": "WB-DGP-003", "name": "Benachity Tower", "lat": 23.4700, "lng": 87.3100, "subscribers": 18000, "activeConnections": 5200, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.8, "dataUsageGB": 4200, "uptime": 98.1 },
+            { "id": "WB-DGP-004", "name": "Bidhannagar Tower", "lat": 23.5100, "lng": 87.2900, "subscribers": 14000, "activeConnections": 4100, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 10.5, "dataUsageGB": 3300, "uptime": 97.6 }
+          ]
+        },
+        "Siliguri": {
+          "subscribers": 1300000,
+          "activeSubscribers": 1140000,
+          "lat": 26.7271,
+          "lng": 88.3953,
+          "towers": [
+            { "id": "WB-SLG-001", "name": "Sevoke Road Tower", "lat": 26.7271, "lng": 88.3953, "subscribers": 32000, "activeConnections": 9300, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.7, "dataUsageGB": 7600, "uptime": 99.0 },
+            { "id": "WB-SLG-002", "name": "Dabgram Tower", "lat": 26.7100, "lng": 88.3700, "subscribers": 27000, "activeConnections": 7800, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 6.9, "dataUsageGB": 6400, "uptime": 98.6 },
+            { "id": "WB-SLG-003", "name": "Matigara Tower", "lat": 26.7500, "lng": 88.4200, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.3, "dataUsageGB": 5200, "uptime": 98.2 },
+            { "id": "WB-SLG-004", "name": "Naxalbari Tower", "lat": 26.7800, "lng": 88.4500, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 10.0, "dataUsageGB": 4000, "uptime": 97.7 }
+          ]
+        }
+      }
+    },
+    "Telangana": {
+      "code": "TS",
+      "totalSubscribers": 8700000,
+      "activeSubscribers": 7700000,
+      "churnRate": 2.3,
+      "growthRate": 12.5,
+      "revenueArpu": 304,
+      "districts": {
+        "Hyderabad": {
+          "subscribers": 5600000,
+          "activeSubscribers": 5000000,
+          "lat": 17.3850,
+          "lng": 78.4867,
+          "towers": [
+            { "id": "TS-HYD-001", "name": "HITEC City Tower", "lat": 17.4435, "lng": 78.3772, "subscribers": 91000, "activeConnections": 27200, "signalStrength": -67, "bandwidth": "5G", "status": "active", "handoffRate": 3.0, "dataUsageGB": 22800, "uptime": 99.9 },
+            { "id": "TS-HYD-002", "name": "Banjara Hills Tower", "lat": 17.4175, "lng": 78.4483, "subscribers": 79000, "activeConnections": 23500, "signalStrength": -69, "bandwidth": "5G", "status": "active", "handoffRate": 3.7, "dataUsageGB": 19700, "uptime": 99.7 },
+            { "id": "TS-HYD-003", "name": "Secunderabad Tower", "lat": 17.4399, "lng": 78.4983, "subscribers": 68000, "activeConnections": 20200, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.5, "dataUsageGB": 16900, "uptime": 99.5 },
+            { "id": "TS-HYD-004", "name": "LB Nagar Tower", "lat": 17.3494, "lng": 78.5520, "subscribers": 57000, "activeConnections": 16900, "signalStrength": -73, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.5, "dataUsageGB": 14100, "uptime": 99.2 }
+          ]
+        },
+        "Warangal": {
+          "subscribers": 1300000,
+          "activeSubscribers": 1150000,
+          "lat": 17.9689,
+          "lng": 79.5941,
+          "towers": [
+            { "id": "TS-WGL-001", "name": "Hanamkonda Tower", "lat": 18.0000, "lng": 79.5500, "subscribers": 32000, "activeConnections": 9300, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.8, "dataUsageGB": 7600, "uptime": 99.0 },
+            { "id": "TS-WGL-002", "name": "Kazipet Tower", "lat": 17.9600, "lng": 79.5200, "subscribers": 27000, "activeConnections": 7800, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.0, "dataUsageGB": 6400, "uptime": 98.6 },
+            { "id": "TS-WGL-003", "name": "NIT Warangal Tower", "lat": 17.9847, "lng": 79.5300, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.5, "dataUsageGB": 5200, "uptime": 98.2 },
+            { "id": "TS-WGL-004", "name": "Subedari Tower", "lat": 17.9800, "lng": 79.6100, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -78, "bandwidth": "4G", "status": "active", "handoffRate": 10.2, "dataUsageGB": 4000, "uptime": 97.8 }
+          ]
+        },
+        "Nizamabad": {
+          "subscribers": 900000,
+          "activeSubscribers": 795000,
+          "lat": 18.6700,
+          "lng": 78.0900,
+          "towers": [
+            { "id": "TS-NZB-001", "name": "Nizamabad City Tower", "lat": 18.6700, "lng": 78.0900, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.2, "dataUsageGB": 5200, "uptime": 98.9 },
+            { "id": "TS-NZB-002", "name": "Armur Tower", "lat": 18.7900, "lng": 78.2900, "subscribers": 18000, "activeConnections": 5200, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.5, "dataUsageGB": 4200, "uptime": 98.5 },
+            { "id": "TS-NZB-003", "name": "Bodhan Tower", "lat": 18.6600, "lng": 77.9000, "subscribers": 14000, "activeConnections": 4100, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 9.0, "dataUsageGB": 3300, "uptime": 98.1 },
+            { "id": "TS-NZB-004", "name": "Bheemgal Tower", "lat": 18.6200, "lng": 78.1500, "subscribers": 11000, "activeConnections": 3200, "signalStrength": -80, "bandwidth": "4G", "status": "active", "handoffRate": 11.5, "dataUsageGB": 2600, "uptime": 97.5 }
+          ]
+        },
+        "Karimnagar": {
+          "subscribers": 900000,
+          "activeSubscribers": 800000,
+          "lat": 18.4386,
+          "lng": 79.1288,
+          "towers": [
+            { "id": "TS-KRN-001", "name": "Karimnagar Main Tower", "lat": 18.4386, "lng": 79.1288, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.9, "dataUsageGB": 5200, "uptime": 99.0 },
+            { "id": "TS-KRN-002", "name": "Godavarikhani Tower", "lat": 18.7459, "lng": 79.4990, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.2, "dataUsageGB": 4000, "uptime": 98.6 },
+            { "id": "TS-KRN-003", "name": "Huzurabad Tower", "lat": 18.1975, "lng": 79.4104, "subscribers": 13000, "activeConnections": 3800, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.7, "dataUsageGB": 3100, "uptime": 98.1 },
+            { "id": "TS-KRN-004", "name": "Manthani Tower", "lat": 18.6500, "lng": 79.6600, "subscribers": 10000, "activeConnections": 2900, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 10.5, "dataUsageGB": 2400, "uptime": 97.6 }
+          ]
+        }
+      }
+    },
+    "Rajasthan": {
+      "code": "RJ",
+      "totalSubscribers": 4750000,
+      "activeSubscribers": 4100000,
+      "churnRate": 3.4,
+      "growthRate": 8.9,
+      "revenueArpu": 232,
+      "districts": {
+        "Jaipur": {
+          "subscribers": 2200000,
+          "activeSubscribers": 1920000,
+          "lat": 26.9124,
+          "lng": 75.7873,
+          "towers": [
+            { "id": "RJ-JAI-001", "name": "Pink City Tower", "lat": 26.9124, "lng": 75.7873, "subscribers": 54000, "activeConnections": 15700, "signalStrength": -70, "bandwidth": "4G/5G", "status": "active", "handoffRate": 4.9, "dataUsageGB": 12900, "uptime": 99.3 },
+            { "id": "RJ-JAI-002", "name": "Malviya Nagar Jaipur Tower", "lat": 26.8631, "lng": 75.8095, "subscribers": 46000, "activeConnections": 13400, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.0, "dataUsageGB": 11000, "uptime": 99.0 },
+            { "id": "RJ-JAI-003", "name": "Vaishali Nagar Tower", "lat": 26.9217, "lng": 75.7283, "subscribers": 38000, "activeConnections": 11000, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.4, "dataUsageGB": 9000, "uptime": 98.6 },
+            { "id": "RJ-JAI-004", "name": "Sanganer Tower", "lat": 26.8200, "lng": 75.8000, "subscribers": 30000, "activeConnections": 8700, "signalStrength": -77, "bandwidth": "4G", "status": "active", "handoffRate": 9.0, "dataUsageGB": 7100, "uptime": 98.2 }
+          ]
+        },
+        "Jodhpur": {
+          "subscribers": 1100000,
+          "activeSubscribers": 960000,
+          "lat": 26.2389,
+          "lng": 73.0243,
+          "towers": [
+            { "id": "RJ-JDH-001", "name": "Mehrangarh Tower", "lat": 26.2980, "lng": 73.0180, "subscribers": 27000, "activeConnections": 7800, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 5.7, "dataUsageGB": 6400, "uptime": 99.0 },
+            { "id": "RJ-JDH-002", "name": "Paota Tower", "lat": 26.2700, "lng": 73.0100, "subscribers": 22000, "activeConnections": 6400, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.0, "dataUsageGB": 5200, "uptime": 98.6 },
+            { "id": "RJ-JDH-003", "name": "Shastri Nagar Tower", "lat": 26.2500, "lng": 73.0400, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -75, "bandwidth": "4G", "status": "active", "handoffRate": 8.5, "dataUsageGB": 4000, "uptime": 98.2 },
+            { "id": "RJ-JDH-004", "name": "Pratap Nagar Tower", "lat": 26.2200, "lng": 73.0600, "subscribers": 13000, "activeConnections": 3800, "signalStrength": -78, "bandwidth": "4G", "status": "maintenance", "handoffRate": 10.2, "dataUsageGB": 3100, "uptime": 95.1 }
+          ]
+        },
+        "Udaipur": {
+          "subscribers": 800000,
+          "activeSubscribers": 700000,
+          "lat": 24.5854,
+          "lng": 73.7125,
+          "towers": [
+            { "id": "RJ-UDR-001", "name": "Lake Pichola Tower", "lat": 24.5854, "lng": 73.7125, "subscribers": 20000, "activeConnections": 5800, "signalStrength": -72, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.3, "dataUsageGB": 4700, "uptime": 98.9 },
+            { "id": "RJ-UDR-002", "name": "Pratapnagar Tower", "lat": 24.6000, "lng": 73.7300, "subscribers": 16000, "activeConnections": 4600, "signalStrength": -74, "bandwidth": "4G", "status": "active", "handoffRate": 7.7, "dataUsageGB": 3800, "uptime": 98.5 },
+            { "id": "RJ-UDR-003", "name": "Hiran Magri Tower", "lat": 24.5700, "lng": 73.6900, "subscribers": 13000, "activeConnections": 3800, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 9.2, "dataUsageGB": 3100, "uptime": 98.1 },
+            { "id": "RJ-UDR-004", "name": "Bhuwana Tower", "lat": 24.5500, "lng": 73.7000, "subscribers": 10000, "activeConnections": 2900, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 11.0, "dataUsageGB": 2400, "uptime": 97.6 }
+          ]
+        },
+        "Kota": {
+          "subscribers": 650000,
+          "activeSubscribers": 570000,
+          "lat": 25.2138,
+          "lng": 75.8648,
+          "towers": [
+            { "id": "RJ-KOT-001", "name": "Kota Junction Tower", "lat": 25.2138, "lng": 75.8648, "subscribers": 17000, "activeConnections": 4900, "signalStrength": -71, "bandwidth": "4G/5G", "status": "active", "handoffRate": 6.0, "dataUsageGB": 4000, "uptime": 98.9 },
+            { "id": "RJ-KOT-002", "name": "Vigyan Nagar Tower", "lat": 25.1800, "lng": 75.8800, "subscribers": 14000, "activeConnections": 4100, "signalStrength": -73, "bandwidth": "4G", "status": "active", "handoffRate": 7.3, "dataUsageGB": 3300, "uptime": 98.5 },
+            { "id": "RJ-KOT-003", "name": "Talwandi Tower", "lat": 25.2300, "lng": 75.8400, "subscribers": 11000, "activeConnections": 3200, "signalStrength": -76, "bandwidth": "4G", "status": "active", "handoffRate": 8.8, "dataUsageGB": 2600, "uptime": 98.1 },
+            { "id": "RJ-KOT-004", "name": "Mahaveer Nagar Tower", "lat": 25.2000, "lng": 75.8500, "subscribers": 8000, "activeConnections": 2300, "signalStrength": -79, "bandwidth": "4G", "status": "active", "handoffRate": 10.7, "dataUsageGB": 1900, "uptime": 97.5 }
+          ]
+        }
+      }
+    }
+  },
+  "towerTraffic": {
+    "connections": [
+      { "from": "MH-MUM-001", "to": "MH-MUM-002", "dailyHandoffs": 1240, "avgLatency": 2.4, "dataTransferGB": 890, "quality": "excellent" },
+      { "from": "MH-MUM-002", "to": "MH-MUM-003", "dailyHandoffs": 980, "avgLatency": 2.8, "dataTransferGB": 720, "quality": "good" },
+      { "from": "MH-MUM-003", "to": "MH-MUM-004", "dailyHandoffs": 756, "avgLatency": 3.2, "dataTransferGB": 580, "quality": "good" },
+      { "from": "KA-BLR-001", "to": "KA-BLR-002", "dailyHandoffs": 1890, "avgLatency": 1.9, "dataTransferGB": 1340, "quality": "excellent" },
+      { "from": "KA-BLR-002", "to": "KA-BLR-003", "dailyHandoffs": 1450, "avgLatency": 2.2, "dataTransferGB": 1080, "quality": "excellent" },
+      { "from": "TS-HYD-001", "to": "TS-HYD-002", "dailyHandoffs": 2100, "avgLatency": 1.8, "dataTransferGB": 1560, "quality": "excellent" },
+      { "from": "DL-CEN-001", "to": "DL-STH-001", "dailyHandoffs": 1670, "avgLatency": 2.1, "dataTransferGB": 1230, "quality": "excellent" }
+    ]
+  },
+  "aiInsights": {
+    "churnRisk": [
+      { "state": "Rajasthan", "risk": "high", "score": 74, "reason": "Competitor launched 5G in Jaipur with ₹199 plan", "impactedSubscribers": 85000 },
+      { "state": "West Bengal", "risk": "medium", "score": 58, "reason": "Slow 4G speeds in Siliguri corridor", "impactedSubscribers": 42000 },
+      { "state": "Uttar Pradesh", "risk": "medium", "score": 52, "reason": "Rural coverage gaps in eastern districts", "impactedSubscribers": 68000 }
+    ],
+    "growthOpportunities": [
+      { "state": "Karnataka", "opportunity": "5G expansion in Mysuru", "potentialSubscribers": 180000, "roi": "24 months" },
+      { "state": "Telangana", "opportunity": "Enterprise IoT in HITEC City", "potentialRevenue": 45000000, "roi": "18 months" },
+      { "state": "Gujarat", "opportunity": "5G rollout in Surat diamond market", "potentialSubscribers": 95000, "roi": "20 months" }
+    ],
+    "towerOptimization": [
+      { "towerId": "MH-PUN-004", "issue": "High handoff rate 9.3% — possible coverage overlap with MH-PUN-003", "recommendation": "Adjust antenna tilt by -3°" },
+      { "towerId": "MH-MUM-003", "issue": "Overloaded during 6-9 PM — 28,700 concurrent connections near capacity", "recommendation": "Deploy small cell in 500m radius" },
+      { "towerId": "KA-DK-004", "issue": "Maintenance mode — 5.2% subscriber bleed to KA-DK-003", "recommendation": "Priority restore, estimated revenue loss ₹2.1L/day" }
+    ],
+    "subscriberTrends": {
+      "monthly": [
+        { "month": "May-25", "subscribers": 76200000, "churn": 1820000, "acquisition": 2100000 },
+        { "month": "Jun-25", "subscribers": 77400000, "churn": 1760000, "acquisition": 2050000 },
+        { "month": "Jul-25", "subscribers": 78500000, "churn": 1850000, "acquisition": 2310000 },
+        { "month": "Aug-25", "subscribers": 79800000, "churn": 1720000, "acquisition": 2180000 },
+        { "month": "Sep-25", "subscribers": 81100000, "churn": 1680000, "acquisition": 2140000 },
+        { "month": "Oct-25", "subscribers": 81900000, "churn": 1940000, "acquisition": 2560000 },
+        { "month": "Nov-25", "subscribers": 82700000, "churn": 1820000, "acquisition": 2340000 },
+        { "month": "Dec-25", "subscribers": 83600000, "churn": 1960000, "acquisition": 2780000 },
+        { "month": "Jan-26", "subscribers": 84100000, "churn": 2100000, "acquisition": 2560000 },
+        { "month": "Feb-26", "subscribers": 84300000, "churn": 1890000, "acquisition": 2180000 },
+        { "month": "Mar-26", "subscribers": 84550000, "churn": 1720000, "acquisition": 2010000 },
+        { "month": "Apr-26", "subscribers": 84750000, "churn": 1640000, "acquisition": 1840000 }
+      ]
+    }
+  }
+}

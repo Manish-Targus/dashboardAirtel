@@ -34,7 +34,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [selectedTower, setSelectedTower] = useState<FlatTower | null>(null);
   const [bandwidthFilter, setBandwidthFilter] = useState<BandwidthFilter>('All');
   const [activeTab, setActiveTab] = useState<RightTab>('charts');
-  const [mapMode, setMapMode] = useState<MapMode>('towers');
+  const [mapMode, setMapMode] = useState<MapMode>('network');
 
   function setSelectedState(s: string | null) {
     setSelectedStateRaw(s);

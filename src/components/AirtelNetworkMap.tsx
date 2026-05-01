@@ -18,6 +18,59 @@ type CircleData = { hub: string; lat: number; lng: number; color: string; cities
 const data = airtelData as Record<string, CircleData>;
 const CIRCLE_NAMES = Object.keys(data);
 
+/* ── Haversine distance ── */
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const toRad = (d: number) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+/* ── All unique BNG city positions (across every circle) ── */
+const ALL_BNG_POSITIONS = (() => {
+  const map = new Map<string, { lat: number; lng: number }>();
+  for (const circle of Object.values(airtelData as Record<string, CircleData>)) {
+    for (const city of circle.cities) {
+      if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && !map.has(city.bngCity)) {
+        map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
+      }
+    }
+  }
+  return map;
+})();
+
+/* ── Assign a distinct color to each BNG city (golden-ratio HSL spread) ── */
+const ALL_BNG_CITY_NAMES = Array.from(ALL_BNG_POSITIONS.keys()).sort();
+const BNG_CITY_COLORS: Record<string, string> = {};
+ALL_BNG_CITY_NAMES.forEach((bng, i) => {
+  const hue = Math.round((i * 360 / ALL_BNG_CITY_NAMES.length + 10) % 360);
+  BNG_CITY_COLORS[bng] = `hsl(${hue}, 88%, 62%)`;
+});
+
+/* ── Pre-compute the nearest alternative BNG city for each OLT connection ── */
+const ALL_BNG_ENTRIES = Array.from(ALL_BNG_POSITIONS.entries());
+// key → { name, distKm } of the closest BNG city that is nearer than the current one
+const SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
+for (const [circleName, circleData] of Object.entries(airtelData as Record<string, CircleData>)) {
+  for (const city of circleData.cities) {
+    if (city.bngCityLat == null || city.bngCityLng == null || city.distanceKm <= 0) continue;
+    let nearest: { name: string; distKm: number } | null = null;
+    for (const [bngName, bngPos] of ALL_BNG_ENTRIES) {
+      if (bngName === city.bngCity) continue;
+      const d = Math.round(haversineKm(city.lat, city.lng, bngPos.lat, bngPos.lng));
+      if (d < city.distanceKm && (!nearest || d < nearest.distKm)) {
+        nearest = { name: bngName, distKm: d };
+      }
+    }
+    if (nearest) {
+      SHORTER_BNG_MAP.set(`${circleName}-${city.name}-${city.bngCity}`, nearest);
+    }
+  }
+}
+const SHORTER_BNG_SET = new Set(SHORTER_BNG_MAP.keys());
+
 /* ── Circle → GeoJSON state name(s) ── */
 const CIRCLE_TO_STATES: Record<string, string[]> = {
   'Andaman And Nicobar Islands': ['Andaman and Nicobar'],
@@ -81,8 +134,10 @@ function blendColors(colors: string[]): string {
 }
 
 /* ── Side panel ── */
-function CityPanel({ city, circleName, color, onClose }: {
-  city: CityData; circleName: string; color: string; onClose: () => void;
+function CityPanel({ city, circleName, color, shorterBng, onClose }: {
+  city: CityData; circleName: string; color: string;
+  shorterBng: { name: string; distKm: number } | null;
+  onClose: () => void;
 }) {
   const [openBras, setOpenBras] = useState<string | null>(null);
   return (
@@ -91,11 +146,31 @@ function CityPanel({ city, circleName, color, onClose }: {
         <div>
           <div className="text-[13px] font-bold text-txt">{city.name}</div>
           <div className="text-[11px] text-muted mt-0.5">
-            {circleName} · BNG: <span style={{ color }}>{city.bngCity}</span>
+            {circleName} · BNG:{' '}
+            <span style={{ color: BNG_CITY_COLORS[city.bngCity!] ?? color, fontWeight: 700 }}>{city.bngCity}</span>
           </div>
         </div>
         <button onClick={onClose} className="text-muted hover:text-txt text-lg leading-none mt-0.5">×</button>
       </div>
+
+      {/* Closer hub callout */}
+      {shorterBng && (
+        <div className="mx-3 mt-2 mb-1 flex-shrink-0 rounded border border-amber-500/40 bg-amber-500/10 px-3 py-2">
+          <div className="text-[11px] font-semibold text-amber-400 mb-0.5">⚡ Closer BNG hub available</div>
+          <div className="flex items-center justify-between text-[11px]">
+            <span>
+              <span style={{ color: BNG_CITY_COLORS[shorterBng.name] ?? '#f59e0b', fontWeight: 700 }}>
+                {shorterBng.name}
+              </span>
+              <span className="text-muted ml-2">({shorterBng.distKm} km)</span>
+            </span>
+            <span className="text-muted">vs current {city.distanceKm} km</span>
+          </div>
+          <div className="text-[10px] text-amber-300/70 mt-0.5">
+            saves {city.distanceKm - shorterBng.distKm} km
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-3 gap-px bg-border flex-shrink-0">
         {[
@@ -200,19 +275,23 @@ export default function AirtelNetworkMap() {
     };
   }, [activeCircles]);
 
-  /* Lines: one per (OLT city, BNG city) connection — skip zero-distance fallbacks */
+  /* Lines: one per (OLT city, BNG city) connection — colored by BNG city */
   const lines = useMemo(() =>
     CIRCLE_NAMES.flatMap(circleName => {
       if (!activeCircles.has(circleName)) return [];
       return data[circleName].cities
         .filter(c => c.bngCityLat != null && c.bngCityLng != null && c.distanceKm > 0)
-        .map(city => ({
-          key: `${circleName}-${city.name}-${city.bngCity}`,
-          from: [city.lat, city.lng] as [number, number],
-          to:   [city.bngCityLat!, city.bngCityLng!] as [number, number],
-          color: data[circleName].color,
-          isSelected: selected?.city === city && selected?.circleName === circleName,
-        }));
+        .map(city => {
+          const key = `${circleName}-${city.name}-${city.bngCity}`;
+          return {
+            key,
+            from: [city.lat, city.lng] as [number, number],
+            to:   [city.bngCityLat!, city.bngCityLng!] as [number, number],
+            color: BNG_CITY_COLORS[city.bngCity!] ?? data[circleName].color,
+            isSelected: selected?.city === city && selected?.circleName === circleName,
+            isShorterAvailable: SHORTER_BNG_SET.has(key),
+          };
+        });
     }),
     [activeCircles, selected]
   );
@@ -229,11 +308,21 @@ export default function AirtelNetworkMap() {
         }
       }
     }
-    return Array.from(map.entries()).map(([name, pos]) => ({ name, ...pos }));
+    return Array.from(map.entries()).map(([name, pos]) => ({
+      name, ...pos,
+      color: BNG_CITY_COLORS[name] ?? '#ffffff',
+    }));
   }, [activeCircles]);
 
   return (
     <div className="w-full h-full relative">
+      <style>{`
+        @keyframes cityBlink {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0.1; }
+        }
+        // .city-blink { animation: cityBlink 4s ease-in-out infinite; }
+      `}</style>
       <MapContainer center={[20.5, 79.0]} zoom={5} style={{ width: '100%', height: '100%' }} zoomControl attributionControl>
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
@@ -250,25 +339,27 @@ export default function AirtelNetworkMap() {
           style={stateStyle}
         />
 
-        {/* Lines: OLT city → BNG city */}
+        {/* Lines: OLT city → BNG city, colored by BNG city */}
         {lines.map(line => (
           <Polyline
             key={line.key}
             positions={[line.from, line.to]}
             pathOptions={{
               color: line.color,
-              weight: line.isSelected ? 2.5 : 0.7,
-              opacity: line.isSelected ? 1 : 0.22,
+              weight: line.isSelected ? 2.5 : 0.9,
+              opacity: line.isSelected ? 1 : 0.35,
             }}
           />
         ))}
 
-        {/* OLT city dots — one per (city, BNG city) connection */}
+        {/* OLT city dots — blink slowly when a closer BNG hub exists */}
         {CIRCLE_NAMES.map(circleName => {
           if (!activeCircles.has(circleName)) return null;
           const circle = data[circleName];
           return circle.cities.map(city => {
             const isSelected = selected?.city === city && selected?.circleName === circleName;
+            const key = `${circleName}-${city.name}-${city.bngCity}`;
+            const shorter = SHORTER_BNG_MAP.get(key);
             return (
               <CircleMarker
                 key={`city-${circleName}-${city.name}-${city.bngCity}`}
@@ -279,12 +370,20 @@ export default function AirtelNetworkMap() {
                   fillColor: circle.color,
                   fillOpacity: isSelected ? 1 : 0.8,
                   weight: isSelected ? 2 : 0.5,
+                  className: (!isSelected && shorter) ? 'city-blink' : undefined,
                 }}
                 eventHandlers={{ click: () => setSelected({ city, circleName }) }}
               >
                 <Tooltip direction="top" offset={[0, -4]}>
                   <span style={{ fontSize: 11 }}>
-                    <strong>{city.name}</strong> → {city.bngCity}<br />
+                    <strong>{city.name}</strong> →{' '}
+                    <span style={{ color: BNG_CITY_COLORS[city.bngCity!] ?? '#8b949e', fontWeight: 700 }}>
+                      {city.bngCity}
+                    </span>
+                    {shorter && (
+                      <span style={{ color: '#f59e0b', marginLeft: 4 }}>⚡ shorter hub available</span>
+                    )}
+                    <br />
                     <span style={{ color: '#8b949e' }}>{city.brasCount} BRAS · {city.totalCount.toLocaleString()} connections · {city.distanceKm} km</span>
                   </span>
                 </Tooltip>
@@ -293,16 +392,16 @@ export default function AirtelNetworkMap() {
           });
         })}
 
-        {/* BNG city hub markers */}
+        {/* BNG city hub markers — ring color matches the BNG city's line color */}
         {bngMarkers.map(bng => (
           <CircleMarker
             key={`bng-${bng.name}`}
             center={[bng.lat, bng.lng]}
             radius={10}
-            pathOptions={{ color: '#ffffff', fillColor: '#0f172a', fillOpacity: 0.92, weight: 2 }}
+            pathOptions={{ color: bng.color, fillColor: '#0f172a', fillOpacity: 0.92, weight: 2.5 }}
           >
             <Tooltip direction="top" offset={[0, -10]} permanent>
-              <span style={{ fontSize: 10, fontWeight: 700 }}>{bng.name}</span>
+              <span style={{ fontSize: 10, fontWeight: 700, color: bng.color }}>{bng.name}</span>
             </Tooltip>
           </CircleMarker>
         ))}
@@ -348,8 +447,16 @@ export default function AirtelNetworkMap() {
       </div>
 
       {!selected && (
-        <div className="absolute bottom-6 left-3 z-[1000] bg-panel/90 border border-border rounded-md px-3 py-2 backdrop-blur-sm">
-          <div className="text-[11px] text-muted">Click any city dot to see BRAS & MSAN details</div>
+        <div className="absolute bottom-6 left-3 z-[1000] bg-panel/90 border border-border rounded-md px-3 py-2 backdrop-blur-sm flex flex-col gap-1.5">
+          <div className="text-[11px] text-muted">Click any city dot to see BRAS &amp; MSAN details</div>
+          <div className="flex items-center gap-2 text-[11px]">
+            <span className="city-blink inline-block w-2.5 h-2.5 rounded-full bg-amber-400 flex-shrink-0" />
+            <span className="text-amber-400">Slowly blinking = closer BNG hub exists</span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px] text-muted">
+            <span className="inline-block w-8 h-0.5 rounded bg-gray-400 opacity-40" />
+            Line color = BNG hub color
+          </div>
         </div>
       )}
 
@@ -358,6 +465,7 @@ export default function AirtelNetworkMap() {
           city={selected.city}
           circleName={selected.circleName}
           color={data[selected.circleName].color}
+          shorterBng={SHORTER_BNG_MAP.get(`${selected.circleName}-${selected.city.name}-${selected.city.bngCity}`) ?? null}
           onClose={() => setSelected(null)}
         />
       )}

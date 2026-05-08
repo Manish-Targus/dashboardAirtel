@@ -100,13 +100,30 @@ function CityPanel({ city, circleName, color, shorterBng, onClose }: {
   onClose: () => void;
 }) {
   const [openBras, setOpenBras] = useState<string | null>(null);
+
+  const allCityInstances = useMemo(() => {
+    const instances: { circleName: string; city: CityData; color: string }[] = [];
+    for (const [cName, cData] of Object.entries(data)) {
+      const matchedCity = cData.cities.find(c => c.name === city.name && c.lat === city.lat && c.lng === city.lng);
+      if (matchedCity) {
+        instances.push({ circleName: cName, city: matchedCity, color: cData.color || '#30363d' });
+      }
+    }
+    instances.sort((a, b) => a.circleName === circleName ? -1 : b.circleName === circleName ? 1 : 0);
+    return instances;
+  }, [city, circleName]);
+
+  const totalDistanceKm = city.distanceKm;
+  const totalBrasCount = allCityInstances.reduce((sum, inst) => sum + inst.city.brasCount, 0);
+  const totalConnectionCount = allCityInstances.reduce((sum, inst) => sum + inst.city.totalCount, 0);
+
   return (
     <div className="absolute top-0 right-0 h-full z-[2000] flex flex-col bg-panel border-l border-border shadow-2xl" style={{ width: 360 }}>
       <div className="flex items-start justify-between px-4 py-3 border-b border-border flex-shrink-0">
         <div>
           <div className="text-[13px] font-bold text-txt">{city.name}</div>
           <div className="text-[11px] text-muted mt-0.5">
-            {circleName} · BNG:{' '}
+            BNG:{' '}
             <span style={{ color: BNG_CITY_COLORS[city.bngCity!] ?? color, fontWeight: 700 }}>{city.bngCity}</span>
           </div>
         </div>
@@ -131,11 +148,29 @@ function CityPanel({ city, circleName, color, shorterBng, onClose }: {
         </div>
       )}
 
+      {/* Show Circles & Subscriber counts */}
+      <div className="px-4 py-2 border-b border-border flex-shrink-0 bg-panel/50">
+        <div className="text-[11px] font-semibold text-txt mb-1.5">Circles & Subscribers:</div>
+        <div className="flex flex-col gap-1">
+          {allCityInstances.map(inst => (
+            <div key={inst.circleName} className="flex items-center justify-between text-[11px]">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: inst.color }} />
+                <span className={inst.circleName === circleName ? 'text-txt font-medium' : 'text-muted'}>
+                  {inst.circleName}
+                </span>
+              </div>
+              <span className="text-txt font-mono">{inst.city.totalCount.toLocaleString()}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-cols-3 gap-px bg-border flex-shrink-0">
         {[
-          { label: 'Dist to BNG', value: `${city.distanceKm} km` },
-          { label: 'BRAS nodes',  value: city.brasCount },
-          { label: 'Total count', value: city.totalCount.toLocaleString() },
+          { label: 'Dist to BNG', value: `${totalDistanceKm} km` },
+          { label: 'BRAS nodes',  value: totalBrasCount },
+          { label: 'Total count', value: totalConnectionCount.toLocaleString() },
         ].map(({ label, value }) => (
           <div key={label} className="bg-panel px-3 py-2 text-center">
             <div className="text-[15px] font-bold text-txt">{value}</div>
@@ -145,50 +180,132 @@ function CityPanel({ city, circleName, color, shorterBng, onClose }: {
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {city.bras.map(b => {
-          const isOpen = openBras === b.bras;
-          const brasTotal = b.msans.reduce((s, m) => s + m.count, 0);
-          return (
-            <div key={b.bras} className="border-b border-border/60">
-              <button
-                className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-card/60 transition-colors text-left"
-                onClick={() => setOpenBras(isOpen ? null : b.bras)}
-              >
-                <div>
-                  <div className="text-[12px] font-semibold text-txt">{b.bras || '(no BRAS)'}</div>
-                  <div className="text-[10px] text-muted mt-0.5">{b.msans.length} MSANs · {brasTotal.toLocaleString()} connections</div>
+        {allCityInstances.map(inst => (
+          <div key={inst.circleName}>
+            {allCityInstances.length > 1 && (
+              <div className="px-3 py-1.5 bg-card/40 border-b border-border/60 text-[10px] font-bold text-muted uppercase tracking-wider">
+                {inst.circleName}
+              </div>
+            )}
+            {inst.city.bras.map(b => {
+              const uniqueBrasKey = `${inst.circleName}-${b.bras}`;
+              const isOpen = openBras === uniqueBrasKey;
+              const brasTotal = b.msans.reduce((s, m) => s + m.count, 0);
+              return (
+                <div key={uniqueBrasKey} className="border-b border-border/60">
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-card/60 transition-colors text-left"
+                    onClick={() => setOpenBras(isOpen ? null : uniqueBrasKey)}
+                  >
+                    <div>
+                      <div className="text-[12px] font-semibold text-txt">{b.bras || '(no BRAS)'}</div>
+                      <div className="text-[10px] text-muted mt-0.5">{b.msans.length} MSANs · {brasTotal.toLocaleString()} connections</div>
+                    </div>
+                    <span className="text-muted text-[11px] ml-2">{isOpen ? '▲' : '▼'}</span>
+                  </button>
+                  {isOpen && (
+                    <div className="px-3 pb-2">
+                      <table className="w-full text-[11px]">
+                        <thead>
+                          <tr className="text-muted border-b border-border/40">
+                            <th className="text-left pb-1 font-medium">MSAN</th>
+                            <th className="text-left pb-1 font-medium">VLAN</th>
+                            <th className="text-right pb-1 font-medium">Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {b.msans.map((m, i) => (
+                            <tr key={i} className="border-b border-border/20 hover:bg-card/40">
+                              <td className="py-1 font-mono text-txt">{m.msan}</td>
+                              <td className="py-1 text-muted">{m.vlan}</td>
+                              <td className="py-1 text-right text-txt">{m.count.toLocaleString()}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 </div>
-                <span className="text-muted text-[11px] ml-2">{isOpen ? '▲' : '▼'}</span>
-              </button>
-              {isOpen && (
-                <div className="px-3 pb-2">
-                  <table className="w-full text-[11px]">
-                    <thead>
-                      <tr className="text-muted border-b border-border/40">
-                        <th className="text-left pb-1 font-medium">MSAN</th>
-                        <th className="text-left pb-1 font-medium">VLAN</th>
-                        <th className="text-right pb-1 font-medium">Count</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {b.msans.map((m, i) => (
-                        <tr key={i} className="border-b border-border/20 hover:bg-card/40">
-                          <td className="py-1 font-mono text-txt">{m.msan}</td>
-                          <td className="py-1 text-muted">{m.vlan}</td>
-                          <td className="py-1 text-right text-txt">{m.count.toLocaleString()}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        ))}
       </div>
 
       <div className="px-4 py-2 border-t border-border flex-shrink-0 text-[10px] text-muted">
         {city.lat.toFixed(4)}, {city.lng.toFixed(4)}
+      </div>
+    </div>
+  );
+}
+
+/* ── BNG panel ── */
+function BngPanel({ bngName, data, onClose }: { bngName: string, data: Record<string, CircleData>, onClose: () => void }) {
+  const connectedCities: { circleName: string; city: CityData }[] = [];
+  for (const [cName, cData] of Object.entries(data)) {
+    for (const city of cData.cities) {
+      if (city.bngCity === bngName) {
+        connectedCities.push({ circleName: cName, city });
+      }
+    }
+  }
+
+  const totalCities = connectedCities.length;
+  let totalBrasCount = 0;
+  let totalConnectionCount = 0;
+  let totalMsanCount = 0;
+
+  connectedCities.forEach(({ city }) => {
+    totalBrasCount += city.brasCount;
+    totalConnectionCount += city.totalCount;
+    city.bras.forEach(b => {
+      totalMsanCount += b.msans.length;
+    });
+  });
+
+  const bngColor = BNG_CITY_COLORS[bngName] || '#ffffff';
+
+  return (
+    <div className="absolute top-0 right-0 h-full z-[2000] flex flex-col bg-panel border-l border-border shadow-2xl" style={{ width: 360 }}>
+      <div className="flex items-start justify-between px-4 py-3 border-b border-border flex-shrink-0">
+        <div>
+          <div className="text-[13px] font-bold text-txt" style={{ color: bngColor }}>{bngName} BNG Hub</div>
+          <div className="text-[11px] text-muted mt-0.5">Serves {totalCities} OLT Cities</div>
+        </div>
+        <button onClick={onClose} className="text-muted hover:text-txt text-lg leading-none mt-0.5">×</button>
+      </div>
+      
+      <div className="grid grid-cols-2 gap-px bg-border flex-shrink-0">
+        {[
+          { label: 'OLT Cities', value: totalCities.toLocaleString() },
+          { label: 'BRAS Nodes', value: totalBrasCount.toLocaleString() },
+          { label: 'MSANs', value: totalMsanCount.toLocaleString() },
+          { label: 'Total Connections', value: totalConnectionCount.toLocaleString() },
+        ].map(({ label, value }) => (
+          <div key={label} className="bg-panel px-3 py-2 text-center">
+            <div className="text-[15px] font-bold text-txt">{value}</div>
+            <div className="text-[10px] text-muted mt-0.5">{label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="px-4 py-2 border-b border-border text-[11px] font-semibold text-txt flex-shrink-0 bg-panel/50">
+        Connected Cities ({totalCities})
+      </div>
+
+      <div className="flex-1 overflow-y-auto">
+        {connectedCities.sort((a, b) => b.city.totalCount - a.city.totalCount).map(({ city, circleName }) => (
+          <div key={`${circleName}-${city.name}`} className="px-4 py-2 border-b border-border/40 hover:bg-card/40 transition-colors flex justify-between items-center">
+            <div>
+              <div className="text-[12px] font-semibold text-txt">{city.name}</div>
+              <div className="text-[10px] text-muted">{circleName} · {city.distanceKm} km</div>
+            </div>
+            <div className="text-right">
+              <div className="text-[12px] font-mono text-txt">{city.totalCount.toLocaleString()}</div>
+              <div className="text-[10px] text-muted">{city.brasCount} BRAS</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -205,12 +322,24 @@ const DEFAULT_CIRCLES = new Set(['Maharashtra', 'Uttar Pradesh West', 'Uttar Pra
 
 /* ── Main component ── */
 export default function AirtelNetworkMap() {
-  const [activeCircles, setActiveCircles] = useState<Set<string>>(new Set(DEFAULT_CIRCLES));
+  const DEFAULT_BNGS = new Set(CIRCLE_NAMES.filter(c => DEFAULT_CIRCLES.has(c)).flatMap(c => data[c].cities.map(city => city.bngCity!)));
+  const [activeBngs, setActiveBngs] = useState<Set<string>>(new Set(DEFAULT_BNGS));
   const [selected, setSelected] = useState<{ city: CityData; circleName: string } | null>(null);
+  const [selectedBng, setSelectedBng] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(true);
 
-  function toggleCircle(name: string) {
-    setActiveCircles(prev => {
+  function handleSelectCity(city: CityData, circleName: string) {
+    setSelected({ city, circleName });
+    setSelectedBng(null);
+  }
+
+  function handleSelectBng(bngName: string) {
+    setSelectedBng(bngName);
+    setSelected(null);
+  }
+
+  function toggleBng(name: string) {
+    setActiveBngs(prev => {
       const next = new Set(prev);
       next.has(name) ? next.delete(name) : next.add(name);
       return next;
@@ -229,8 +358,8 @@ export default function AirtelNetworkMap() {
   /* Lines: one per (OLT city → BNG city), colored by BNG city */
   const lines = useMemo(() =>
     CIRCLE_NAMES.flatMap(circleName => {
-      if (!activeCircles.has(circleName)) return [];
       return data[circleName].cities
+        .filter(c => activeBngs.has(c.bngCity!))
         .filter(c => c.bngCityLat != null && c.bngCityLng != null && c.distanceKm > 0)
         .map(city => {
           const key = `${circleName}-${city.name}-${city.bngCity}`;
@@ -246,15 +375,15 @@ export default function AirtelNetworkMap() {
           };
         });
     }),
-    [activeCircles, selected]
+    [activeBngs, selected]
   );
 
   /* Unique BNG hub markers */
   const bngMarkers = useMemo(() => {
     const map = new Map<string, { lat: number; lng: number }>();
     for (const circleName of CIRCLE_NAMES) {
-      if (!activeCircles.has(circleName)) continue;
       for (const city of data[circleName].cities) {
+        if (!activeBngs.has(city.bngCity!)) continue;
         if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && city.distanceKm > 0
             && !map.has(city.bngCity)) {
           map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
@@ -265,7 +394,7 @@ export default function AirtelNetworkMap() {
       name, ...pos,
       color: BNG_CITY_COLORS[name] ?? '#ffffff',
     }));
-  }, [activeCircles]);
+  }, [activeBngs]);
 
   return (
     <div className="w-full h-full relative">
@@ -298,7 +427,7 @@ export default function AirtelNetworkMap() {
                 weight:  line.isSelected ? 2.5 : 0.8,
                 opacity: line.isSelected ? 0.9 : 0.18,
               }),
-              click: () => setSelected({ city: line.city, circleName: line.circleName }),
+              click: () => handleSelectCity(line.city, line.circleName),
             }}
           >
             <Tooltip direction="top" sticky>
@@ -321,9 +450,8 @@ export default function AirtelNetworkMap() {
 
         {/* OLT city dots — faded BNG hub color, sized by connection volume (log scale) */}
         {CIRCLE_NAMES.map(circleName => {
-          if (!activeCircles.has(circleName)) return null;
           const circle = data[circleName];
-          return circle.cities.map(city => {
+          return circle.cities.filter(city => activeBngs.has(city.bngCity!)).map(city => {
             const isSelected = selected?.city === city && selected?.circleName === circleName;
             const key = `${circleName}-${city.name}-${city.bngCity}`;
             const shorter = SHORTER_BNG_MAP.get(key);
@@ -342,7 +470,7 @@ export default function AirtelNetworkMap() {
                   weight:      isSelected ? 1.5 : (hasShorter ? 2 : 0.5),
                   opacity:     isSelected ? 1 : (hasShorter ? 0.9 : 0.55),
                 }}
-                eventHandlers={{ click: () => setSelected({ city, circleName }) }}
+                eventHandlers={{ click: () => handleSelectCity(city, circleName) }}
               >
                 <Tooltip direction="top" offset={[0, -4]}>
                   <span style={{ fontSize: 11 }}>
@@ -371,6 +499,7 @@ export default function AirtelNetworkMap() {
             center={[bng.lat, bng.lng]}
             radius={11}
             pathOptions={{ color: bng.color, fillColor: '#0f172a', fillOpacity: 0.92, weight: 3 }}
+            eventHandlers={{ click: () => handleSelectBng(bng.name) }}
           >
             <Tooltip direction="top" offset={[0, -11]} permanent>
               <span style={{ fontSize: 10, fontWeight: 700, color: bng.color }}>{bng.name}</span>
@@ -379,41 +508,58 @@ export default function AirtelNetworkMap() {
         ))}
       </MapContainer>
 
-      {/* Circle toggle sidebar */}
+      {/* BNG toggle sidebar */}
       <div className="absolute top-3 left-3 z-[1000] flex flex-col gap-1 max-h-[calc(100vh-24px)] overflow-y-auto pr-1">
         {/* Select / Deselect all */}
         <div className="flex gap-1 mb-1 flex-shrink-0">
           <button
-            onClick={() => setActiveCircles(new Set(CIRCLE_NAMES))}
+            onClick={() => setActiveBngs(new Set(ALL_BNG_CITY_NAMES))}
             className="flex-1 px-2 py-1 rounded text-[10px] font-semibold border border-slate-600 bg-slate-800/90 text-slate-300 hover:bg-slate-700/90 hover:text-white backdrop-blur-sm transition-colors"
           >
             Select all
           </button>
           <button
-            onClick={() => setActiveCircles(new Set())}
+            onClick={() => setActiveBngs(new Set())}
             className="flex-1 px-2 py-1 rounded text-[10px] font-semibold border border-slate-600 bg-slate-800/90 text-slate-300 hover:bg-slate-700/90 hover:text-white backdrop-blur-sm transition-colors"
           >
             Deselect all
           </button>
         </div>
-        {CIRCLE_NAMES.map(circleName => {
-          const circle = data[circleName];
-          const active = activeCircles.has(circleName);
+        {ALL_BNG_CITY_NAMES.map(bngName => {
+          const active = activeBngs.has(bngName);
+          const color = BNG_CITY_COLORS[bngName] || '#ffffff';
+          const connectedCitiesCount = CIRCLE_NAMES.flatMap(c => data[c].cities).filter(city => city.bngCity === bngName).length;
+          
           return (
-            <button
-              key={circleName}
-              onClick={() => toggleCircle(circleName)}
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap"
+            <div
+              key={bngName}
+              className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap"
               style={{
-                background:  active ? `${circle.color}22` : 'rgba(22,27,34,0.85)',
-                borderColor: active ? circle.color : '#30363d',
-                color:       active ? circle.color : '#8b949e',
+                background:  active ? `${color}22` : 'rgba(22,27,34,0.85)',
+                borderColor: active ? color : '#30363d',
+                color:       active ? color : '#8b949e',
               }}
             >
-              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? circle.color : '#30363d' }} />
-              {circleName}
-              <span style={{ color: '#8b949e', fontWeight: 400 }}>({circle.cities.length})</span>
-            </button>
+              <button 
+                onClick={() => handleSelectBng(bngName)} 
+                className="flex items-center gap-2 flex-1 text-left hover:text-white transition-colors"
+              >
+                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : '#30363d' }} />
+                {bngName}
+                <span style={{ color: '#8b949e', fontWeight: 400 }}>({connectedCitiesCount})</span>
+              </button>
+              <button 
+                onClick={() => toggleBng(bngName)} 
+                className="ml-2 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
+                title={active ? "Hide BNG" : "Show BNG"}
+              >
+                {active ? (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                )}
+              </button>
+            </div>
           );
         })}
       </div>
@@ -422,19 +568,19 @@ export default function AirtelNetworkMap() {
       <div className="absolute top-3 right-3 z-[1000] bg-panel/90 border border-border rounded-md px-2.5 py-1.5 backdrop-blur-sm text-right">
         <div className="text-[11px] text-muted">
           <span className="font-bold text-txt">
-            {CIRCLE_NAMES.filter(c => activeCircles.has(c)).reduce((s, c) => s + data[c].cities.length, 0)}
+            {CIRCLE_NAMES.flatMap(c => data[c].cities).filter(city => activeBngs.has(city.bngCity!)).length}
           </span> OLT Cities
         </div>
         <div className="text-[11px] text-muted">
           <span className="font-bold text-txt">{bngMarkers.length}</span> BNG Hubs
         </div>
         <div className="text-[11px] text-muted">
-          <span className="font-bold text-txt">{CIRCLE_NAMES.filter(c => activeCircles.has(c)).length}</span> Circles active
+          <span className="font-bold text-txt">{activeBngs.size}</span> BNGs active
         </div>
       </div>
 
       {/* Legend — bottom-right, minimizable */}
-      {!selected && (
+      {!selected && !selectedBng && (
         <div className="absolute bottom-6 right-3 z-[1000] bg-panel/90 border border-border rounded-md backdrop-blur-sm">
           {/* Header — always visible */}
           <button
@@ -506,6 +652,13 @@ export default function AirtelNetworkMap() {
           color={data[selected.circleName].color}
           shorterBng={SHORTER_BNG_MAP.get(`${selected.circleName}-${selected.city.name}-${selected.city.bngCity}`) ?? null}
           onClose={() => setSelected(null)}
+        />
+      )}
+      {selectedBng && !selected && (
+        <BngPanel 
+          bngName={selectedBng} 
+          data={data} 
+          onClose={() => setSelectedBng(null)} 
         />
       )}
     </div>

@@ -5,7 +5,7 @@ import rawData from '@/data/grouped.json';
 
 const data = rawData as unknown as NetworkData;
 
-export type MapMode = 'towers' | 'network';
+export type MapMode = 'complaints' | 'network' | 'ideal';
 
 interface DashboardCtx {
   data: NetworkData;
@@ -24,6 +24,8 @@ interface DashboardCtx {
   mapTowers: FlatTower[];
   mapMode: MapMode;
   setMapMode: (m: MapMode) => void;
+  isAlertsOpen: boolean;
+  setIsAlertsOpen: (v: boolean) => void;
 }
 
 const Ctx = createContext<DashboardCtx | null>(null);
@@ -35,6 +37,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [bandwidthFilter, setBandwidthFilter] = useState<BandwidthFilter>('All');
   const [activeTab, setActiveTab] = useState<RightTab>('charts');
   const [mapMode, setMapMode] = useState<MapMode>('network');
+  const [isAlertsOpen, setIsAlertsOpen] = useState(false);
 
   function setSelectedState(s: string | null) {
     setSelectedStateRaw(s);
@@ -80,6 +83,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
       filteredTowers,
       mapTowers,
       mapMode, setMapMode,
+      isAlertsOpen, setIsAlertsOpen,
     }}>
       {children}
     </Ctx.Provider>

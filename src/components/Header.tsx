@@ -32,7 +32,7 @@ function Kpi({ label, value, badge }: KpiProps) {
 }
 
 export default function Header() {
-  const { data, selectedState, allTowers, mapMode } = useDashboard();
+  const { data, selectedState, allTowers, mapMode, isAlertsOpen, setIsAlertsOpen } = useDashboard();
   const { metadata } = data;
 
   const kpis = useMemo(() => {
@@ -100,16 +100,30 @@ export default function Header() {
         </div>
       )}
 
-      {mapMode === 'towers' && selectedState && (
+      {mapMode === 'complaints' && selectedState && (
         <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-accent2/10 border border-accent2/30 rounded-lg">
           <span className="text-[11px] text-blue-400 font-medium">{selectedState}</span>
           <span className="text-[10px] text-muted">{data.states[selectedState].code}</span>
         </div>
       )}
 
-      <div className="text-muted text-[11px] ml-auto whitespace-nowrap flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-good animate-pulse" />
-        LIVE · {ts}
+      <div className="text-muted text-[11px] ml-auto whitespace-nowrap flex items-center gap-4">
+        <button 
+          onClick={() => setIsAlertsOpen(!isAlertsOpen)}
+          className={`relative p-1.5 rounded-md transition-colors ${isAlertsOpen ? 'bg-accent2/20 text-accent2' : 'hover:bg-border text-muted hover:text-txt'}`}
+          title="Alerts"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border border-panel" />
+        </button>
+
+        <div className="flex items-center gap-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-good animate-pulse" />
+          LIVE · {ts}
+        </div>
       </div>
     </header>
   );

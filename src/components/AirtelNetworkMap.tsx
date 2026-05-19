@@ -406,6 +406,165 @@ function ComplaintBngPanel({ bngName, data, onClose }: { bngName: string, data: 
 }
 
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
+import * as XLSX from 'xlsx';
+
+function exportIdealViewExcel() {
+  const wb = XLSX.utils.book_new();
+
+  // ── Summary sheet ──
+  const summaryData: Record<string, string | number>[] = [];
+  for (const bngName of ALL_BNG_CITY_NAMES) {
+    let origCities = 0, idealCities = 0;
+    let origDist = 0, idealDist = 0;
+    let origSubs = 0, idealSubs = 0;
+    for (const [cName, cData] of Object.entries(data as Record<string, CircleData>)) {
+      for (const city of cData.cities) {
+        const key = `${cName}-${city.name}-${city.bngCity}`;
+        const shorter = SHORTER_BNG_MAP.get(key);
+        const idealBng = shorter ? shorter.name : city.bngCity;
+        if (city.bngCity === bngName) {
+          origCities++; origDist += city.distanceKm;
+          idealDist += shorter ? shorter.distKm : city.distanceKm;
+          origSubs += city.totalCount;
+        }
+        if (idealBng === bngName) { idealCities++; idealSubs += city.totalCount; }
+      }
+    }
+    summaryData.push({
+      'BNG Hub': bngName,
+      'Original Cities': origCities,
+      'Ideal Cities': idealCities,
+      'Original Total Distance (km)': Math.round(origDist),
+      'Ideal Total Distance (km)': Math.round(idealDist),
+      'Distance Saved (km)': Math.round(origDist - idealDist),
+      'Original Subscribers': origSubs,
+      'Ideal Subscribers': idealSubs,
+    });
+  }
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(summaryData), 'Summary');
+
+  // ── One sheet per BNG hub ──
+  for (const bngName of ALL_BNG_CITY_NAMES) {
+    // Collect original cities (currently assigned to this hub)
+    const origRows: Record<string, string | number>[] = [];
+    for (const [cName, cData] of Object.entries(data as Record<string, CircleData>)) {
+      for (const city of cData.cities) {
+        if (city.bngCity !== bngName) continue;
+        origRows.push({
+          'OLT City': city.name,
+          'Circle': cName,
+          'Subscribers': city.totalCount,
+          'Distance to Hub (km)': city.distanceKm,
+          'BRAS Count': city.brasCount,
+        });
+      }
+    }
+    origRows.sort((a, b) => (b['Subscribers'] as number) - (a['Subscribers'] as number));
+
+    // Collect ideal cities (reassigned to this hub in ideal topology)
+    const idealRows: Record<string, string | number>[] = [];
+    for (const [cName, cData] of Object.entries(data as Record<string, CircleData>)) {
+      for (const city of cData.cities) {
+        const key = `${cName}-${city.name}-${city.bngCity}`;
+        const shorter = SHORTER_BNG_MAP.get(key);
+        const idealBng = shorter ? shorter.name : city.bngCity;
+        if (idealBng !== bngName) continue;
+        const idealDist = shorter ? shorter.distKm : city.distanceKm;
+        idealRows.push({
+          'OLT City': city.name,
+          'Circle': cName,
+          'Subscribers': city.totalCount,
+          'Distance to Hub (km)': idealDist,
+          'Original BNG Hub': city.bngCity ?? '',
+          'Original Distance (km)': city.distanceKm,
+          'Distance Saved (km)': city.distanceKm - idealDist,
+          'Rerouted': shorter ? 'Yes' : 'No',
+        });
+      }
+    }
+    idealRows.sort((a, b) => (b['Subscribers'] as number) - (a['Subscribers'] as number));
+
+    // Build worksheet: Original block then Ideal block stacked
+    const origHeader = [['=== ORIGINAL NETWORK ===', '', '', '', '']];
+    const origCols = [['OLT City', 'Circle', 'Subscribers', 'Distance to Hub (km)', 'BRAS Count']];
+    const origDataRows = origRows.map(r => [r['OLT City'], r['Circle'], r['Subscribers'], r['Distance to Hub (km)'], r['BRAS Count']]);
+
+    const gap = [['', '', '', '', '', '', '', '']];
+    const idealHeader = [['=== IDEAL TOPOLOGY ===', '', '', '', '', '', '', '']];
+    const idealCols = [['OLT City', 'Circle', 'Subscribers', 'Distance to Hub (km)', 'Original BNG Hub', 'Original Distance (km)', 'Distance Saved (km)', 'Rerouted']];
+    const idealDataRows = idealRows.map(r => [r['OLT City'], r['Circle'], r['Subscribers'], r['Distance to Hub (km)'], r['Original BNG Hub'], r['Original Distance (km)'], r['Distance Saved (km)'], r['Rerouted']]);
+
+    const aoaData = [
+      ...origHeader,
+      ...origCols,
+      ...origDataRows,
+      ...gap,
+      ...idealHeader,
+      ...idealCols,
+      ...idealDataRows,
+    ];
+
+    const ws = XLSX.utils.aoa_to_sheet(aoaData);
+    // Sheet name max 31 chars
+    const sheetName = bngName.length > 31 ? bngName.substring(0, 31) : bngName;
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+  }
+
+  XLSX.writeFile(wb, 'BNG_Ideal_View.xlsx');
+}
+
+/* ── Circle code mapping from FINAL.xlsx ── */
+const CIRCLE_CODE_MAP: Record<string, string> = {
+  'Andaman And Nicobar Islands': 'KO',
+  'Andhra Pradesh': 'AP',
+  'Arunachal Pradesh': 'AS',
+  'Assam': 'AS',
+  'Bihar': 'BH',
+  'Chhattisgarh': 'MP',
+  'Dadra And Nagar Haveli': 'GJ',
+  'Goa': 'MH',
+  'Gujarat': 'GJ',
+  'Haryana': 'UN',
+  'Himachal Pradesh': 'UN',
+  'Jammu And Kashmir': 'JK',
+  'Jharkhand': 'BH',
+  'Karnataka': 'KK',
+  'Kerala': 'TN',
+  'Ladakh': 'JK',
+  'Madhya Pradesh': 'MP',
+  'Maharashtra': 'MH',
+  'Manipur': 'AS',
+  'Meghalaya': 'AS',
+  'Mizoram': 'AS',
+  'NCR': 'DL',
+  'Nagaland': 'AS',
+  'Orissa': 'OD',
+  'Pondicherry': 'TN',
+  'Punjab': 'UN',
+  'Rajasthan': 'RJ',
+  'Sikkim': 'AS',
+  'Tamil Nadu': 'TN',
+  'Telangana': 'AP',
+  'Tripura': 'AS',
+  'Uttar Pradesh East': 'UE',
+  'Uttar Pradesh West': 'UW',
+  'Uttarakhand': 'UN',
+  'West Bengal': 'KO',
+};
+
+const CIRCLES_BY_CODE: Record<string, string[]> = {};
+for (const [circleName, code] of Object.entries(CIRCLE_CODE_MAP)) {
+  if (!CIRCLES_BY_CODE[code]) CIRCLES_BY_CODE[code] = [];
+  CIRCLES_BY_CODE[code].push(circleName);
+}
+const UNIQUE_CIRCLE_CODES = Object.keys(CIRCLES_BY_CODE).sort();
+
+const CIRCLE_CODE_COLORS: Record<string, string> = {};
+UNIQUE_CIRCLE_CODES.forEach((code, i) => {
+  const hue = Math.round((i * 137.508) % 360);
+  const light = i % 2 === 0 ? 60 : 68;
+  CIRCLE_CODE_COLORS[code] = `hsl(${hue}, 82%, ${light}%)`;
+});
 
 /* ── Ideal BNG panel ── */
 function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Record<string, CircleData>, onClose: () => void }) {
@@ -606,12 +765,9 @@ function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   return null;
 }
 
-const DEFAULT_CIRCLES = new Set(['Maharashtra', 'Uttar Pradesh West', 'Uttar Pradesh East', 'Tamil Nadu']);
-
 /* ── Main component ── */
 export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network' | 'complaints' | 'ideal' }) {
-  const DEFAULT_BNGS = new Set(CIRCLE_NAMES.filter(c => DEFAULT_CIRCLES.has(c)).flatMap(c => data[c].cities.map(city => city.bngCity!)));
-  const [activeBngs, setActiveBngs] = useState<Set<string>>(new Set(DEFAULT_BNGS));
+  const [activeCircleCodes, setActiveCircleCodes] = useState<Set<string>>(new Set(['MH', 'UW', 'UE', 'TN']));
   const [selected, setSelected] = useState<{ city: CityData; circleName: string } | null>(null);
   const [selectedBng, setSelectedBng] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(true);
@@ -626,10 +782,10 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
     setSelected(null);
   }
 
-  function toggleBng(name: string) {
-    setActiveBngs(prev => {
+  function toggleCircleCode(code: string) {
+    setActiveCircleCodes(prev => {
       const next = new Set(prev);
-      next.has(name) ? next.delete(name) : next.add(name);
+      next.has(code) ? next.delete(code) : next.add(code);
       return next;
     });
   }
@@ -646,8 +802,8 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
   /* Lines: one per (OLT city → BNG city), colored by BNG city */
   const lines = useMemo(() =>
     CIRCLE_NAMES.flatMap(circleName => {
+      if (!activeCircleCodes.has(CIRCLE_CODE_MAP[circleName] ?? '')) return [];
       return data[circleName].cities
-        .filter(c => activeBngs.has(c.bngCity!))
         .filter(c => c.bngCityLat != null && c.bngCityLng != null && c.distanceKm > 0)
         .filter(c => mode === 'complaints' ? (c.complaints && c.complaints > 0) : true)
         .map(city => {
@@ -683,15 +839,15 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
           };
         });
     }),
-    [activeBngs, selected, mode]
+    [activeCircleCodes, selected, mode]
   );
 
   /* Unique BNG hub markers */
   const bngMarkers = useMemo(() => {
     const map = new Map<string, { lat: number; lng: number }>();
     for (const circleName of CIRCLE_NAMES) {
+      if (!activeCircleCodes.has(CIRCLE_CODE_MAP[circleName] ?? '')) continue;
       for (const city of data[circleName].cities) {
-        if (!activeBngs.has(city.bngCity!)) continue;
         if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && city.distanceKm > 0
           && !map.has(city.bngCity)) {
           map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
@@ -702,7 +858,7 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
       name, ...pos,
       color: BNG_CITY_COLORS[name] ?? '#ffffff',
     }));
-  }, [activeBngs]);
+  }, [activeCircleCodes]);
 
   return (
     <div className="w-full h-full relative">
@@ -757,9 +913,9 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
         ))}
 
         {/* OLT city dots — faded BNG hub color, sized by connection volume (log scale) */}
-        {CIRCLE_NAMES.map(circleName => {
+        {CIRCLE_NAMES.filter(circleName => activeCircleCodes.has(CIRCLE_CODE_MAP[circleName] ?? '')).map(circleName => {
           const circle = data[circleName];
-          return circle.cities.filter(city => activeBngs.has(city.bngCity!))
+          return circle.cities
             .filter(city => mode === 'complaints' ? (city.complaints && city.complaints > 0) : true)
             .map(city => {
               const isSelected = selected?.city === city && selected?.circleName === circleName;
@@ -827,57 +983,48 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
         ))}
       </MapContainer>
 
-      {/* BNG toggle sidebar */}
+      {/* Circle code selection sidebar */}
       <div className="absolute top-3 left-3 z-[1000] flex flex-col gap-1 max-h-[calc(100vh-24px)] overflow-y-auto pr-1">
         {/* Select / Deselect all */}
         <div className="flex gap-1 mb-1 flex-shrink-0">
           <button
-            onClick={() => setActiveBngs(new Set(ALL_BNG_CITY_NAMES))}
+            onClick={() => setActiveCircleCodes(new Set(UNIQUE_CIRCLE_CODES))}
             className="flex-1 px-2 py-1 rounded text-[10px] font-semibold border border-slate-600 bg-slate-800/90 text-slate-300 hover:bg-slate-700/90 hover:text-white backdrop-blur-sm transition-colors"
           >
             Select all
           </button>
           <button
-            onClick={() => setActiveBngs(new Set())}
+            onClick={() => setActiveCircleCodes(new Set())}
             className="flex-1 px-2 py-1 rounded text-[10px] font-semibold border border-slate-600 bg-slate-800/90 text-slate-300 hover:bg-slate-700/90 hover:text-white backdrop-blur-sm transition-colors"
           >
             Deselect all
           </button>
         </div>
-        {ALL_BNG_CITY_NAMES.map(bngName => {
-          const active = activeBngs.has(bngName);
-          const color = BNG_CITY_COLORS[bngName] || '#ffffff';
-          const connectedCitiesCount = CIRCLE_NAMES.flatMap(c => data[c].cities).filter(city => city.bngCity === bngName).length;
+        {UNIQUE_CIRCLE_CODES.map(code => {
+          const active = activeCircleCodes.has(code);
+          const color = CIRCLE_CODE_COLORS[code] || '#ffffff';
+          const circleNames = CIRCLES_BY_CODE[code] || [];
+          const cityCount = circleNames
+            .filter(c => CIRCLE_NAMES.includes(c))
+            .reduce((sum, c) => sum + data[c].cities.length, 0);
 
           return (
             <div
-              key={bngName}
-              className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap"
+              key={code}
+              onClick={() => toggleCircleCode(code)}
+              className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap cursor-pointer"
               style={{
                 background: active ? `${color}22` : 'rgba(22,27,34,0.85)',
                 borderColor: active ? color : '#30363d',
                 color: active ? color : '#8b949e',
               }}
             >
-              <button
-                onClick={() => handleSelectBng(bngName)}
-                className="flex items-center gap-2 flex-1 text-left hover:text-white transition-colors"
-              >
-                <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : '#30363d' }} />
-                {bngName}
-                <span style={{ color: '#8b949e', fontWeight: 400 }}>({connectedCitiesCount})</span>
-              </button>
-              <button
-                onClick={() => toggleBng(bngName)}
-                className="ml-2 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
-                title={active ? "Hide BNG" : "Show BNG"}
-              >
-                {active ? (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                ) : (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
-                )}
-              </button>
+              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : '#30363d' }} />
+              <span className="font-bold tracking-wide">{code}</span>
+              <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
+                {circleNames.filter(c => CIRCLE_NAMES.includes(c)).join(', ').substring(0, 22) || code}
+              </span>
+              <span style={{ color: '#8b949e', fontWeight: 400 }}>({cityCount})</span>
             </div>
           );
         })}
@@ -887,16 +1034,29 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
       <div className="absolute top-3 right-3 z-[1000] bg-panel/90 border border-border rounded-md px-2.5 py-1.5 backdrop-blur-sm text-right">
         <div className="text-[11px] text-muted">
           <span className="font-bold text-txt">
-            {CIRCLE_NAMES.flatMap(c => data[c].cities).filter(city => activeBngs.has(city.bngCity!)).length}
+            {CIRCLE_NAMES.filter(c => activeCircleCodes.has(CIRCLE_CODE_MAP[c] ?? '')).flatMap(c => data[c].cities).length}
           </span> OLT Cities
         </div>
         <div className="text-[11px] text-muted">
           <span className="font-bold text-txt">{bngMarkers.length}</span> BNG Hubs
         </div>
         <div className="text-[11px] text-muted">
-          <span className="font-bold text-txt">{activeBngs.size}</span> BNGs active
+          <span className="font-bold text-txt">{activeCircleCodes.size}</span> Circles active
         </div>
       </div>
+
+      {/* Export Excel — only shown in ideal mode */}
+      {mode === 'ideal' && (
+        <button
+          onClick={exportIdealViewExcel}
+          className="absolute top-[106px] right-3 z-[1000] flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[12px] font-semibold bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-600/30 hover:border-emerald-400 backdrop-blur-sm transition-colors"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export Excel
+        </button>
+      )}
 
       {/* Legend — bottom-right, minimizable */}
       {!selected && !selectedBng && (

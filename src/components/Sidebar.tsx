@@ -21,7 +21,7 @@ export default function Sidebar() {
         districtCount: Object.keys(s.districts).length,
       }))
       .sort((a, b) => b.totalSubscribers - a.totalSubscribers)
-      .filter(s => !search || s.name.toLowerCase().includes(search.toLowerCase())),
+      .filter(s => !search || s.name.toLowerCase().includes(search.toLowerCase()) || s.code.toLowerCase().includes(search.toLowerCase())),
     [data, search]
   );
 
@@ -46,7 +46,7 @@ export default function Sidebar() {
       <div className="p-2 border-b border-border">
         <input
           type="text"
-          placeholder="Search states..."
+          placeholder="Search circles..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full bg-card border border-border rounded-md px-2.5 py-1.5 text-[12px] text-txt placeholder:text-muted focus:outline-none focus:border-accent2 transition-colors"
@@ -84,8 +84,13 @@ export default function Sidebar() {
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium text-[13px] text-txt truncate">{state.name}</div>
-                    <div className="text-muted text-[10px]">{state.code} · {state.towerCount} towers</div>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[13px] font-bold tracking-wide px-1.5 py-0.5 rounded ${
+                        isActive ? 'bg-accent2 text-white' : 'bg-accent2/20 text-accent2'
+                      }`}>{state.code}</span>
+                    </div>
+                    <div className="font-medium text-[11px] text-muted truncate mt-0.5">{state.name}</div>
+                    <div className="text-muted text-[10px]">{state.towerCount} towers</div>
                   </div>
                   <div className="text-right ml-2 flex-shrink-0">
                     <div className="text-[12px] font-bold text-txt">{formatNumber(state.totalSubscribers)}</div>

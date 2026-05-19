@@ -1,6 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { useDashboard } from '@/context/DashboardContext';
+import type { ScreenMode } from '@/context/DashboardContext';
 import { formatNumber } from '@/lib/utils';
 
 interface KpiProps {
@@ -32,7 +33,7 @@ function Kpi({ label, value, badge }: KpiProps) {
 }
 
 export default function Header() {
-  const { data, selectedState, allTowers, mapMode, isAlertsOpen, setIsAlertsOpen } = useDashboard();
+  const { data, selectedState, allTowers, mapMode, isAlertsOpen, setIsAlertsOpen, screenMode, setScreenMode } = useDashboard();
   const { metadata } = data;
 
   const kpis = useMemo(() => {
@@ -107,7 +108,20 @@ export default function Header() {
         </div>
       )}
 
-      <div className="text-muted text-[11px] ml-auto whitespace-nowrap flex items-center gap-4">
+      {/* Screen toggle */}
+      <div className="flex bg-card border border-border rounded-md text-[11px] font-semibold overflow-hidden ml-auto">
+        {([['map', 'Network Map'], ['bng', 'BNG Utilization']] as [ScreenMode, string][]).map(([mode, label]) => (
+          <button
+            key={mode}
+            onClick={() => setScreenMode(mode)}
+            className={`px-3 py-1.5 transition-colors border-r last:border-r-0 border-border ${screenMode === mode ? 'bg-accent2 text-bg' : 'text-muted hover:text-txt'}`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className="text-muted text-[11px] whitespace-nowrap flex items-center gap-4">
         <button 
           onClick={() => setIsAlertsOpen(!isAlertsOpen)}
           className={`relative p-1.5 rounded-md transition-colors ${isAlertsOpen ? 'bg-accent2/20 text-accent2' : 'hover:bg-border text-muted hover:text-txt'}`}

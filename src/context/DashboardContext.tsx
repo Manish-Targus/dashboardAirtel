@@ -6,8 +6,11 @@ import rawData from '@/data/grouped.json';
 const data = rawData as unknown as NetworkData;
 
 export type MapMode = 'complaints' | 'network' | 'ideal';
+export type ScreenMode = 'map' | 'bng';
 
 interface DashboardCtx {
+  screenMode: ScreenMode;
+  setScreenMode: (m: ScreenMode) => void;
   data: NetworkData;
   selectedState: string | null;
   setSelectedState: (s: string | null) => void;
@@ -38,6 +41,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const [activeTab, setActiveTab] = useState<RightTab>('charts');
   const [mapMode, setMapMode] = useState<MapMode>('network');
   const [isAlertsOpen, setIsAlertsOpen] = useState(false);
+  const [screenMode, setScreenMode] = useState<ScreenMode>('map');
 
   function setSelectedState(s: string | null) {
     setSelectedStateRaw(s);
@@ -84,6 +88,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
       mapTowers,
       mapMode, setMapMode,
       isAlertsOpen, setIsAlertsOpen,
+      screenMode, setScreenMode,
     }}>
       {children}
     </Ctx.Provider>

@@ -420,7 +420,7 @@ function exportIdealViewExcel() {
     for (const [cName, cData] of Object.entries(data as Record<string, CircleData>)) {
       for (const city of cData.cities) {
         const key = `${cName}-${city.name}-${city.bngCity}`;
-        const shorter = SHORTER_BNG_MAP.get(key);
+        const shorter = IDEAL_SHORTER_BNG_MAP.get(key);
         const idealBng = shorter ? shorter.name : city.bngCity;
         if (city.bngCity === bngName) {
           origCities++; origDist += city.distanceKm;
@@ -466,7 +466,7 @@ function exportIdealViewExcel() {
     for (const [cName, cData] of Object.entries(data as Record<string, CircleData>)) {
       for (const city of cData.cities) {
         const key = `${cName}-${city.name}-${city.bngCity}`;
-        const shorter = SHORTER_BNG_MAP.get(key);
+        const shorter = IDEAL_SHORTER_BNG_MAP.get(key);
         const idealBng = shorter ? shorter.name : city.bngCity;
         if (idealBng !== bngName) continue;
         const idealDist = shorter ? shorter.distKm : city.distanceKm;
@@ -566,6 +566,53 @@ UNIQUE_CIRCLE_CODES.forEach((code, i) => {
   CIRCLE_CODE_COLORS[code] = `hsl(${hue}, 82%, ${light}%)`;
 });
 
+/* ── BNG hub → its PRIMARY circle code (the code with the most OLT connections) ──
+   Using the dominant code (not every code it ever serves) prevents a hub like Okhla
+   (which incidentally serves a handful of UPE cities) from being treated as a UPE hub
+   when computing the ideal topology. */
+const _bngCircleCount = new Map<string, Map<string, number>>();
+for (const [circleName, circleData] of Object.entries(data)) {
+  const code = CIRCLE_CODE_MAP[circleName] ?? '';
+  for (const city of circleData.cities) {
+    if (!city.bngCity) continue;
+    if (!_bngCircleCount.has(city.bngCity)) _bngCircleCount.set(city.bngCity, new Map());
+    const cnt = _bngCircleCount.get(city.bngCity)!;
+    cnt.set(code, (cnt.get(code) ?? 0) + 1);
+  }
+}
+const BNG_PRIMARY_CODE = new Map<string, string>();
+for (const [bng, counts] of Array.from(_bngCircleCount.entries())) {
+  let primary = '', max = 0;
+  for (const [code, n] of Array.from(counts.entries())) { if (n > max) { primary = code; max = n; } }
+  BNG_PRIMARY_CODE.set(bng, primary);
+}
+
+/* ── Ideal-mode: enforce within-circle connections ──
+   For each OLT city we find the nearest BNG hub whose PRIMARY circle code matches
+   the OLT city's circle code.
+   - If the current hub is already in-circle: only reroute when a closer option exists.
+   - If the current hub is out-of-circle (e.g. Okhla for a UPE city): force-reroute
+     to the nearest in-circle hub regardless of distance. */
+const IDEAL_SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
+for (const [circleName, circleData] of Object.entries(data)) {
+  const myCode = CIRCLE_CODE_MAP[circleName] ?? '';
+  for (const city of circleData.cities) {
+    if (city.bngCityLat == null || city.bngCityLng == null || city.distanceKm <= 0) continue;
+    const currentHubInCircle = BNG_PRIMARY_CODE.get(city.bngCity!) === myCode;
+    let nearest: { name: string; distKm: number } | null = null;
+    for (const [bngName, bngPos] of ALL_BNG_ENTRIES) {
+      if (bngName === city.bngCity) continue;
+      if (BNG_PRIMARY_CODE.get(bngName) !== myCode) continue; // only same-primary-circle hubs
+      const d = Math.round(haversineKm(city.lat, city.lng, bngPos.lat, bngPos.lng));
+      // Force reroute when out-of-circle; optimise when already in-circle
+      if ((!currentHubInCircle || d < city.distanceKm) && (!nearest || d < nearest.distKm)) {
+        nearest = { name: bngName, distKm: d };
+      }
+    }
+    if (nearest) IDEAL_SHORTER_BNG_MAP.set(`${circleName}-${city.name}-${city.bngCity}`, nearest);
+  }
+}
+
 /* ── Ideal BNG panel ── */
 function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Record<string, CircleData>, onClose: () => void }) {
   const [activeList, setActiveList] = useState<'Original' | 'Ideal'>('Original');
@@ -584,7 +631,7 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
   for (const [cName, cData] of Object.entries(data)) {
     for (const city of cData.cities) {
       const key = `${cName}-${city.name}-${city.bngCity}`;
-      const shorter = SHORTER_BNG_MAP.get(key);
+      const shorter = IDEAL_SHORTER_BNG_MAP.get(key);
       const idealBng = shorter ? shorter.name : city.bngCity;
 
       if (city.bngCity === bngName) {
@@ -808,7 +855,7 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
         .filter(c => mode === 'complaints' ? (c.complaints && c.complaints > 0) : true)
         .map(city => {
           const key = `${circleName}-${city.name}-${city.bngCity}`;
-          const shorter = SHORTER_BNG_MAP.get(key) ?? null;
+          const shorter = (mode === 'ideal' ? IDEAL_SHORTER_BNG_MAP : SHORTER_BNG_MAP).get(key) ?? null;
 
           let targetLat = city.bngCityLat!;
           let targetLng = city.bngCityLng!;
@@ -845,20 +892,34 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
   /* Unique BNG hub markers */
   const bngMarkers = useMemo(() => {
     const map = new Map<string, { lat: number; lng: number }>();
-    for (const circleName of CIRCLE_NAMES) {
-      if (!activeCircleCodes.has(CIRCLE_CODE_MAP[circleName] ?? '')) continue;
-      for (const city of data[circleName].cities) {
-        if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && city.distanceKm > 0
-          && !map.has(city.bngCity)) {
-          map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
+
+    if (mode === 'ideal') {
+      // In ideal mode derive hub markers from the already-rerouted lines so that
+      // out-of-circle hubs (e.g. Okhla for UPE) are not shown when every city
+      // that connected to them has been remapped to a within-circle hub.
+      for (const line of lines) {
+        const idealName = line.shorter ? line.shorter.name : line.city.bngCity!;
+        if (!idealName || map.has(idealName)) continue;
+        const pos = ALL_BNG_POSITIONS.get(idealName);
+        if (pos) map.set(idealName, pos);
+      }
+    } else {
+      for (const circleName of CIRCLE_NAMES) {
+        if (!activeCircleCodes.has(CIRCLE_CODE_MAP[circleName] ?? '')) continue;
+        for (const city of data[circleName].cities) {
+          if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && city.distanceKm > 0
+            && !map.has(city.bngCity)) {
+            map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
+          }
         }
       }
     }
+
     return Array.from(map.entries()).map(([name, pos]) => ({
       name, ...pos,
       color: BNG_CITY_COLORS[name] ?? '#ffffff',
     }));
-  }, [activeCircleCodes]);
+  }, [activeCircleCodes, mode, lines]);
 
   return (
     <div className="w-full h-full relative">
@@ -920,7 +981,7 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
             .map(city => {
               const isSelected = selected?.city === city && selected?.circleName === circleName;
               const key = `${circleName}-${city.name}-${city.bngCity}`;
-              const shorter = SHORTER_BNG_MAP.get(key);
+              const shorter = (mode === 'ideal' ? IDEAL_SHORTER_BNG_MAP : SHORTER_BNG_MAP).get(key);
               const radius = isSelected ? 10 : (mode === 'complaints' ? complaintRadius(city.complaints || 0) : oltRadius(city.totalCount));
               const bngColor = BNG_CITY_COLORS[city.bngCity!] ?? '#94a3b8';
               let baseColor = bngColor;

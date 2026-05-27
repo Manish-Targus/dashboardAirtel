@@ -1,1 +1,3247 @@
-{"BILASPUR": {"circle": "AS", "lat": 22.163849, "lng": 82.136592}, "CHAMBA": {"circle": "HP", "lat": 32.692332, "lng": 76.163155}, "HAMIRPUR": {"circle": "UE", "lat": 31.653987, "lng": 76.540363}, "KANGRA": {"circle": "HP", "lat": 32.076867, "lng": 76.298587}, "KINNAUR": {"circle": "HP", "lat": 31.5885, "lng": 78.4647}, "KULLU": {"circle": "HP", "lat": 31.957897, "lng": 77.108923}, "LAHUL & SPITI": {"circle": "HP", "lat": 32.5, "lng": 77.7}, "MANDI": {"circle": "PB", "lat": 31.651662, "lng": 77.009254}, "PANCHKULA": {"circle": "HR", "lat": 30.69754, "lng": 76.855107}, "SHIMLA": {"circle": "HP", "lat": 31.104039, "lng": 77.170792}, "SIRMAUR": {"circle": "HP", "lat": 30.5594, "lng": 77.4688}, "SOLAN": {"circle": "HP", "lat": 30.907757, "lng": 77.102364}, "UNA": {"circle": "PB", "lat": 31.583464, "lng": 76.235145}, "CENTRAL": {"circle": "DL", "lat": 28.643, "lng": 77.2165}, "EAST": {"circle": "DL", "lat": 28.633, "lng": 77.2975}, "FARIDABAD": {"circle": "HR", "lat": 28.594814, "lng": 77.40632}, "GAUTAM BUDDHA NAGAR": {"circle": "UW", "lat": 28.5986, "lng": 77.4127}, "GHAZIABAD": {"circle": "UW", "lat": 28.774997, "lng": 77.458697}, "GURUGRAM": {"circle": "UW", "lat": 28.4595, "lng": 77.0266}, "HAPUR": {"circle": "UW", "lat": 28.7292, "lng": 77.7758}, "JHAJJAR": {"circle": "HR", "lat": 28.596446, "lng": 76.650537}, "NAZUL": {"circle": "DL", "lat": 28.6139, "lng": 77.209}, "NEW DELHI": {"circle": "DL", "lat": 28.633614, "lng": 77.223477}, "NORTH": {"circle": "DL", "lat": 28.6992, "lng": 77.2126}, "NORTH EAST": {"circle": "DL", "lat": 28.6879, "lng": 77.2849}, "NORTH WEST": {"circle": "DL", "lat": 28.7244, "lng": 77.1384}, "NUH": {"circle": "RJ", "lat": 28.1002, "lng": 77.004}, "PALWAL": {"circle": "HR", "lat": 28.059943, "lng": 77.322342}, "SHAHADARA": {"circle": "DL", "lat": 21.540919, "lng": 74.471662}, "SOUTH": {"circle": "DL", "lat": 28.5355, "lng": 77.209}, "SOUTH EAST": {"circle": "DL", "lat": 28.5695, "lng": 77.2812}, "SOUTH WEST": {"circle": "DL", "lat": 28.5744, "lng": 77.0793}, "WEST": {"circle": "DL", "lat": 28.642, "lng": 77.0878}, "Bengaluru (Urban)": {"circle": "TN", "lat": 12.9716, "lng": 77.5946}, "CHENGALPATTU": {"circle": "TN", "lat": 12.684089, "lng": 79.983637}, "CHENNAI": {"circle": "CN", "lat": 13.0827, "lng": 80.2707}, "KANCHIPURAM": {"circle": "TN", "lat": 12.964716, "lng": 79.983969}, "THIRUVALLUR": {"circle": "TN", "lat": 13.139422, "lng": 79.907084}, "ADILABAD": {"circle": "AP", "lat": 19.675945, "lng": 78.53399}, "ALLURI SITHARAMA RAJU": {"circle": "AP", "lat": 17.801, "lng": 82.567}, "ANAKAPALLI": {"circle": "AP", "lat": 17.68897, "lng": 83.003476}, "ANANTHAPURAMU": {"circle": "AP", "lat": 14.678322, "lng": 77.606504}, "ANNAMAYYA": {"circle": "AP", "lat": 13.975, "lng": 79.092}, "BAPATLA": {"circle": "AP", "lat": 15.93443, "lng": 80.450552}, "BHADRADRI KOTHAGUDEM": {"circle": "AP", "lat": 17.553, "lng": 80.618}, "CHITTOOR": {"circle": "AP", "lat": 13.325036, "lng": 79.648061}, "DR.B.R.AMBEDKAR KONASEEMA": {"circle": "AP", "lat": 16.944, "lng": 82.238}, "EAST GODAVARI": {"circle": "AP", "lat": 17.3265, "lng": 81.829}, "ELURU": {"circle": "AP", "lat": 16.710426, "lng": 81.115382}, "GANJAM": {"circle": "OR", "lat": 19.3878, "lng": 84.538}, "GUNTUR": {"circle": "AP", "lat": 16.291519, "lng": 80.454159}, "HANUMAKONDA": {"circle": "AP", "lat": 17.9784, "lng": 79.5978}, "HYDERABAD": {"circle": "AP", "lat": 17.360589, "lng": 78.474061}, "JAGTIAL": {"circle": "AP", "lat": 18.821359, "lng": 78.915066}, "JANGOAN": {"circle": "AP", "lat": 17.746584, "lng": 79.240722}, "JAYASHANKAR BHUPALPALLI": {"circle": "AP", "lat": 18.437, "lng": 79.914}, "JOGULAMBA GADWAL": {"circle": "AP", "lat": 16.232, "lng": 77.804}, "KAKINADA": {"circle": "AP", "lat": 16.943738, "lng": 82.235061}, "KAMAREDDY": {"circle": "AP", "lat": 18.316551, "lng": 78.053938}, "KARIMNAGAR": {"circle": "AP", "lat": 18.434812, "lng": 79.132804}, "KHAMMAM": {"circle": "AP", "lat": 17.246535, "lng": 80.150033}, "KOMARRAM BHEEM": {"circle": "AP", "lat": 19.2, "lng": 79.4}, "KRISHNA": {"circle": "AP", "lat": 16.5193, "lng": 80.6305}, "KURNOOL": {"circle": "AP", "lat": 15.830925, "lng": 78.042537}, "MAHABUBABAD": {"circle": "AP", "lat": 17.713898, "lng": 80.041342}, "MAHABUBNAGAR": {"circle": "AP", "lat": 16.696569, "lng": 77.959115}, "MANCHERIAL": {"circle": "AP", "lat": 18.981297, "lng": 79.51981}, "MEDAK": {"circle": "AP", "lat": 17.93751, "lng": 78.211745}, "MEDCHAL_MALKAJGIRI": {"circle": "AP", "lat": 17.549, "lng": 78.533}, "MULUGU": {"circle": "AP", "lat": 18.194, "lng": 80.083}, "NAGARKURNOOL": {"circle": "AP", "lat": 16.415763, "lng": 78.683043}, "NALGONDA": {"circle": "AP", "lat": 17.050441, "lng": 79.266924}, "NANDYAL": {"circle": "AP", "lat": 15.473629, "lng": 78.480659}, "NARAYANPET": {"circle": "AP", "lat": 16.700552, "lng": 77.616484}, "NIRMAL": {"circle": "AP", "lat": 19.091521, "lng": 78.396609}, "NIZAMABAD": {"circle": "AP", "lat": 18.673269, "lng": 78.097848}, "PALNADU": {"circle": "AP", "lat": 16.2337, "lng": 79.7358}, "PARVATHIPURAM MANYAM": {"circle": "AP", "lat": 18.784, "lng": 83.432}, "PEDDAPALLI": {"circle": "AP", "lat": 18.620653, "lng": 79.495017}, "RANGA REDDY": {"circle": "AP", "lat": 17.868434, "lng": 77.822719}, "SANGAREDDY": {"circle": "AP", "lat": 17.868434, "lng": 77.822719}, "SIDDIPET": {"circle": "AP", "lat": 18.005585, "lng": 78.896113}, "SRI SATHYA SAI": {"circle": "AP", "lat": 14.1652, "lng": 77.4932}, "SRIKAKULAM": {"circle": "AP", "lat": 18.294931, "lng": 83.893884}, "SURIYAPET": {"circle": "AP", "lat": 17.080014, "lng": 79.792533}, "TIRUPATI": {"circle": "AP", "lat": 13.6288, "lng": 79.4192}, "VIKARABAD": {"circle": "AP", "lat": 17.270285, "lng": 77.745297}, "VISAKHAPATNAM": {"circle": "AP", "lat": 17.693553, "lng": 83.29213}, "VIZIANAGARAM": {"circle": "AP", "lat": 18.114126, "lng": 83.411439}, "WARANGAL": {"circle": "AP", "lat": 17.982064, "lng": 79.597095}, "WEST GODAVARI": {"circle": "AP", "lat": 16.9174, "lng": 81.3341}, "Bagalkot": {"circle": "KK", "lat": 16.179322, "lng": 75.699932}, "Ballari": {"circle": "KK", "lat": 15.143022, "lng": 76.917328}, "Belagavi": {"circle": "KK", "lat": 15.857267, "lng": 74.506934}, "Bidar": {"circle": "KK", "lat": 18.02073, "lng": 77.24872}, "Chamarajanagara": {"circle": "KK", "lat": 11.926994, "lng": 76.942431}, "Chikkaballapura": {"circle": "KK", "lat": 13.099376, "lng": 77.388729}, "Chikkamagaluru": {"circle": "KK", "lat": 13.318014, "lng": 75.773874}, "Chitradurga": {"circle": "KK", "lat": 14.304917, "lng": 76.529667}, "Davanagere": {"circle": "KK", "lat": 14.255883, "lng": 75.830342}, "Dharwad": {"circle": "KK", "lat": 15.37073, "lng": 75.133287}, "Gadag": {"circle": "KK", "lat": 15.416692, "lng": 75.68158}, "Hassan": {"circle": "KK", "lat": 13.030185, "lng": 76.174497}, "Haveri": {"circle": "KK", "lat": 14.718027, "lng": 75.365642}, "Kalaburagi": {"circle": "KK", "lat": 17.331, "lng": 76.833423}, "Kolara": {"circle": "KK", "lat": 13.180507, "lng": 78.266933}, "Koppal": {"circle": "KK", "lat": 15.574824, "lng": 76.311849}, "Mandya": {"circle": "KK", "lat": 12.636894, "lng": 76.727548}, "Mysuru": {"circle": "KK", "lat": 12.305183, "lng": 76.655361}, "Raichur": {"circle": "KK", "lat": 16.054719, "lng": 76.900365}, "Ramanagara": {"circle": "KK", "lat": 12.720006, "lng": 77.31842}, "Shivamogga": {"circle": "KK", "lat": 14.05565, "lng": 75.238055}, "Tumakuru": {"circle": "KK", "lat": 13.340077, "lng": 77.100621}, "Udupi": {"circle": "KK", "lat": 13.526978, "lng": 74.873188}, "Vijayapura": {"circle": "KK", "lat": 16.814415, "lng": 75.893386}, "Yadgir": {"circle": "KK", "lat": 16.574412, "lng": 76.925443}, "AGAR MALWA": {"circle": "MP", "lat": 23.713, "lng": 76.02}, "ALIRAJPUR": {"circle": "MP", "lat": 22.3175, "lng": 74.3615}, "ANUPPUR": {"circle": "MP", "lat": 23.104, "lng": 81.692}, "ASHOKNAGAR": {"circle": "MP", "lat": 24.58, "lng": 77.73}, "BALAGHAT": {"circle": "MP", "lat": 21.861159, "lng": 80.323711}, "BALOD": {"circle": "MP", "lat": 20.73, "lng": 81.2}, "BALODA BAZAR": {"circle": "MP", "lat": 21.6614, "lng": 82.1617}, "BALRAMPUR": {"circle": "UE", "lat": 27.4308, "lng": 82.1763}, "BARWANI": {"circle": "MP", "lat": 22.0367, "lng": 74.901}, "BASTAR": {"circle": "MP", "lat": 19.1195, "lng": 81.9495}, "BEMETARA": {"circle": "MP", "lat": 21.678387, "lng": 81.441258}, "BETUL": {"circle": "MP", "lat": 21.879747, "lng": 77.875365}, "BHIND": {"circle": "MP", "lat": 26.351883, "lng": 78.686319}, "BHOPAL": {"circle": "MP", "lat": 23.2599, "lng": 77.4126}, "BIJAPUR": {"circle": "MP", "lat": 16.826991, "lng": 75.717539}, "BURHANPUR": {"circle": "MP", "lat": 21.334867, "lng": 76.37088}, "CHHATARPUR": {"circle": "MP", "lat": 24.760609, "lng": 79.678178}, "CHHINDWARA": {"circle": "MP", "lat": 22.20719, "lng": 78.798833}, "DAMOH": {"circle": "MP", "lat": 23.798101, "lng": 79.541936}, "DATIA": {"circle": "MP", "lat": 25.918295, "lng": 78.664496}, "DEWAS": {"circle": "MP", "lat": 22.80575, "lng": 76.294041}, "DHAMTARI": {"circle": "MP", "lat": 20.532626, "lng": 81.715599}, "DHAR": {"circle": "MP", "lat": 22.578657, "lng": 75.225864}, "DINDORI": {"circle": "MP", "lat": 20.2267, "lng": 73.8333}, "DURG": {"circle": "MP", "lat": 21.198296, "lng": 81.400792}, "GARIYABAND": {"circle": "MP", "lat": 20.63, "lng": 82.06}, "GAURELA-PENDRA-MARWAHI": {"circle": "MP", "lat": 22.55, "lng": 81.8}, "GUNA": {"circle": "MP", "lat": 24.500177, "lng": 77.260096}, "GWALIOR": {"circle": "MP", "lat": 26.203725, "lng": 78.157363}, "HARDA": {"circle": "MP", "lat": 22.242797, "lng": 77.117917}, "INDORE": {"circle": "MP", "lat": 22.7196, "lng": 75.8577}, "JABALPUR": {"circle": "MP", "lat": 23.170152, "lng": 79.932451}, "JASHPUR": {"circle": "MP", "lat": 29.278715, "lng": 78.827707}, "KATNI": {"circle": "MP", "lat": 23.717639, "lng": 80.261018}, "KHANDWA": {"circle": "MP", "lat": 21.976978, "lng": 76.567534}, "KHARGONE": {"circle": "MP", "lat": 21.954473, "lng": 75.752125}, "KONDAGAON": {"circle": "MP", "lat": 19.588577, "lng": 81.662874}, "KORBA": {"circle": "MP", "lat": 22.519822, "lng": 82.635003}, "MAHASAMUND": {"circle": "MP", "lat": 21.192285, "lng": 82.489026}, "MAIHAR": {"circle": "MP", "lat": 24.243754, "lng": 81.044691}, "MANDLA": {"circle": "MP", "lat": 12.636894, "lng": 76.727548}, "MANDSAUR": {"circle": "RJ", "lat": 24.262815, "lng": 75.385692}, "MOHLA-MANPUR-AMBAGARH CHOWKI": {"circle": "MP", "lat": 20.55, "lng": 81.0}, "MORENA": {"circle": "MP", "lat": 26.384979, "lng": 77.861272}, "MUNGELI": {"circle": "MP", "lat": 22.0618, "lng": 81.6844}, "NEEMUCH": {"circle": "MP", "lat": 24.630552, "lng": 75.1829}, "RAIGARH": {"circle": "MH", "lat": 22.236179, "lng": 83.352953}, "RAIPUR": {"circle": "MP", "lat": 21.2514, "lng": 81.6296}, "RAJGARH": {"circle": "MP", "lat": 23.871671, "lng": 76.77447}, "RAJNANDGAON": {"circle": "MP", "lat": 21.068442, "lng": 80.797078}, "RATLAM": {"circle": "MP", "lat": 23.50222, "lng": 74.955153}, "REWA": {"circle": "MP", "lat": 24.756085, "lng": 81.381057}, "SAGAR": {"circle": "MP", "lat": 23.808308, "lng": 78.758254}, "SAKTI": {"circle": "MP", "lat": 22.02, "lng": 82.97}, "SARANGARH-BILAIGARH": {"circle": "MP", "lat": 21.8, "lng": 83.1}, "SATNA": {"circle": "MP", "lat": 24.695445, "lng": 80.777035}, "SEHORE": {"circle": "MP", "lat": 23.115004, "lng": 77.066536}, "SEONI": {"circle": "MP", "lat": 22.274811, "lng": 79.720252}, "SHAHDOL": {"circle": "MP", "lat": 23.300234, "lng": 81.364771}, "SHAJAPUR": {"circle": "MP", "lat": 15.840068, "lng": 74.517775}, "SHIVPURI": {"circle": "MP", "lat": 25.374122, "lng": 77.827887}, "SINGRAULI": {"circle": "UE", "lat": 24.243134, "lng": 82.382767}, "SURAJPUR": {"circle": "MP", "lat": 23.219, "lng": 82.862}, "SURGUJA": {"circle": "MP", "lat": 23.1163, "lng": 83.1936}, "TIKAMGARH": {"circle": "MP", "lat": 24.85521, "lng": 79.047255}, "UJJAIN": {"circle": "MP", "lat": 23.188513, "lng": 75.771656}, "UMARIA": {"circle": "MP", "lat": 17.836543, "lng": 76.625005}, "VIDISHA": {"circle": "MP", "lat": 23.8463, "lng": 77.837021}, "WARDHA": {"circle": "MH", "lat": 20.825623, "lng": 78.613146}, "AMRITSAR": {"circle": "PB", "lat": 31.635666, "lng": 74.87875}, "BARNALA": {"circle": "PB", "lat": 30.37168, "lng": 75.503989}, "BATHINDA": {"circle": "PB", "lat": 30.179481, "lng": 75.04711}, "CHANDIGARH": {"circle": "PB", "lat": 30.76864, "lng": 76.575048}, "FARIDKOT": {"circle": "PB", "lat": 30.601451, "lng": 74.795018}, "FAZILKA": {"circle": "PB", "lat": 30.319841, "lng": 74.121794}, "FIROZPUR": {"circle": "PB", "lat": 30.875383, "lng": 74.652544}, "GURDASPUR": {"circle": "PB", "lat": 31.903726, "lng": 75.227559}, "HOSHIARPUR": {"circle": "PB", "lat": 31.609294, "lng": 75.845975}, "JALANDHAR": {"circle": "PB", "lat": 31.292231, "lng": 75.567888}, "KAPURTHALA": {"circle": "PB", "lat": 31.385648, "lng": 75.30533}, "LUDHIANA": {"circle": "PB", "lat": 30.901, "lng": 75.8573}, "MALER KOTLA": {"circle": "PB", "lat": 30.533129, "lng": 75.88076}, "MANSA": {"circle": "PB", "lat": 29.876413, "lng": 75.488956}, "MOGA": {"circle": "PB", "lat": 30.787755, "lng": 75.159359}, "PATHANKOT": {"circle": "PB", "lat": 32.30219, "lng": 75.658941}, "PATIALA": {"circle": "PB", "lat": 30.209278, "lng": 76.339723}, "SANGRUR": {"circle": "PB", "lat": 30.135717, "lng": 75.853333}, "TARN TARAN": {"circle": "PB", "lat": 31.321245, "lng": 74.841669}, "AMBALA": {"circle": "HR", "lat": 30.3752, "lng": 76.7821}, "BHIWANI": {"circle": "HR", "lat": 28.79317, "lng": 76.139128}, "CHARKI DADRI": {"circle": "HR", "lat": 28.5919, "lng": 75.9236}, "FATEHABAD": {"circle": "HR", "lat": 29.535921, "lng": 75.57529}, "HISAR": {"circle": "HR", "lat": 29.23966, "lng": 75.817451}, "JIND": {"circle": "HR", "lat": 29.315207, "lng": 76.314082}, "KAITHAL": {"circle": "HR", "lat": 29.799659, "lng": 76.39899}, "KARNAL": {"circle": "HR", "lat": 29.725577, "lng": 76.910692}, "KURUKSHETRA": {"circle": "HR", "lat": 29.969375, "lng": 76.848279}, "MAHENDRAGARH": {"circle": "HR", "lat": 28.132697, "lng": 76.169745}, "PANIPAT": {"circle": "HR", "lat": 29.391275, "lng": 76.977167}, "REWARI": {"circle": "RJ", "lat": 28.195647, "lng": 76.616518}, "ROHTAK": {"circle": "HR", "lat": 28.90109, "lng": 76.580193}, "SIRSA": {"circle": "HR", "lat": 29.606304, "lng": 74.903657}, "SONIPAT": {"circle": "HR", "lat": 28.995376, "lng": 77.023363}, "YAMUNANAGAR": {"circle": "HR", "lat": 30.123135, "lng": 77.286329}, "BALASORE": {"circle": "OR", "lat": 21.500642, "lng": 86.919884}, "MUMBAI": {"circle": "MU", "lat": 19.054999, "lng": 72.869203}, "AGRA": {"circle": "UW", "lat": 27.1767, "lng": 78.0081}, "ALIGARH": {"circle": "UW", "lat": 27.8974, "lng": 78.088}, "ALMORA": {"circle": "UW", "lat": 29.702651, "lng": 79.432632}, "AMROHA": {"circle": "UW", "lat": 28.9, "lng": 78.4667}, "AURAIYA": {"circle": "UE", "lat": 26.4644, "lng": 79.5114}, "BAGESHWAR": {"circle": "UW", "lat": 30.00879, "lng": 79.928018}, "BAGHPAT": {"circle": "UW", "lat": 28.9444, "lng": 77.2167}, "BAREILLY": {"circle": "UE", "lat": 28.367, "lng": 79.4304}, "BIJNOR": {"circle": "UW", "lat": 29.3667, "lng": 78.1333}, "BUDAUN": {"circle": "UW", "lat": 28.0444, "lng": 79.1268}, "BULANDSHAHR": {"circle": "UW", "lat": 28.4, "lng": 77.85}, "CHAMPAWAT": {"circle": "UW", "lat": 29.235032, "lng": 80.102307}, "DEHRADUN": {"circle": "UW", "lat": 30.325565, "lng": 78.043681}, "ETAH": {"circle": "UW", "lat": 27.5635, "lng": 78.6658}, "ETAWAH": {"circle": "UW", "lat": 26.7754, "lng": 79.0208}, "FIROZABAD": {"circle": "UW", "lat": 27.15, "lng": 78.3957}, "HARIDWAR": {"circle": "UW", "lat": 29.938447, "lng": 78.145298}, "HATHRAS": {"circle": "UW", "lat": 27.5941, "lng": 78.0525}, "KASGANJ": {"circle": "UW", "lat": 27.8017, "lng": 78.645}, "MAINPURI": {"circle": "UW", "lat": 27.2296, "lng": 79.0135}, "MATHURA": {"circle": "UW", "lat": 27.4924, "lng": 77.6737}, "MEERUT": {"circle": "UW", "lat": 28.9845, "lng": 77.7064}, "MORADABAD": {"circle": "UW", "lat": 28.8386, "lng": 78.7733}, "MUZAFFARNAGAR": {"circle": "UW", "lat": 29.4727, "lng": 77.7085}, "NAINITAL": {"circle": "UW", "lat": 29.294995, "lng": 79.416251}, "PILIBHIT": {"circle": "UE", "lat": 28.6319, "lng": 79.8025}, "PITHORAGARH": {"circle": "UW", "lat": 29.585871, "lng": 80.215167}, "RAMPUR": {"circle": "UW", "lat": 28.793, "lng": 79.0028}, "SAHARANPUR": {"circle": "UW", "lat": 29.964, "lng": 77.546}, "SAMBHAL": {"circle": "UW", "lat": 28.584, "lng": 78.5701}, "SHAMLI": {"circle": "UW", "lat": 29.45, "lng": 77.3167}, "TEHRI GARHWAL": {"circle": "UW", "lat": 30.465818, "lng": 78.483735}, "UTTARKASHI": {"circle": "UW", "lat": 30.963573, "lng": 78.636252}, "AHMADABAD": {"circle": "GJ", "lat": 23.0225, "lng": 72.5714}, "AMRELI": {"circle": "GJ", "lat": 21.417612, "lng": 71.249609}, "ANAND": {"circle": "GJ", "lat": 22.558656, "lng": 72.962723}, "BHARUCH": {"circle": "GJ", "lat": 21.708043, "lng": 72.995694}, "BHAVNAGAR": {"circle": "GJ", "lat": 21.771884, "lng": 72.141645}, "BOTAD": {"circle": "GJ", "lat": 22.04671, "lng": 71.668962}, "DAHOD": {"circle": "GJ", "lat": 22.91941, "lng": 74.134272}, "DAMAN": {"circle": "GJ", "lat": 20.270216, "lng": 72.986579}, "GANDHINAGAR": {"circle": "GJ", "lat": 22.791949, "lng": 70.684505}, "JAMNAGAR": {"circle": "GJ", "lat": 22.473242, "lng": 70.05521}, "JUNAGADH": {"circle": "GJ", "lat": 21.522042, "lng": 70.458246}, "KHEDA": {"circle": "GJ", "lat": 22.85325, "lng": 72.995359}, "MAHESANA": {"circle": "GJ", "lat": 23.601556, "lng": 72.386798}, "MORBI": {"circle": "GJ", "lat": 22.800396, "lng": 70.886232}, "NAVSARI": {"circle": "GJ", "lat": 20.952407, "lng": 72.932383}, "PATAN": {"circle": "GJ", "lat": 23.8493, "lng": 72.1266}, "PHALODI": {"circle": "RJ", "lat": 27.079933, "lng": 72.580485}, "RAJKOT": {"circle": "GJ", "lat": 22.3039, "lng": 70.8022}, "SURAT": {"circle": "GJ", "lat": 21.209489, "lng": 72.831706}, "SURENDRANAGAR": {"circle": "GJ", "lat": 22.825139, "lng": 71.620974}, "VADODARA": {"circle": "GJ", "lat": 22.297314, "lng": 73.194257}, "VALSAD": {"circle": "GJ", "lat": 20.382869, "lng": 72.903881}, "AHMEDNAGAR": {"circle": "MH", "lat": 18.471175, "lng": 73.907225}, "AKOLA": {"circle": "MH", "lat": 20.761812, "lng": 77.192116}, "AMRAVATI": {"circle": "MH", "lat": 21.154541, "lng": 77.644296}, "BEED": {"circle": "MH", "lat": 18.991844, "lng": 75.909784}, "BHANDARA": {"circle": "MH", "lat": 29.101294, "lng": 75.167535}, "BULDHANA": {"circle": "MH", "lat": 20.562845, "lng": 76.408699}, "CHANDRAPUR": {"circle": "MH", "lat": 20.096756, "lng": 79.504548}, "DHULE": {"circle": "MH", "lat": 21.130522, "lng": 74.490061}, "GADCHIROLI": {"circle": "MH", "lat": 19.75907, "lng": 80.162281}, "GONDIA": {"circle": "MH", "lat": 21.455228, "lng": 80.196273}, "HINGOLI": {"circle": "MH", "lat": 19.543116, "lng": 77.173943}, "JALGAON": {"circle": "MH", "lat": 20.842883, "lng": 75.526125}, "JALNA": {"circle": "MH", "lat": 19.918833, "lng": 75.87086}, "KOLHAPUR": {"circle": "MH", "lat": 16.702841, "lng": 74.240533}, "LATUR": {"circle": "MH", "lat": 18.355335, "lng": 76.7549}, "NAGPUR": {"circle": "MH", "lat": 21.149813, "lng": 79.082056}, "NANDED": {"circle": "MH", "lat": 19.094273, "lng": 77.483263}, "NANDURBAR": {"circle": "MH", "lat": 21.514162, "lng": 74.540551}, "NASHIK": {"circle": "MH", "lat": 20.011247, "lng": 73.790236}, "PARBHANI": {"circle": "MH", "lat": 19.290198, "lng": 76.602644}, "PUNE": {"circle": "MH", "lat": 18.521374, "lng": 73.854507}, "RATNAGIRI": {"circle": "MH", "lat": 17.282608, "lng": 73.456979}, "SANGLI": {"circle": "MH", "lat": 17.172693, "lng": 74.586765}, "SATARA": {"circle": "MH", "lat": 17.636129, "lng": 74.298278}, "SOLAPUR": {"circle": "MH", "lat": 17.849907, "lng": 75.27632}, "WASHIM": {"circle": "MH", "lat": 20.287418, "lng": 77.236965}, "YAVATMAL": {"circle": "MH", "lat": 20.063868, "lng": 78.356566}, "Alappuzha": {"circle": "KL", "lat": 9.500342, "lng": 76.412336}, "KANNIYAKUMARI": {"circle": "TN", "lat": 8.079252, "lng": 77.549934}, "Kannur": {"circle": "KL", "lat": 11.876384, "lng": 75.373797}, "Kasaragod": {"circle": "KL", "lat": 12.422196, "lng": 75.190445}, "Kollam": {"circle": "KL", "lat": 8.887053, "lng": 76.59067}, "Kottayam": {"circle": "KL", "lat": 9.628738, "lng": 76.645533}, "Kozhikode": {"circle": "KL", "lat": 11.2588, "lng": 75.7804}, "Malappuram": {"circle": "KL", "lat": 11.106845, "lng": 76.109955}, "Palakkad": {"circle": "KL", "lat": 10.787369, "lng": 76.474217}, "Thiruvananthapuram": {"circle": "TN", "lat": 8.488227, "lng": 76.947551}, "Thrissur": {"circle": "KL", "lat": 10.52701, "lng": 76.214621}, "ARIYALUR": {"circle": "TN", "lat": 11.153056, "lng": 79.25858}, "COIMBATORE": {"circle": "TN", "lat": 11.001812, "lng": 76.962842}, "CUDDALORE": {"circle": "TN", "lat": 11.906826, "lng": 79.808123}, "DHARMAPURI": {"circle": "TN", "lat": 12.145613, "lng": 78.113222}, "DINDIGUL": {"circle": "TN", "lat": 10.42569, "lng": 77.815664}, "ERODE": {"circle": "TN", "lat": 11.490528, "lng": 77.350527}, "KALLAKKURICHI": {"circle": "TN", "lat": 11.794685, "lng": 79.038821}, "KARUR": {"circle": "TN", "lat": 10.821767, "lng": 78.382865}, "KRISHNAGIRI": {"circle": "TN", "lat": 12.515208, "lng": 78.009377}, "MADURAI": {"circle": "TN", "lat": 9.926115, "lng": 78.114098}, "MAYILADUTHURAI": {"circle": "TN", "lat": 11.101861, "lng": 79.650316}, "NAGAPATTINAM": {"circle": "TN", "lat": 11.877211, "lng": 79.797581}, "NAMAKKAL": {"circle": "TN", "lat": 11.303389, "lng": 78.118604}, "PERAMBALUR": {"circle": "TN", "lat": 11.290264, "lng": 78.93004}, "PUDUKKOTTAI": {"circle": "TN", "lat": 10.290307, "lng": 78.817362}, "RAMANATHAPURAM": {"circle": "TN", "lat": 9.520558, "lng": 78.518463}, "RANIPET": {"circle": "TN", "lat": 12.918624, "lng": 79.408192}, "SALEM": {"circle": "TN", "lat": 11.646962, "lng": 78.210696}, "SIVAGANGA": {"circle": "TN", "lat": 9.848688, "lng": 78.487046}, "TENKASI": {"circle": "TN", "lat": 9.093391, "lng": 77.475837}, "THANJAVUR": {"circle": "TN", "lat": 10.659037, "lng": 79.201428}, "THENI": {"circle": "TN", "lat": 9.869256, "lng": 77.422297}, "THIRUVARUR": {"circle": "TN", "lat": 10.687862, "lng": 79.497944}, "THOOTHUKUDI": {"circle": "TN", "lat": 8.80526, "lng": 78.145274}, "TIRUNELVELI": {"circle": "TN", "lat": 8.549501, "lng": 77.580518}, "TIRUPATHUR": {"circle": "TN", "lat": 12.498356, "lng": 78.561817}, "TIRUPPUR": {"circle": "TN", "lat": 10.791527, "lng": 77.532547}, "VELLORE": {"circle": "TN", "lat": 12.902185, "lng": 79.061104}, "VILUPPURAM": {"circle": "TN", "lat": 12.116697, "lng": 79.598924}, "VIRUDHUNAGAR": {"circle": "TN", "lat": 9.492629, "lng": 77.863183}, "KOLKATA": {"circle": "KO", "lat": 22.5726, "lng": 88.3639}, "NADIA": {"circle": "WB", "lat": 22.689553, "lng": 72.87136}, "AMETHI": {"circle": "UE", "lat": 26.15, "lng": 81.9167}, "AYODHYA": {"circle": "UE", "lat": 26.7922, "lng": 82.1998}, "AZAMGARH": {"circle": "UE", "lat": 26.0727, "lng": 83.1837}, "BAHRAICH": {"circle": "UE", "lat": 27.5745, "lng": 81.5955}, "BALLIA": {"circle": "UE", "lat": 25.76, "lng": 84.1467}, "BANDA": {"circle": "UE", "lat": 25.4792, "lng": 80.3328}, "BARA BANKI": {"circle": "UE", "lat": 26.9371, "lng": 81.1947}, "BASTI": {"circle": "UE", "lat": 26.8003, "lng": 82.7295}, "BHADOHI": {"circle": "UE", "lat": 25.3955, "lng": 82.5694}, "CHANDAULI": {"circle": "UE", "lat": 25.2661, "lng": 83.269}, "DEORIA": {"circle": "UE", "lat": 26.5032, "lng": 83.7802}, "FARRUKHABAD": {"circle": "UE", "lat": 27.3963, "lng": 79.58}, "FATEHPUR": {"circle": "UE", "lat": 25.111676, "lng": 76.581123}, "GHAZIPUR": {"circle": "UE", "lat": 25.5773, "lng": 83.5724}, "GONDA": {"circle": "UE", "lat": 27.1328, "lng": 81.9608}, "GORAKHPUR": {"circle": "UE", "lat": 26.7606, "lng": 83.3732}, "HARDOI": {"circle": "UE", "lat": 27.3941, "lng": 80.1286}, "JALAUN": {"circle": "UE", "lat": 26.1468, "lng": 79.3369}, "JAUNPUR": {"circle": "UE", "lat": 25.7462, "lng": 82.6836}, "JHANSI": {"circle": "UE", "lat": 25.4484, "lng": 78.5685}, "KANNAUJ": {"circle": "UE", "lat": 27.0577, "lng": 79.9153}, "KANPUR NAGAR": {"circle": "UE", "lat": 26.4499, "lng": 80.3319}, "KUSHINAGAR": {"circle": "UE", "lat": 26.7399, "lng": 83.889}, "LALITPUR": {"circle": "UE", "lat": 24.6887, "lng": 78.4143}, "LUCKNOW": {"circle": "UE", "lat": 26.8467, "lng": 80.9462}, "MAHOBA": {"circle": "UE", "lat": 25.29, "lng": 79.869}, "MAHRAJGANJ": {"circle": "UE", "lat": 27.1293, "lng": 83.5591}, "MIRZAPUR": {"circle": "UE", "lat": 25.1459, "lng": 82.569}, "PRATAPGARH": {"circle": "RJ", "lat": 25.8971, "lng": 81.994}, "RAE BARELI": {"circle": "UE", "lat": 26.233, "lng": 81.2354}, "SANT KABIR NAGAR": {"circle": "UE", "lat": 26.7869, "lng": 82.9843}, "SHAHJAHANPUR": {"circle": "UE", "lat": 27.883, "lng": 79.905}, "SHRAWASTI": {"circle": "UE", "lat": 27.7, "lng": 81.9}, "SIDDHARTHNAGAR": {"circle": "UE", "lat": 27.2964, "lng": 83.0916}, "SITAPUR": {"circle": "UE", "lat": 27.5604, "lng": 80.6806}, "SONBHADRA": {"circle": "UE", "lat": 24.6907, "lng": 82.9748}, "SULTANPUR": {"circle": "UE", "lat": 26.2649, "lng": 82.0722}, "UNNAO": {"circle": "UE", "lat": 26.5476, "lng": 80.4896}, "VARANASI": {"circle": "UE", "lat": 25.3176, "lng": 82.9739}, "ANANTNAG": {"circle": "JK", "lat": 33.7311, "lng": 75.1481}, "BADGAM": {"circle": "JK", "lat": 33.909875, "lng": 74.627036}, "BANDIPURA": {"circle": "JK", "lat": 34.4225, "lng": 74.641}, "BARAMULA": {"circle": "JK", "lat": 34.20869, "lng": 74.343498}, "DODA": {"circle": "JK", "lat": 33.13261, "lng": 75.589008}, "GANDERBAL": {"circle": "JK", "lat": 34.288932, "lng": 75.040798}, "JAMMU": {"circle": "JK", "lat": 32.7266, "lng": 74.857}, "KARGIL": {"circle": "JK", "lat": 34.559305, "lng": 76.125577}, "KATHUA": {"circle": "JK", "lat": 32.376552, "lng": 75.524304}, "KISHTWAR": {"circle": "JK", "lat": 33.61562, "lng": 75.879397}, "KULGAM": {"circle": "JK", "lat": 33.64469, "lng": 75.018843}, "KUPWARA": {"circle": "JK", "lat": 34.51407, "lng": 74.191367}, "LEH": {"circle": "JK", "lat": 34.164203, "lng": 77.584813}, "PULWAMA": {"circle": "JK", "lat": 33.949047, "lng": 75.041833}, "RAJAURI": {"circle": "JK", "lat": 33.377249, "lng": 74.313233}, "RAMBAN": {"circle": "JK", "lat": 33.211637, "lng": 75.205099}, "SAMBA": {"circle": "JK", "lat": 32.575912, "lng": 75.120345}, "SRINAGAR": {"circle": "JK", "lat": 34.0837, "lng": 74.7973}, "UDHAMPUR": {"circle": "JK", "lat": 32.921973, "lng": 75.133148}, "ALIPUR DUAR": {"circle": "WB", "lat": 26.485157, "lng": 89.524693}, "BANKURA": {"circle": "WB", "lat": 23.132377, "lng": 87.208192}, "BIRBHUM": {"circle": "WB", "lat": 23.9, "lng": 87.53}, "DARJILING": {"circle": "WB", "lat": 27.037755, "lng": 88.263176}, "GANGTOK": {"circle": "WB", "lat": 27.329046, "lng": 88.612267}, "JALPAIGURI": {"circle": "WB", "lat": 26.626281, "lng": 88.733448}, "JHARGRAM": {"circle": "WB", "lat": 22.453851, "lng": 86.994948}, "KALIMPONG": {"circle": "WB", "lat": 27.070287, "lng": 88.472368}, "MALDAH": {"circle": "BR", "lat": 25.005745, "lng": 88.139848}, "NAMCHI": {"circle": "WB", "lat": 27.303102, "lng": 88.378596}, "PAKUR": {"circle": "JH", "lat": 24.532591, "lng": 87.593232}, "PURULIYA": {"circle": "WB", "lat": 23.202097, "lng": 86.322899}, "ARARIA": {"circle": "BR", "lat": 26.134646, "lng": 87.465406}, "ARWAL": {"circle": "BR", "lat": 25.2487, "lng": 84.682}, "AURANGABAD": {"circle": "BR", "lat": 19.877263, "lng": 75.339024}, "BANKA": {"circle": "BR", "lat": 24.832827, "lng": 86.816111}, "BEGUSARAI": {"circle": "BR", "lat": 25.512541, "lng": 86.088339}, "BHAGALPUR": {"circle": "BR", "lat": 25.286135, "lng": 87.130423}, "BUXAR": {"circle": "BR", "lat": 25.504483, "lng": 84.109752}, "CHATRA": {"circle": "JH", "lat": 24.106232, "lng": 84.862338}, "DARBHANGA": {"circle": "BR", "lat": 26.08299, "lng": 86.032495}, "DEOGHAR": {"circle": "JH", "lat": 24.489832, "lng": 86.699018}, "GAYA": {"circle": "BR", "lat": 24.796436, "lng": 85.007956}, "GODDA": {"circle": "JH", "lat": 24.864589, "lng": 87.298484}, "GOPALGANJ": {"circle": "BR", "lat": 26.421117, "lng": 84.373913}, "GUMLA": {"circle": "JH", "lat": 23.160376, "lng": 84.459957}, "JAHANABAD": {"circle": "BR", "lat": 25.238535, "lng": 85.021988}, "JAMUI": {"circle": "BR", "lat": 24.756251, "lng": 86.301113}, "KAIMUR": {"circle": "BR", "lat": 23.981603, "lng": 88.62961}, "KATIHAR": {"circle": "BR", "lat": 25.558642, "lng": 87.64572}, "KHAGARIA": {"circle": "BR", "lat": 25.493051, "lng": 86.698226}, "KISHANGANJ": {"circle": "BR", "lat": 26.298414, "lng": 87.946671}, "LAKHISARAI": {"circle": "BR", "lat": 25.154394, "lng": 86.174496}, "MADHEPURA": {"circle": "BR", "lat": 25.780612, "lng": 86.936475}, "MADHUBANI": {"circle": "BR", "lat": 26.350308, "lng": 86.229642}, "MUNGER": {"circle": "BR", "lat": 25.220286, "lng": 86.516148}, "MUZAFFARPUR": {"circle": "BR", "lat": 26.148255, "lng": 85.33161}, "NALANDA": {"circle": "BR", "lat": 25.136491, "lng": 85.443655}, "NAWADA": {"circle": "BR", "lat": 24.817325, "lng": 85.517909}, "PALAMU": {"circle": "JH", "lat": 32.109549, "lng": 76.535953}, "PATNA": {"circle": "BR", "lat": 25.609324, "lng": 85.123525}, "PURNIA": {"circle": "BR", "lat": 25.775872, "lng": 87.408767}, "ROHTAS": {"circle": "BR", "lat": 24.9957, "lng": 83.7851}, "SAHARSA": {"circle": "BR", "lat": 25.833076, "lng": 86.614375}, "SAHIBGANJ": {"circle": "JH", "lat": 25.032044, "lng": 87.691764}, "SAMASTIPUR": {"circle": "BR", "lat": 25.774788, "lng": 85.867231}, "SHEIKHPURA": {"circle": "BR", "lat": 25.125074, "lng": 85.816077}, "SHEOHAR": {"circle": "BR", "lat": 26.493423, "lng": 85.271756}, "SITAMARHI": {"circle": "BR", "lat": 26.594284, "lng": 85.500428}, "SIWAN": {"circle": "BR", "lat": 26.131008, "lng": 84.391075}, "SUPAUL": {"circle": "BR", "lat": 26.276809, "lng": 86.795961}, "ANUGUL": {"circle": "OR", "lat": 21.102538, "lng": 84.953682}, "BALANGIR": {"circle": "OR", "lat": 20.609518, "lng": 83.167303}, "BARGARH": {"circle": "OR", "lat": 21.231992, "lng": 83.565274}, "BHADRAK": {"circle": "OR", "lat": 20.985405, "lng": 86.593423}, "CUTTACK": {"circle": "OR", "lat": 20.4686, "lng": 85.8792}, "DEOGARH": {"circle": "OR", "lat": 21.537079, "lng": 84.730118}, "DHENKANAL": {"circle": "OR", "lat": 20.835149, "lng": 85.602231}, "JAGATSINGHPUR": {"circle": "OR", "lat": 20.259387, "lng": 86.166088}, "JAJAPUR": {"circle": "OR", "lat": 20.874679, "lng": 86.121539}, "JHARSUGUDA": {"circle": "OR", "lat": 21.801937, "lng": 83.971396}, "KENDRAPARA": {"circle": "OR", "lat": 20.547516, "lng": 86.529617}, "KHORDHA": {"circle": "OR", "lat": 20.053815, "lng": 85.502331}, "NABARANGAPUR": {"circle": "OR", "lat": 19.228896, "lng": 82.566571}, "NAYAGARH": {"circle": "OR", "lat": 20.239368, "lng": 85.050728}, "PURI": {"circle": "OR", "lat": 19.807608, "lng": 85.825254}, "RAYAGARHA": {"circle": "OR", "lat": 19.44267, "lng": 83.587305}, "SAMBALPUR": {"circle": "OR", "lat": 21.557061, "lng": 84.152851}, "SUNDARGARH": {"circle": "OR", "lat": 22.060515, "lng": 83.935915}, "AJMER": {"circle": "RJ", "lat": 26.4691, "lng": 74.639}, "ALWAR": {"circle": "RJ", "lat": 27.414005, "lng": 76.617039}, "BALOTRA": {"circle": "RJ", "lat": 25.830056, "lng": 72.247095}, "BANSWARA": {"circle": "RJ", "lat": 23.491505, "lng": 74.350217}, "BARAN": {"circle": "RJ", "lat": 24.920817, "lng": 76.682198}, "BARMER": {"circle": "RJ", "lat": 25.581485, "lng": 71.192492}, "BEAWAR": {"circle": "RJ", "lat": 26.107056, "lng": 74.312842}, "BHARATPUR": {"circle": "RJ", "lat": 27.024696, "lng": 77.292012}, "BHILWARA": {"circle": "RJ", "lat": 25.470994, "lng": 74.696132}, "BIKANER": {"circle": "RJ", "lat": 28.015929, "lng": 73.317137}, "BUNDI": {"circle": "RJ", "lat": 25.436766, "lng": 75.736147}, "CHITTAURGARH": {"circle": "RJ", "lat": 24.717158, "lng": 74.471813}, "CHURU": {"circle": "RJ", "lat": 28.204778, "lng": 74.6913}, "DAUSA": {"circle": "RJ", "lat": 26.804866, "lng": 76.443746}, "DHAULPUR": {"circle": "RJ", "lat": 26.653033, "lng": 77.624104}, "DUNGARPUR": {"circle": "RJ", "lat": 23.853889, "lng": 73.708718}, "GANGANAGAR": {"circle": "RJ", "lat": 25.906139, "lng": 76.48155}, "HANUMANGARH": {"circle": "RJ", "lat": 29.365953, "lng": 74.298429}, "JAIPUR": {"circle": "RJ", "lat": 26.9124, "lng": 75.7873}, "JAISALMER": {"circle": "RJ", "lat": 27.026416, "lng": 70.777512}, "JALOR": {"circle": "RJ", "lat": 25.209348, "lng": 72.317889}, "JHALAWAR": {"circle": "RJ", "lat": 24.313237, "lng": 76.522108}, "JHUNJHUNUN": {"circle": "RJ", "lat": 28.079894, "lng": 75.542421}, "JODHPUR": {"circle": "RJ", "lat": 26.2389, "lng": 73.0243}, "KARAULI": {"circle": "RJ", "lat": 26.515833, "lng": 77.056596}, "KOTA": {"circle": "RJ", "lat": 25.173702, "lng": 75.857419}, "NAGAUR": {"circle": "RJ", "lat": 26.987344, "lng": 73.738901}, "PALI": {"circle": "RJ", "lat": 25.455221, "lng": 73.419389}, "RAJSAMAND": {"circle": "RJ", "lat": 25.289246, "lng": 73.824108}, "SAWAI MADHOPUR": {"circle": "RJ", "lat": 26.229019, "lng": 76.304356}, "SIKAR": {"circle": "RJ", "lat": 27.662416, "lng": 75.027997}, "SIROHI": {"circle": "RJ", "lat": 24.811405, "lng": 72.830026}, "TONK": {"circle": "RJ", "lat": 26.12232, "lng": 75.663224}, "UDAIPUR": {"circle": "RJ", "lat": 24.578721, "lng": 73.686257}, "BAJALI": {"circle": "AS", "lat": 26.5, "lng": 90.8}, "BAKSA": {"circle": "AS", "lat": 26.69, "lng": 91.66}, "BARPETA": {"circle": "AS", "lat": 26.345941, "lng": 91.039708}, "BISWANATH": {"circle": "NE", "lat": 26.728, "lng": 93.14}, "BONGAIGAON": {"circle": "AS", "lat": 26.480013, "lng": 90.558039}, "CHARAIDEO": {"circle": "NE", "lat": 27.013, "lng": 94.805}, "DHUBRI": {"circle": "AS", "lat": 26.132275, "lng": 90.124996}, "DIBRUGARH": {"circle": "AS", "lat": 27.48446, "lng": 94.901945}, "EAST SIANG": {"circle": "NE", "lat": 28.0803, "lng": 95.0956}, "GOALPARA": {"circle": "NE", "lat": 26.049188, "lng": 90.600186}, "GOLAGHAT": {"circle": "NE", "lat": 26.510826, "lng": 93.974369}, "HAILAKANDI": {"circle": "NE", "lat": 24.684692, "lng": 92.564584}, "HOJAI": {"circle": "AS", "lat": 25.96294, "lng": 92.981829}, "JORHAT": {"circle": "NE", "lat": 26.757793, "lng": 94.207965}, "LAKHIMPUR": {"circle": "NE", "lat": 27.95, "lng": 80.781}, "LOWER DIBANG VALLEY": {"circle": "NE", "lat": 27.803, "lng": 95.96}, "MAJULI": {"circle": "AS", "lat": 26.95, "lng": 94.17}, "MARIGAON": {"circle": "AS", "lat": 26.255148, "lng": 92.329088}, "NAGAON": {"circle": "AS", "lat": 26.331365, "lng": 92.752476}, "NALBARI": {"circle": "AS", "lat": 26.353363, "lng": 91.398366}, "SIBSAGAR": {"circle": "NE", "lat": 26.983494, "lng": 94.639423}, "SONITPUR": {"circle": "NE", "lat": 25.697262, "lng": 85.166965}, "TAMULPUR": {"circle": "AS", "lat": 26.65, "lng": 91.8}, "TINSUKIA": {"circle": "NE", "lat": 27.487972, "lng": 95.360186}, "TIRAP": {"circle": "NE", "lat": 27.026, "lng": 95.531}, "WEST KARBI ANGLONG": {"circle": "AS", "lat": 25.75, "lng": 92.75}, "AIZAWL": {"circle": "NE", "lat": 23.727763, "lng": 92.717995}, "ANJAW": {"circle": "NE", "lat": 28.027, "lng": 96.838}, "BISHNUPUR": {"circle": "NE", "lat": 23.0741, "lng": 87.3219}, "CHAMPHAI": {"circle": "NE", "lat": 23.631732, "lng": 93.349318}, "CHANGLANG": {"circle": "NE", "lat": 27.1147, "lng": 95.7426}, "CHURACHANDPUR": {"circle": "NE", "lat": 24.346884, "lng": 93.699414}, "DHALAI": {"circle": "NE", "lat": 23.7569, "lng": 91.806}, "DIBANG VALLEY": {"circle": "NE", "lat": 28.6369, "lng": 95.982}, "DIMAPUR": {"circle": "NE", "lat": 25.904138, "lng": 93.717761}, "EAST KAMENG": {"circle": "NE", "lat": 27.3333, "lng": 92.75}, "KHAWZAWL": {"circle": "NE", "lat": 23.487789, "lng": 93.140294}, "KHOWAI": {"circle": "NE", "lat": 24.0651, "lng": 91.6038}, "KOHIMA": {"circle": "NE", "lat": 25.661876, "lng": 94.101916}, "KOLASIB": {"circle": "NE", "lat": 24.190547, "lng": 92.71366}, "KRA DAADI": {"circle": "NE", "lat": 27.5, "lng": 93.2}, "KURUNG KUMEY": {"circle": "NE", "lat": 27.85, "lng": 93.45}, "LAWNGTLAI": {"circle": "NE", "lat": 22.391338, "lng": 92.739719}, "LEPA RADA": {"circle": "NE", "lat": 28.0, "lng": 94.75}, "LOHIT": {"circle": "NE", "lat": 28.078, "lng": 96.31}, "LONGDING": {"circle": "NE", "lat": 27.373, "lng": 95.412}, "LOWER SIANG": {"circle": "NE", "lat": 27.9, "lng": 94.75}, "LOWER SUBANSIRI": {"circle": "NE", "lat": 27.45, "lng": 93.8}, "LUNGLEI": {"circle": "NE", "lat": 22.951997, "lng": 92.633883}, "MOKOKCHUNG": {"circle": "NE", "lat": 26.479586, "lng": 94.510527}, "MON": {"circle": "NE", "lat": 26.666667, "lng": 95.0}, "NAMSAI": {"circle": "NE", "lat": 27.714031, "lng": 96.015971}, "NORTH TRIPURA": {"circle": "NE", "lat": 24.4154, "lng": 92.0195}, "PAKKE KESSANG": {"circle": "NE", "lat": 27.25, "lng": 93.25}, "SAITUAL": {"circle": "NE", "lat": 23.812857, "lng": 92.972797}, "SENAPATI": {"circle": "NE", "lat": 25.39337, "lng": 94.150177}, "SEPAHIJALA": {"circle": "NE", "lat": 23.45, "lng": 91.65}, "SHI YOMI": {"circle": "NE", "lat": 28.5, "lng": 94.0}, "SIANG": {"circle": "NE", "lat": 28.45, "lng": 95.4}, "SOUTH TRIPURA": {"circle": "NE", "lat": 23.25, "lng": 91.75}, "TAWANG": {"circle": "NE", "lat": 27.587919, "lng": 91.863733}, "THOUBAL": {"circle": "NE", "lat": 24.638695, "lng": 93.996871}, "TUENSANG": {"circle": "NE", "lat": 26.234211, "lng": 94.741553}, "UKHRUL": {"circle": "NE", "lat": 25.098265, "lng": 94.363167}, "UNAKOTI": {"circle": "NE", "lat": 24.3247, "lng": 92.0812}, "UPPER SIANG": {"circle": "NE", "lat": 28.85, "lng": 95.25}, "UPPER SUBANSIRI": {"circle": "NE", "lat": 27.95, "lng": 94.25}, "WEST KAMENG": {"circle": "NE", "lat": 27.2, "lng": 92.5}, "WEST SIANG": {"circle": "NE", "lat": 28.05, "lng": 94.35}, "WEST TRIPURA": {"circle": "NE", "lat": 23.8315, "lng": 91.4988}, "BOKARO": {"circle": "JH", "lat": 23.699128, "lng": 85.991069}, "DHANBAD": {"circle": "JH", "lat": 23.795281, "lng": 86.430964}, "DUMKA": {"circle": "JH", "lat": 24.267794, "lng": 87.248549}, "GARHWA": {"circle": "JH", "lat": 24.053577, "lng": 83.652682}, "GIRIDIH": {"circle": "JH", "lat": 24.331455, "lng": 86.154812}, "HAZARIBAGH": {"circle": "JH", "lat": 24.086696, "lng": 85.491223}, "JAMTARA": {"circle": "JH", "lat": 23.980164, "lng": 86.924364}, "KHUNTI": {"circle": "JH", "lat": 22.92818, "lng": 85.281447}, "LOHARDAGA": {"circle": "JH", "lat": 23.477004, "lng": 84.698668}, "RAMGARH": {"circle": "JH", "lat": 23.693479, "lng": 85.521599}, "RANCHI": {"circle": "JH", "lat": 23.3441, "lng": 85.3096}, "NTR": {"circle": "AP", "lat": 16.5193, "lng": 80.6305}, "PRAKASAM": {"circle": "AP", "lat": 15.3381, "lng": 79.5006}, "RAJANNA SIRCILLA": {"circle": "AP", "lat": 18.385, "lng": 78.833}, "SRI POTTI SRIRAMULU NELLORE": {"circle": "AP", "lat": 14.4426, "lng": 79.9865}, "WANPARTI": {"circle": "AP", "lat": 16.359, "lng": 78.061}, "YADADRI BHUVANAGIRI": {"circle": "AP", "lat": 17.57, "lng": 79.06}, "YANAM": {"circle": "AP", "lat": 16.729, "lng": 82.213}, "YSR KADAPA": {"circle": "AP", "lat": 14.4753, "lng": 78.8208}, "Bengaluru (Rural)": {"circle": "KK", "lat": 13.0827, "lng": 77.5877}, "Dakshina Kannada": {"circle": "KK", "lat": 12.8438, "lng": 74.99}, "Kodagu": {"circle": "KK", "lat": 12.3375, "lng": 75.8069}, "Uttara Kannada": {"circle": "KK", "lat": 14.798, "lng": 74.692}, "Vijayanagara": {"circle": "KK", "lat": 15.1394, "lng": 76.9214}, "DAKSHIN BASTAR DANTEWARA": {"circle": "MP", "lat": 18.896, "lng": 81.344}, "JANJGIR - CHAMPA": {"circle": "MP", "lat": 22.0079, "lng": 82.5691}, "JHABUA": {"circle": "MP", "lat": 22.7679, "lng": 74.59}, "KAWARDHA (KABIRDHAM)": {"circle": "MP", "lat": 22.0841, "lng": 81.273}, "KHAIRGARH-CHHUIKHADAN-GANDAI": {"circle": "MP", "lat": 21.42, "lng": 80.99}, "KOREA": {"circle": "MP", "lat": 23.2072, "lng": 82.558}, "MANENDRAGARH-CHIRMIRI-BHARATPUR": {"circle": "MP", "lat": 23.2, "lng": 82.2}, "NARMADAPURAM": {"circle": "MP", "lat": 16.577718, "lng": 82.003262}, "NIWARI": {"circle": "MP", "lat": 25.0, "lng": 78.7}, "PANDHURNA": {"circle": "MP", "lat": 21.6, "lng": 78.5}, "PANNA": {"circle": "MP", "lat": 25.609324, "lng": 85.123525}, "MUMBAI SUBURBAN": {"circle": "MU", "lat": 19.133, "lng": 72.94}, "CHAMOLI": {"circle": "UW", "lat": 18.78609, "lng": 73.76411}, "CHHOTAUDEPUR": {"circle": "GJ", "lat": 22.3074, "lng": 74.0125}, "GIR SOMNATH": {"circle": "GJ", "lat": 20.9049, "lng": 70.375}, "MAHISAGAR": {"circle": "GJ", "lat": 23.074, "lng": 73.587}, "NARMADA": {"circle": "GJ", "lat": 21.874, "lng": 73.647}, "TAPI": {"circle": "GJ", "lat": 21.144, "lng": 73.477}, "DHARASHIV": {"circle": "MH", "lat": 18.179, "lng": 76.039}, "Ernakulam": {"circle": "KL", "lat": 10.119866, "lng": 77.546707}, "KARAIKAL": {"circle": "TN", "lat": 13.214541, "lng": 74.995186}, "HAORA": {"circle": "KO", "lat": 23.637939, "lng": 75.128176}, "HUGLI": {"circle": "KO", "lat": 15.351838, "lng": 75.137985}, "AMBEDKAR NAGAR": {"circle": "UE", "lat": 26.437, "lng": 82.535}, "KHERI": {"circle": "UE", "lat": 25.974212, "lng": 75.154567}, "RIASI": {"circle": "JK", "lat": 33.069103, "lng": 74.83787}, "SHUPIYAN": {"circle": "JK", "lat": 33.718807, "lng": 74.833331}, "DAKSHIN DINAJPUR": {"circle": "WB", "lat": 25.5, "lng": 88.75}, "MURSHIDABAD": {"circle": "WB", "lat": 24.1756, "lng": 88.2699}, "PASCHIM MEDINIPUR": {"circle": "WB", "lat": 22.4242, "lng": 87.3193}, "PURBA MEDINIPUR": {"circle": "WB", "lat": 22.15, "lng": 87.85}, "UTTAR DINAJPUR": {"circle": "WB", "lat": 26.15, "lng": 87.88}, "SARAN": {"circle": "BR", "lat": 24.920817, "lng": 76.682198}, "BOUDH": {"circle": "OR", "lat": 20.838, "lng": 84.328}, "GAJAPATI": {"circle": "OR", "lat": 19.239, "lng": 84.076}, "KANDHAMAL": {"circle": "OR", "lat": 20.115, "lng": 84.0}, "MALKANGIRI": {"circle": "OR", "lat": 18.349, "lng": 81.892}, "NUAPARHA": {"circle": "OR", "lat": 27.8642, "lng": 81.499}, "SIMDEGA": {"circle": "OR", "lat": 22.61, "lng": 84.501}, "SUBARNAPUR": {"circle": "OR", "lat": 20.829, "lng": 83.91}, "SALUMBAR": {"circle": "RJ", "lat": 24.12, "lng": 74.01}, "DARANG": {"circle": "AS", "lat": 26.08299, "lng": 86.032495}, "UDALGURI": {"circle": "AS", "lat": 11.499242, "lng": 76.49239}, "SAIHA": {"circle": "NE", "lat": 22.489957, "lng": 92.981211}, "WOKHA": {"circle": "NE", "lat": 28.5355, "lng": 77.25}, "EAST SINGHBHUM": {"circle": "JH", "lat": 22.8046, "lng": 86.2029}, "LATEHAR": {"circle": "JH", "lat": 23.736, "lng": 84.502}}
+{
+  "BILASPUR": {
+    "circle": "NE",
+    "lat": 26.65,
+    "lng": 93.0
+  },
+  "CHAMBA": {
+    "circle": "HP",
+    "lat": 32.692332,
+    "lng": 76.163155
+  },
+  "HAMIRPUR": {
+    "circle": "UE",
+    "lat": 25.95,
+    "lng": 80.15
+  },
+  "KANGRA": {
+    "circle": "HP",
+    "lat": 32.076867,
+    "lng": 76.298587
+  },
+  "KINNAUR": {
+    "circle": "HP",
+    "lat": 31.5885,
+    "lng": 78.4647
+  },
+  "KULLU": {
+    "circle": "HP",
+    "lat": 31.957897,
+    "lng": 77.108923
+  },
+  "LAHUL & SPITI": {
+    "circle": "HP",
+    "lat": 32.5,
+    "lng": 77.7
+  },
+  "MANDI": {
+    "circle": "PB",
+    "lat": 31.651662,
+    "lng": 77.009254
+  },
+  "PANCHKULA": {
+    "circle": "HR",
+    "lat": 30.69754,
+    "lng": 76.855107
+  },
+  "SHIMLA": {
+    "circle": "HP",
+    "lat": 31.104039,
+    "lng": 77.170792
+  },
+  "SIRMAUR": {
+    "circle": "HP",
+    "lat": 30.5594,
+    "lng": 77.4688
+  },
+  "SOLAN": {
+    "circle": "HP",
+    "lat": 30.907757,
+    "lng": 77.102364
+  },
+  "UNA": {
+    "circle": "PB",
+    "lat": 31.583464,
+    "lng": 76.235145
+  },
+  "CENTRAL": {
+    "circle": "DL",
+    "lat": 28.643,
+    "lng": 77.2165
+  },
+  "EAST": {
+    "circle": "DL",
+    "lat": 28.633,
+    "lng": 77.2975
+  },
+  "FARIDABAD": {
+    "circle": "HR",
+    "lat": 28.594814,
+    "lng": 77.40632
+  },
+  "GAUTAM BUDDHA NAGAR": {
+    "circle": "UW",
+    "lat": 28.5986,
+    "lng": 77.4127
+  },
+  "GHAZIABAD": {
+    "circle": "UW",
+    "lat": 28.774997,
+    "lng": 77.458697
+  },
+  "GURUGRAM": {
+    "circle": "UW",
+    "lat": 28.4595,
+    "lng": 77.0266
+  },
+  "HAPUR": {
+    "circle": "UW",
+    "lat": 28.7292,
+    "lng": 77.7758
+  },
+  "JHAJJAR": {
+    "circle": "HR",
+    "lat": 28.596446,
+    "lng": 76.650537
+  },
+  "NAZUL": {
+    "circle": "DL",
+    "lat": 28.6139,
+    "lng": 77.209
+  },
+  "NEW DELHI": {
+    "circle": "DL",
+    "lat": 28.633614,
+    "lng": 77.223477
+  },
+  "NORTH": {
+    "circle": "DL",
+    "lat": 28.6992,
+    "lng": 77.2126
+  },
+  "NORTH EAST": {
+    "circle": "DL",
+    "lat": 28.6879,
+    "lng": 77.2849
+  },
+  "NORTH WEST": {
+    "circle": "DL",
+    "lat": 28.7244,
+    "lng": 77.1384
+  },
+  "NUH": {
+    "circle": "RJ",
+    "lat": 28.1002,
+    "lng": 77.004
+  },
+  "PALWAL": {
+    "circle": "HR",
+    "lat": 28.059943,
+    "lng": 77.322342
+  },
+  "SHAHADARA": {
+    "circle": "DL",
+    "lat": 28.673,
+    "lng": 77.2921
+  },
+  "SOUTH": {
+    "circle": "DL",
+    "lat": 28.5355,
+    "lng": 77.209
+  },
+  "SOUTH EAST": {
+    "circle": "DL",
+    "lat": 28.5695,
+    "lng": 77.2812
+  },
+  "SOUTH WEST": {
+    "circle": "DL",
+    "lat": 28.5744,
+    "lng": 77.0793
+  },
+  "WEST": {
+    "circle": "DL",
+    "lat": 28.642,
+    "lng": 77.0878
+  },
+  "Bengaluru (Urban)": {
+    "circle": "TN",
+    "lat": 12.9716,
+    "lng": 77.5946
+  },
+  "CHENGALPATTU": {
+    "circle": "TN",
+    "lat": 12.684089,
+    "lng": 79.983637
+  },
+  "CHENNAI": {
+    "circle": "CN",
+    "lat": 13.0827,
+    "lng": 80.2707
+  },
+  "KANCHIPURAM": {
+    "circle": "TN",
+    "lat": 12.964716,
+    "lng": 79.983969
+  },
+  "THIRUVALLUR": {
+    "circle": "TN",
+    "lat": 13.139422,
+    "lng": 79.907084
+  },
+  "ADILABAD": {
+    "circle": "AP",
+    "lat": 19.675945,
+    "lng": 78.53399
+  },
+  "ALLURI SITHARAMA RAJU": {
+    "circle": "AP",
+    "lat": 17.801,
+    "lng": 82.567
+  },
+  "ANAKAPALLI": {
+    "circle": "AP",
+    "lat": 17.68897,
+    "lng": 83.003476
+  },
+  "ANANTHAPURAMU": {
+    "circle": "AP",
+    "lat": 14.678322,
+    "lng": 77.606504
+  },
+  "ANNAMAYYA": {
+    "circle": "AP",
+    "lat": 13.975,
+    "lng": 79.092
+  },
+  "BAPATLA": {
+    "circle": "AP",
+    "lat": 15.93443,
+    "lng": 80.450552
+  },
+  "BHADRADRI KOTHAGUDEM": {
+    "circle": "AP",
+    "lat": 17.553,
+    "lng": 80.618
+  },
+  "CHITTOOR": {
+    "circle": "AP",
+    "lat": 13.325036,
+    "lng": 79.648061
+  },
+  "DR.B.R.AMBEDKAR KONASEEMA": {
+    "circle": "AP",
+    "lat": 16.944,
+    "lng": 82.238
+  },
+  "EAST GODAVARI": {
+    "circle": "AP",
+    "lat": 17.3265,
+    "lng": 81.829
+  },
+  "ELURU": {
+    "circle": "AP",
+    "lat": 16.710426,
+    "lng": 81.115382
+  },
+  "GANJAM": {
+    "circle": "OR",
+    "lat": 19.3878,
+    "lng": 84.538
+  },
+  "GUNTUR": {
+    "circle": "AP",
+    "lat": 16.291519,
+    "lng": 80.454159
+  },
+  "HANUMAKONDA": {
+    "circle": "AP",
+    "lat": 17.9784,
+    "lng": 79.5978
+  },
+  "HYDERABAD": {
+    "circle": "AP",
+    "lat": 17.360589,
+    "lng": 78.474061
+  },
+  "JAGTIAL": {
+    "circle": "AP",
+    "lat": 18.821359,
+    "lng": 78.915066
+  },
+  "JANGOAN": {
+    "circle": "AP",
+    "lat": 17.746584,
+    "lng": 79.240722
+  },
+  "JAYASHANKAR BHUPALPALLI": {
+    "circle": "AP",
+    "lat": 18.437,
+    "lng": 79.914
+  },
+  "JOGULAMBA GADWAL": {
+    "circle": "AP",
+    "lat": 16.232,
+    "lng": 77.804
+  },
+  "KAKINADA": {
+    "circle": "AP",
+    "lat": 16.943738,
+    "lng": 82.235061
+  },
+  "KAMAREDDY": {
+    "circle": "AP",
+    "lat": 18.316551,
+    "lng": 78.053938
+  },
+  "KARIMNAGAR": {
+    "circle": "AP",
+    "lat": 18.434812,
+    "lng": 79.132804
+  },
+  "KHAMMAM": {
+    "circle": "AP",
+    "lat": 17.246535,
+    "lng": 80.150033
+  },
+  "KOMARRAM BHEEM": {
+    "circle": "AP",
+    "lat": 19.2,
+    "lng": 79.4
+  },
+  "KRISHNA": {
+    "circle": "AP",
+    "lat": 16.5193,
+    "lng": 80.6305
+  },
+  "KURNOOL": {
+    "circle": "AP",
+    "lat": 15.830925,
+    "lng": 78.042537
+  },
+  "MAHABUBABAD": {
+    "circle": "AP",
+    "lat": 17.713898,
+    "lng": 80.041342
+  },
+  "MAHABUBNAGAR": {
+    "circle": "AP",
+    "lat": 16.696569,
+    "lng": 77.959115
+  },
+  "MANCHERIAL": {
+    "circle": "AP",
+    "lat": 18.981297,
+    "lng": 79.51981
+  },
+  "MEDAK": {
+    "circle": "AP",
+    "lat": 17.93751,
+    "lng": 78.211745
+  },
+  "MEDCHAL_MALKAJGIRI": {
+    "circle": "AP",
+    "lat": 17.549,
+    "lng": 78.533
+  },
+  "MULUGU": {
+    "circle": "AP",
+    "lat": 18.194,
+    "lng": 80.083
+  },
+  "NAGARKURNOOL": {
+    "circle": "AP",
+    "lat": 16.415763,
+    "lng": 78.683043
+  },
+  "NALGONDA": {
+    "circle": "AP",
+    "lat": 17.050441,
+    "lng": 79.266924
+  },
+  "NANDYAL": {
+    "circle": "AP",
+    "lat": 15.473629,
+    "lng": 78.480659
+  },
+  "NARAYANPET": {
+    "circle": "AP",
+    "lat": 16.700552,
+    "lng": 77.616484
+  },
+  "NIRMAL": {
+    "circle": "AP",
+    "lat": 19.091521,
+    "lng": 78.396609
+  },
+  "NIZAMABAD": {
+    "circle": "AP",
+    "lat": 18.673269,
+    "lng": 78.097848
+  },
+  "PALNADU": {
+    "circle": "AP",
+    "lat": 16.2337,
+    "lng": 79.7358
+  },
+  "PARVATHIPURAM MANYAM": {
+    "circle": "AP",
+    "lat": 18.784,
+    "lng": 83.432
+  },
+  "PEDDAPALLI": {
+    "circle": "AP",
+    "lat": 18.620653,
+    "lng": 79.495017
+  },
+  "RANGA REDDY": {
+    "circle": "AP",
+    "lat": 17.868434,
+    "lng": 77.822719
+  },
+  "SANGAREDDY": {
+    "circle": "AP",
+    "lat": 17.868434,
+    "lng": 77.822719
+  },
+  "SIDDIPET": {
+    "circle": "AP",
+    "lat": 18.005585,
+    "lng": 78.896113
+  },
+  "SRI SATHYA SAI": {
+    "circle": "AP",
+    "lat": 14.1652,
+    "lng": 77.4932
+  },
+  "SRIKAKULAM": {
+    "circle": "AP",
+    "lat": 18.294931,
+    "lng": 83.893884
+  },
+  "SURIYAPET": {
+    "circle": "AP",
+    "lat": 17.080014,
+    "lng": 79.792533
+  },
+  "TIRUPATI": {
+    "circle": "AP",
+    "lat": 13.6288,
+    "lng": 79.4192
+  },
+  "VIKARABAD": {
+    "circle": "AP",
+    "lat": 17.270285,
+    "lng": 77.745297
+  },
+  "VISAKHAPATNAM": {
+    "circle": "AP",
+    "lat": 17.693553,
+    "lng": 83.29213
+  },
+  "VIZIANAGARAM": {
+    "circle": "AP",
+    "lat": 18.114126,
+    "lng": 83.411439
+  },
+  "WARANGAL": {
+    "circle": "AP",
+    "lat": 17.982064,
+    "lng": 79.597095
+  },
+  "WEST GODAVARI": {
+    "circle": "AP",
+    "lat": 16.9174,
+    "lng": 81.3341
+  },
+  "Bagalkot": {
+    "circle": "KK",
+    "lat": 16.179322,
+    "lng": 75.699932
+  },
+  "Ballari": {
+    "circle": "KK",
+    "lat": 15.143022,
+    "lng": 76.917328
+  },
+  "Belagavi": {
+    "circle": "KK",
+    "lat": 15.857267,
+    "lng": 74.506934
+  },
+  "Bidar": {
+    "circle": "KK",
+    "lat": 18.02073,
+    "lng": 77.24872
+  },
+  "Chamarajanagara": {
+    "circle": "KK",
+    "lat": 11.926994,
+    "lng": 76.942431
+  },
+  "Chikkaballapura": {
+    "circle": "KK",
+    "lat": 13.099376,
+    "lng": 77.388729
+  },
+  "Chikkamagaluru": {
+    "circle": "KK",
+    "lat": 13.318014,
+    "lng": 75.773874
+  },
+  "Chitradurga": {
+    "circle": "KK",
+    "lat": 14.304917,
+    "lng": 76.529667
+  },
+  "Davanagere": {
+    "circle": "KK",
+    "lat": 14.255883,
+    "lng": 75.830342
+  },
+  "Dharwad": {
+    "circle": "KK",
+    "lat": 15.37073,
+    "lng": 75.133287
+  },
+  "Gadag": {
+    "circle": "KK",
+    "lat": 15.416692,
+    "lng": 75.68158
+  },
+  "Hassan": {
+    "circle": "KK",
+    "lat": 13.030185,
+    "lng": 76.174497
+  },
+  "Haveri": {
+    "circle": "KK",
+    "lat": 14.718027,
+    "lng": 75.365642
+  },
+  "Kalaburagi": {
+    "circle": "KK",
+    "lat": 17.331,
+    "lng": 76.833423
+  },
+  "Kolara": {
+    "circle": "KK",
+    "lat": 13.180507,
+    "lng": 78.266933
+  },
+  "Koppal": {
+    "circle": "KK",
+    "lat": 15.574824,
+    "lng": 76.311849
+  },
+  "Mandya": {
+    "circle": "KK",
+    "lat": 12.636894,
+    "lng": 76.727548
+  },
+  "Mysuru": {
+    "circle": "KK",
+    "lat": 12.305183,
+    "lng": 76.655361
+  },
+  "Raichur": {
+    "circle": "KK",
+    "lat": 16.054719,
+    "lng": 76.900365
+  },
+  "Ramanagara": {
+    "circle": "KK",
+    "lat": 12.720006,
+    "lng": 77.31842
+  },
+  "Shivamogga": {
+    "circle": "KK",
+    "lat": 14.05565,
+    "lng": 75.238055
+  },
+  "Tumakuru": {
+    "circle": "KK",
+    "lat": 13.340077,
+    "lng": 77.100621
+  },
+  "Udupi": {
+    "circle": "KK",
+    "lat": 13.526978,
+    "lng": 74.873188
+  },
+  "Vijayapura": {
+    "circle": "KK",
+    "lat": 16.814415,
+    "lng": 75.893386
+  },
+  "Yadgir": {
+    "circle": "KK",
+    "lat": 16.574412,
+    "lng": 76.925443
+  },
+  "AGAR MALWA": {
+    "circle": "MP",
+    "lat": 23.713,
+    "lng": 76.02
+  },
+  "ALIRAJPUR": {
+    "circle": "MP",
+    "lat": 22.3175,
+    "lng": 74.3615
+  },
+  "ANUPPUR": {
+    "circle": "MP",
+    "lat": 23.104,
+    "lng": 81.692
+  },
+  "ASHOKNAGAR": {
+    "circle": "MP",
+    "lat": 24.58,
+    "lng": 77.73
+  },
+  "BALAGHAT": {
+    "circle": "MP",
+    "lat": 21.861159,
+    "lng": 80.323711
+  },
+  "BALOD": {
+    "circle": "MP",
+    "lat": 20.73,
+    "lng": 81.2
+  },
+  "BALODA BAZAR": {
+    "circle": "MP",
+    "lat": 21.6614,
+    "lng": 82.1617
+  },
+  "BALRAMPUR": {
+    "circle": "UE",
+    "lat": 27.4308,
+    "lng": 82.1763
+  },
+  "BARWANI": {
+    "circle": "MP",
+    "lat": 22.0367,
+    "lng": 74.901
+  },
+  "BASTAR": {
+    "circle": "MP",
+    "lat": 19.1195,
+    "lng": 81.9495
+  },
+  "BEMETARA": {
+    "circle": "MP",
+    "lat": 21.678387,
+    "lng": 81.441258
+  },
+  "BETUL": {
+    "circle": "MP",
+    "lat": 21.879747,
+    "lng": 77.875365
+  },
+  "BHIND": {
+    "circle": "MP",
+    "lat": 26.351883,
+    "lng": 78.686319
+  },
+  "BHOPAL": {
+    "circle": "MP",
+    "lat": 23.2599,
+    "lng": 77.4126
+  },
+  "BIJAPUR": {
+    "circle": "MP",
+    "lat": 18.8218,
+    "lng": 80.82
+  },
+  "BURHANPUR": {
+    "circle": "MP",
+    "lat": 21.334867,
+    "lng": 76.37088
+  },
+  "CHHATARPUR": {
+    "circle": "MP",
+    "lat": 24.760609,
+    "lng": 79.678178
+  },
+  "CHHINDWARA": {
+    "circle": "MP",
+    "lat": 22.20719,
+    "lng": 78.798833
+  },
+  "DAMOH": {
+    "circle": "MP",
+    "lat": 23.798101,
+    "lng": 79.541936
+  },
+  "DATIA": {
+    "circle": "MP",
+    "lat": 25.918295,
+    "lng": 78.664496
+  },
+  "DEWAS": {
+    "circle": "MP",
+    "lat": 22.80575,
+    "lng": 76.294041
+  },
+  "DHAMTARI": {
+    "circle": "MP",
+    "lat": 20.532626,
+    "lng": 81.715599
+  },
+  "DHAR": {
+    "circle": "MP",
+    "lat": 22.578657,
+    "lng": 75.225864
+  },
+  "DINDORI": {
+    "circle": "MP",
+    "lat": 22.95,
+    "lng": 81.08
+  },
+  "DURG": {
+    "circle": "MP",
+    "lat": 21.198296,
+    "lng": 81.400792
+  },
+  "GARIYABAND": {
+    "circle": "MP",
+    "lat": 20.63,
+    "lng": 82.06
+  },
+  "GAURELA-PENDRA-MARWAHI": {
+    "circle": "MP",
+    "lat": 22.55,
+    "lng": 81.8
+  },
+  "GUNA": {
+    "circle": "MP",
+    "lat": 24.500177,
+    "lng": 77.260096
+  },
+  "GWALIOR": {
+    "circle": "MP",
+    "lat": 26.203725,
+    "lng": 78.157363
+  },
+  "HARDA": {
+    "circle": "MP",
+    "lat": 22.242797,
+    "lng": 77.117917
+  },
+  "INDORE": {
+    "circle": "MP",
+    "lat": 22.7196,
+    "lng": 75.8577
+  },
+  "JABALPUR": {
+    "circle": "MP",
+    "lat": 23.170152,
+    "lng": 79.932451
+  },
+  "JASHPUR": {
+    "circle": "MP",
+    "lat": 22.9,
+    "lng": 84.15
+  },
+  "KATNI": {
+    "circle": "MP",
+    "lat": 23.717639,
+    "lng": 80.261018
+  },
+  "KHANDWA": {
+    "circle": "MP",
+    "lat": 21.976978,
+    "lng": 76.567534
+  },
+  "KHARGONE": {
+    "circle": "MP",
+    "lat": 21.954473,
+    "lng": 75.752125
+  },
+  "KONDAGAON": {
+    "circle": "MP",
+    "lat": 19.588577,
+    "lng": 81.662874
+  },
+  "KORBA": {
+    "circle": "MP",
+    "lat": 22.519822,
+    "lng": 82.635003
+  },
+  "MAHASAMUND": {
+    "circle": "MP",
+    "lat": 21.192285,
+    "lng": 82.489026
+  },
+  "MAIHAR": {
+    "circle": "MP",
+    "lat": 24.243754,
+    "lng": 81.044691
+  },
+  "MANDLA": {
+    "circle": "MP",
+    "lat": 22.5967,
+    "lng": 80.3728
+  },
+  "MANDSAUR": {
+    "circle": "RJ",
+    "lat": 24.262815,
+    "lng": 75.385692
+  },
+  "MOHLA-MANPUR-AMBAGARH CHOWKI": {
+    "circle": "MP",
+    "lat": 20.55,
+    "lng": 81.0
+  },
+  "MORENA": {
+    "circle": "MP",
+    "lat": 26.384979,
+    "lng": 77.861272
+  },
+  "MUNGELI": {
+    "circle": "MP",
+    "lat": 22.0618,
+    "lng": 81.6844
+  },
+  "NEEMUCH": {
+    "circle": "MP",
+    "lat": 24.630552,
+    "lng": 75.1829
+  },
+  "RAIGARH": {
+    "circle": "MH",
+    "lat": 18.5136,
+    "lng": 73.1125
+  },
+  "RAIPUR": {
+    "circle": "MP",
+    "lat": 21.2514,
+    "lng": 81.6296
+  },
+  "RAJGARH": {
+    "circle": "MP",
+    "lat": 23.871671,
+    "lng": 76.77447
+  },
+  "RAJNANDGAON": {
+    "circle": "MP",
+    "lat": 21.068442,
+    "lng": 80.797078
+  },
+  "RATLAM": {
+    "circle": "MP",
+    "lat": 23.50222,
+    "lng": 74.955153
+  },
+  "REWA": {
+    "circle": "MP",
+    "lat": 24.756085,
+    "lng": 81.381057
+  },
+  "SAGAR": {
+    "circle": "MP",
+    "lat": 23.808308,
+    "lng": 78.758254
+  },
+  "SAKTI": {
+    "circle": "MP",
+    "lat": 22.02,
+    "lng": 82.97
+  },
+  "SARANGARH-BILAIGARH": {
+    "circle": "MP",
+    "lat": 21.8,
+    "lng": 83.1
+  },
+  "SATNA": {
+    "circle": "MP",
+    "lat": 24.695445,
+    "lng": 80.777035
+  },
+  "SEHORE": {
+    "circle": "MP",
+    "lat": 23.115004,
+    "lng": 77.066536
+  },
+  "SEONI": {
+    "circle": "MP",
+    "lat": 22.274811,
+    "lng": 79.720252
+  },
+  "SHAHDOL": {
+    "circle": "MP",
+    "lat": 23.300234,
+    "lng": 81.364771
+  },
+  "SHAJAPUR": {
+    "circle": "MP",
+    "lat": 23.4253,
+    "lng": 76.2775
+  },
+  "SHIVPURI": {
+    "circle": "MP",
+    "lat": 25.374122,
+    "lng": 77.827887
+  },
+  "SINGRAULI": {
+    "circle": "UE",
+    "lat": 24.243134,
+    "lng": 82.382767
+  },
+  "SURAJPUR": {
+    "circle": "MP",
+    "lat": 23.219,
+    "lng": 82.862
+  },
+  "SURGUJA": {
+    "circle": "MP",
+    "lat": 23.1163,
+    "lng": 83.1936
+  },
+  "TIKAMGARH": {
+    "circle": "MP",
+    "lat": 24.85521,
+    "lng": 79.047255
+  },
+  "UJJAIN": {
+    "circle": "MP",
+    "lat": 23.188513,
+    "lng": 75.771656
+  },
+  "UMARIA": {
+    "circle": "MP",
+    "lat": 23.523,
+    "lng": 80.837
+  },
+  "VIDISHA": {
+    "circle": "MP",
+    "lat": 23.8463,
+    "lng": 77.837021
+  },
+  "WARDHA": {
+    "circle": "MH",
+    "lat": 20.825623,
+    "lng": 78.613146
+  },
+  "AMRITSAR": {
+    "circle": "PB",
+    "lat": 31.635666,
+    "lng": 74.87875
+  },
+  "BARNALA": {
+    "circle": "PB",
+    "lat": 30.37168,
+    "lng": 75.503989
+  },
+  "BATHINDA": {
+    "circle": "PB",
+    "lat": 30.179481,
+    "lng": 75.04711
+  },
+  "CHANDIGARH": {
+    "circle": "PB",
+    "lat": 30.76864,
+    "lng": 76.575048
+  },
+  "FARIDKOT": {
+    "circle": "PB",
+    "lat": 30.601451,
+    "lng": 74.795018
+  },
+  "FAZILKA": {
+    "circle": "PB",
+    "lat": 30.319841,
+    "lng": 74.121794
+  },
+  "FIROZPUR": {
+    "circle": "PB",
+    "lat": 30.875383,
+    "lng": 74.652544
+  },
+  "GURDASPUR": {
+    "circle": "PB",
+    "lat": 31.903726,
+    "lng": 75.227559
+  },
+  "HOSHIARPUR": {
+    "circle": "PB",
+    "lat": 31.609294,
+    "lng": 75.845975
+  },
+  "JALANDHAR": {
+    "circle": "PB",
+    "lat": 31.292231,
+    "lng": 75.567888
+  },
+  "KAPURTHALA": {
+    "circle": "PB",
+    "lat": 31.385648,
+    "lng": 75.30533
+  },
+  "LUDHIANA": {
+    "circle": "PB",
+    "lat": 30.901,
+    "lng": 75.8573
+  },
+  "MALER KOTLA": {
+    "circle": "PB",
+    "lat": 30.533129,
+    "lng": 75.88076
+  },
+  "MANSA": {
+    "circle": "PB",
+    "lat": 29.876413,
+    "lng": 75.488956
+  },
+  "MOGA": {
+    "circle": "PB",
+    "lat": 30.787755,
+    "lng": 75.159359
+  },
+  "PATHANKOT": {
+    "circle": "PB",
+    "lat": 32.30219,
+    "lng": 75.658941
+  },
+  "PATIALA": {
+    "circle": "PB",
+    "lat": 30.209278,
+    "lng": 76.339723
+  },
+  "SANGRUR": {
+    "circle": "PB",
+    "lat": 30.135717,
+    "lng": 75.853333
+  },
+  "TARN TARAN": {
+    "circle": "PB",
+    "lat": 31.321245,
+    "lng": 74.841669
+  },
+  "AMBALA": {
+    "circle": "HR",
+    "lat": 30.3752,
+    "lng": 76.7821
+  },
+  "BHIWANI": {
+    "circle": "HR",
+    "lat": 28.79317,
+    "lng": 76.139128
+  },
+  "CHARKI DADRI": {
+    "circle": "HR",
+    "lat": 28.5919,
+    "lng": 75.9236
+  },
+  "FATEHABAD": {
+    "circle": "HR",
+    "lat": 29.535921,
+    "lng": 75.57529
+  },
+  "HISAR": {
+    "circle": "HR",
+    "lat": 29.23966,
+    "lng": 75.817451
+  },
+  "JIND": {
+    "circle": "HR",
+    "lat": 29.315207,
+    "lng": 76.314082
+  },
+  "KAITHAL": {
+    "circle": "HR",
+    "lat": 29.799659,
+    "lng": 76.39899
+  },
+  "KARNAL": {
+    "circle": "HR",
+    "lat": 29.725577,
+    "lng": 76.910692
+  },
+  "KURUKSHETRA": {
+    "circle": "HR",
+    "lat": 29.969375,
+    "lng": 76.848279
+  },
+  "MAHENDRAGARH": {
+    "circle": "HR",
+    "lat": 28.132697,
+    "lng": 76.169745
+  },
+  "PANIPAT": {
+    "circle": "HR",
+    "lat": 29.391275,
+    "lng": 76.977167
+  },
+  "REWARI": {
+    "circle": "RJ",
+    "lat": 28.195647,
+    "lng": 76.616518
+  },
+  "ROHTAK": {
+    "circle": "HR",
+    "lat": 28.90109,
+    "lng": 76.580193
+  },
+  "SIRSA": {
+    "circle": "HR",
+    "lat": 29.606304,
+    "lng": 74.903657
+  },
+  "SONIPAT": {
+    "circle": "HR",
+    "lat": 28.995376,
+    "lng": 77.023363
+  },
+  "YAMUNANAGAR": {
+    "circle": "HR",
+    "lat": 30.123135,
+    "lng": 77.286329
+  },
+  "BALASORE": {
+    "circle": "OR",
+    "lat": 21.500642,
+    "lng": 86.919884
+  },
+  "MUMBAI": {
+    "circle": "MU",
+    "lat": 19.054999,
+    "lng": 72.869203
+  },
+  "AGRA": {
+    "circle": "UW",
+    "lat": 27.1767,
+    "lng": 78.0081
+  },
+  "ALIGARH": {
+    "circle": "UW",
+    "lat": 27.8974,
+    "lng": 78.088
+  },
+  "ALMORA": {
+    "circle": "UW",
+    "lat": 29.702651,
+    "lng": 79.432632
+  },
+  "AMROHA": {
+    "circle": "UW",
+    "lat": 28.9,
+    "lng": 78.4667
+  },
+  "AURAIYA": {
+    "circle": "UE",
+    "lat": 26.4644,
+    "lng": 79.5114
+  },
+  "BAGESHWAR": {
+    "circle": "UW",
+    "lat": 30.00879,
+    "lng": 79.928018
+  },
+  "BAGHPAT": {
+    "circle": "UW",
+    "lat": 28.9444,
+    "lng": 77.2167
+  },
+  "BAREILLY": {
+    "circle": "UE",
+    "lat": 28.367,
+    "lng": 79.4304
+  },
+  "BIJNOR": {
+    "circle": "UW",
+    "lat": 29.3667,
+    "lng": 78.1333
+  },
+  "BUDAUN": {
+    "circle": "UW",
+    "lat": 28.0444,
+    "lng": 79.1268
+  },
+  "BULANDSHAHR": {
+    "circle": "UW",
+    "lat": 28.4,
+    "lng": 77.85
+  },
+  "CHAMPAWAT": {
+    "circle": "UW",
+    "lat": 29.235032,
+    "lng": 80.102307
+  },
+  "DEHRADUN": {
+    "circle": "UW",
+    "lat": 30.325565,
+    "lng": 78.043681
+  },
+  "ETAH": {
+    "circle": "UW",
+    "lat": 27.5635,
+    "lng": 78.6658
+  },
+  "ETAWAH": {
+    "circle": "UW",
+    "lat": 26.7754,
+    "lng": 79.0208
+  },
+  "FIROZABAD": {
+    "circle": "UW",
+    "lat": 27.15,
+    "lng": 78.3957
+  },
+  "HARIDWAR": {
+    "circle": "UW",
+    "lat": 29.938447,
+    "lng": 78.145298
+  },
+  "HATHRAS": {
+    "circle": "UW",
+    "lat": 27.5941,
+    "lng": 78.0525
+  },
+  "KASGANJ": {
+    "circle": "UW",
+    "lat": 27.8017,
+    "lng": 78.645
+  },
+  "MAINPURI": {
+    "circle": "UW",
+    "lat": 27.2296,
+    "lng": 79.0135
+  },
+  "MATHURA": {
+    "circle": "UW",
+    "lat": 27.4924,
+    "lng": 77.6737
+  },
+  "MEERUT": {
+    "circle": "UW",
+    "lat": 28.9845,
+    "lng": 77.7064
+  },
+  "MORADABAD": {
+    "circle": "UW",
+    "lat": 28.8386,
+    "lng": 78.7733
+  },
+  "MUZAFFARNAGAR": {
+    "circle": "UW",
+    "lat": 29.4727,
+    "lng": 77.7085
+  },
+  "NAINITAL": {
+    "circle": "UW",
+    "lat": 29.294995,
+    "lng": 79.416251
+  },
+  "PILIBHIT": {
+    "circle": "UE",
+    "lat": 28.6319,
+    "lng": 79.8025
+  },
+  "PITHORAGARH": {
+    "circle": "UW",
+    "lat": 29.585871,
+    "lng": 80.215167
+  },
+  "RAMPUR": {
+    "circle": "UW",
+    "lat": 28.793,
+    "lng": 79.0028
+  },
+  "SAHARANPUR": {
+    "circle": "UW",
+    "lat": 29.964,
+    "lng": 77.546
+  },
+  "SAMBHAL": {
+    "circle": "UW",
+    "lat": 28.584,
+    "lng": 78.5701
+  },
+  "SHAMLI": {
+    "circle": "UW",
+    "lat": 29.45,
+    "lng": 77.3167
+  },
+  "TEHRI GARHWAL": {
+    "circle": "UW",
+    "lat": 30.465818,
+    "lng": 78.483735
+  },
+  "UTTARKASHI": {
+    "circle": "UW",
+    "lat": 30.963573,
+    "lng": 78.636252
+  },
+  "AHMADABAD": {
+    "circle": "GJ",
+    "lat": 23.0225,
+    "lng": 72.5714
+  },
+  "AMRELI": {
+    "circle": "GJ",
+    "lat": 21.417612,
+    "lng": 71.249609
+  },
+  "ANAND": {
+    "circle": "GJ",
+    "lat": 22.558656,
+    "lng": 72.962723
+  },
+  "BHARUCH": {
+    "circle": "GJ",
+    "lat": 21.708043,
+    "lng": 72.995694
+  },
+  "BHAVNAGAR": {
+    "circle": "GJ",
+    "lat": 21.771884,
+    "lng": 72.141645
+  },
+  "BOTAD": {
+    "circle": "GJ",
+    "lat": 22.04671,
+    "lng": 71.668962
+  },
+  "DAHOD": {
+    "circle": "GJ",
+    "lat": 22.91941,
+    "lng": 74.134272
+  },
+  "DAMAN": {
+    "circle": "GJ",
+    "lat": 20.270216,
+    "lng": 72.986579
+  },
+  "GANDHINAGAR": {
+    "circle": "GJ",
+    "lat": 22.791949,
+    "lng": 70.684505
+  },
+  "JAMNAGAR": {
+    "circle": "GJ",
+    "lat": 22.473242,
+    "lng": 70.05521
+  },
+  "JUNAGADH": {
+    "circle": "GJ",
+    "lat": 21.522042,
+    "lng": 70.458246
+  },
+  "KHEDA": {
+    "circle": "GJ",
+    "lat": 22.85325,
+    "lng": 72.995359
+  },
+  "MAHESANA": {
+    "circle": "GJ",
+    "lat": 23.601556,
+    "lng": 72.386798
+  },
+  "MORBI": {
+    "circle": "GJ",
+    "lat": 22.800396,
+    "lng": 70.886232
+  },
+  "NAVSARI": {
+    "circle": "GJ",
+    "lat": 20.952407,
+    "lng": 72.932383
+  },
+  "PATAN": {
+    "circle": "GJ",
+    "lat": 23.8493,
+    "lng": 72.1266
+  },
+  "PHALODI": {
+    "circle": "RJ",
+    "lat": 27.079933,
+    "lng": 72.580485
+  },
+  "RAJKOT": {
+    "circle": "GJ",
+    "lat": 22.3039,
+    "lng": 70.8022
+  },
+  "SURAT": {
+    "circle": "GJ",
+    "lat": 21.209489,
+    "lng": 72.831706
+  },
+  "SURENDRANAGAR": {
+    "circle": "GJ",
+    "lat": 22.825139,
+    "lng": 71.620974
+  },
+  "VADODARA": {
+    "circle": "GJ",
+    "lat": 22.297314,
+    "lng": 73.194257
+  },
+  "VALSAD": {
+    "circle": "GJ",
+    "lat": 20.382869,
+    "lng": 72.903881
+  },
+  "AHMEDNAGAR": {
+    "circle": "MH",
+    "lat": 18.471175,
+    "lng": 73.907225
+  },
+  "AKOLA": {
+    "circle": "MH",
+    "lat": 20.761812,
+    "lng": 77.192116
+  },
+  "AMRAVATI": {
+    "circle": "MH",
+    "lat": 21.154541,
+    "lng": 77.644296
+  },
+  "BEED": {
+    "circle": "MH",
+    "lat": 18.991844,
+    "lng": 75.909784
+  },
+  "BHANDARA": {
+    "circle": "MH",
+    "lat": 21.1667,
+    "lng": 79.65
+  },
+  "BULDHANA": {
+    "circle": "MH",
+    "lat": 20.562845,
+    "lng": 76.408699
+  },
+  "CHANDRAPUR": {
+    "circle": "MH",
+    "lat": 20.096756,
+    "lng": 79.504548
+  },
+  "DHULE": {
+    "circle": "MH",
+    "lat": 21.130522,
+    "lng": 74.490061
+  },
+  "GADCHIROLI": {
+    "circle": "MH",
+    "lat": 19.75907,
+    "lng": 80.162281
+  },
+  "GONDIA": {
+    "circle": "MH",
+    "lat": 21.455228,
+    "lng": 80.196273
+  },
+  "HINGOLI": {
+    "circle": "MH",
+    "lat": 19.543116,
+    "lng": 77.173943
+  },
+  "JALGAON": {
+    "circle": "MH",
+    "lat": 20.842883,
+    "lng": 75.526125
+  },
+  "JALNA": {
+    "circle": "MH",
+    "lat": 19.918833,
+    "lng": 75.87086
+  },
+  "KOLHAPUR": {
+    "circle": "MH",
+    "lat": 16.702841,
+    "lng": 74.240533
+  },
+  "LATUR": {
+    "circle": "MH",
+    "lat": 18.355335,
+    "lng": 76.7549
+  },
+  "NAGPUR": {
+    "circle": "MH",
+    "lat": 21.149813,
+    "lng": 79.082056
+  },
+  "NANDED": {
+    "circle": "MH",
+    "lat": 19.094273,
+    "lng": 77.483263
+  },
+  "NANDURBAR": {
+    "circle": "MH",
+    "lat": 21.514162,
+    "lng": 74.540551
+  },
+  "NASHIK": {
+    "circle": "MH",
+    "lat": 20.011247,
+    "lng": 73.790236
+  },
+  "PARBHANI": {
+    "circle": "MH",
+    "lat": 19.290198,
+    "lng": 76.602644
+  },
+  "PUNE": {
+    "circle": "MH",
+    "lat": 18.521374,
+    "lng": 73.854507
+  },
+  "RATNAGIRI": {
+    "circle": "MH",
+    "lat": 17.282608,
+    "lng": 73.456979
+  },
+  "SANGLI": {
+    "circle": "MH",
+    "lat": 17.172693,
+    "lng": 74.586765
+  },
+  "SATARA": {
+    "circle": "MH",
+    "lat": 17.636129,
+    "lng": 74.298278
+  },
+  "SOLAPUR": {
+    "circle": "MH",
+    "lat": 17.849907,
+    "lng": 75.27632
+  },
+  "WASHIM": {
+    "circle": "MH",
+    "lat": 20.287418,
+    "lng": 77.236965
+  },
+  "YAVATMAL": {
+    "circle": "MH",
+    "lat": 20.063868,
+    "lng": 78.356566
+  },
+  "Alappuzha": {
+    "circle": "KL",
+    "lat": 9.500342,
+    "lng": 76.412336
+  },
+  "KANNIYAKUMARI": {
+    "circle": "TN",
+    "lat": 8.079252,
+    "lng": 77.549934
+  },
+  "Kannur": {
+    "circle": "KL",
+    "lat": 11.876384,
+    "lng": 75.373797
+  },
+  "Kasaragod": {
+    "circle": "KL",
+    "lat": 12.422196,
+    "lng": 75.190445
+  },
+  "Kollam": {
+    "circle": "KL",
+    "lat": 8.887053,
+    "lng": 76.59067
+  },
+  "Kottayam": {
+    "circle": "KL",
+    "lat": 9.628738,
+    "lng": 76.645533
+  },
+  "Kozhikode": {
+    "circle": "KL",
+    "lat": 11.2588,
+    "lng": 75.7804
+  },
+  "Malappuram": {
+    "circle": "KL",
+    "lat": 11.106845,
+    "lng": 76.109955
+  },
+  "Palakkad": {
+    "circle": "KL",
+    "lat": 10.787369,
+    "lng": 76.474217
+  },
+  "Thiruvananthapuram": {
+    "circle": "TN",
+    "lat": 8.488227,
+    "lng": 76.947551
+  },
+  "Thrissur": {
+    "circle": "KL",
+    "lat": 10.52701,
+    "lng": 76.214621
+  },
+  "ARIYALUR": {
+    "circle": "TN",
+    "lat": 11.153056,
+    "lng": 79.25858
+  },
+  "COIMBATORE": {
+    "circle": "TN",
+    "lat": 11.001812,
+    "lng": 76.962842
+  },
+  "CUDDALORE": {
+    "circle": "TN",
+    "lat": 11.906826,
+    "lng": 79.808123
+  },
+  "DHARMAPURI": {
+    "circle": "TN",
+    "lat": 12.145613,
+    "lng": 78.113222
+  },
+  "DINDIGUL": {
+    "circle": "TN",
+    "lat": 10.42569,
+    "lng": 77.815664
+  },
+  "ERODE": {
+    "circle": "TN",
+    "lat": 11.490528,
+    "lng": 77.350527
+  },
+  "KALLAKKURICHI": {
+    "circle": "TN",
+    "lat": 11.794685,
+    "lng": 79.038821
+  },
+  "KARUR": {
+    "circle": "TN",
+    "lat": 10.821767,
+    "lng": 78.382865
+  },
+  "KRISHNAGIRI": {
+    "circle": "TN",
+    "lat": 12.515208,
+    "lng": 78.009377
+  },
+  "MADURAI": {
+    "circle": "TN",
+    "lat": 9.926115,
+    "lng": 78.114098
+  },
+  "MAYILADUTHURAI": {
+    "circle": "TN",
+    "lat": 11.101861,
+    "lng": 79.650316
+  },
+  "NAGAPATTINAM": {
+    "circle": "TN",
+    "lat": 11.877211,
+    "lng": 79.797581
+  },
+  "NAMAKKAL": {
+    "circle": "TN",
+    "lat": 11.303389,
+    "lng": 78.118604
+  },
+  "PERAMBALUR": {
+    "circle": "TN",
+    "lat": 11.290264,
+    "lng": 78.93004
+  },
+  "PUDUKKOTTAI": {
+    "circle": "TN",
+    "lat": 10.290307,
+    "lng": 78.817362
+  },
+  "RAMANATHAPURAM": {
+    "circle": "TN",
+    "lat": 9.520558,
+    "lng": 78.518463
+  },
+  "RANIPET": {
+    "circle": "TN",
+    "lat": 12.918624,
+    "lng": 79.408192
+  },
+  "SALEM": {
+    "circle": "TN",
+    "lat": 11.646962,
+    "lng": 78.210696
+  },
+  "SIVAGANGA": {
+    "circle": "TN",
+    "lat": 9.848688,
+    "lng": 78.487046
+  },
+  "TENKASI": {
+    "circle": "TN",
+    "lat": 9.093391,
+    "lng": 77.475837
+  },
+  "THANJAVUR": {
+    "circle": "TN",
+    "lat": 10.659037,
+    "lng": 79.201428
+  },
+  "THENI": {
+    "circle": "TN",
+    "lat": 9.869256,
+    "lng": 77.422297
+  },
+  "THIRUVARUR": {
+    "circle": "TN",
+    "lat": 10.687862,
+    "lng": 79.497944
+  },
+  "THOOTHUKUDI": {
+    "circle": "TN",
+    "lat": 8.80526,
+    "lng": 78.145274
+  },
+  "TIRUNELVELI": {
+    "circle": "TN",
+    "lat": 8.549501,
+    "lng": 77.580518
+  },
+  "TIRUPATHUR": {
+    "circle": "TN",
+    "lat": 12.498356,
+    "lng": 78.561817
+  },
+  "TIRUPPUR": {
+    "circle": "TN",
+    "lat": 10.791527,
+    "lng": 77.532547
+  },
+  "VELLORE": {
+    "circle": "TN",
+    "lat": 12.902185,
+    "lng": 79.061104
+  },
+  "VILUPPURAM": {
+    "circle": "TN",
+    "lat": 12.116697,
+    "lng": 79.598924
+  },
+  "VIRUDHUNAGAR": {
+    "circle": "TN",
+    "lat": 9.492629,
+    "lng": 77.863183
+  },
+  "KOLKATA": {
+    "circle": "KO",
+    "lat": 22.5726,
+    "lng": 88.3639
+  },
+  "NADIA": {
+    "circle": "WB",
+    "lat": 23.4729,
+    "lng": 88.5563
+  },
+  "AMETHI": {
+    "circle": "UE",
+    "lat": 26.15,
+    "lng": 81.9167
+  },
+  "AYODHYA": {
+    "circle": "UE",
+    "lat": 26.7922,
+    "lng": 82.1998
+  },
+  "AZAMGARH": {
+    "circle": "UE",
+    "lat": 26.0727,
+    "lng": 83.1837
+  },
+  "BAHRAICH": {
+    "circle": "UE",
+    "lat": 27.5745,
+    "lng": 81.5955
+  },
+  "BALLIA": {
+    "circle": "UE",
+    "lat": 25.76,
+    "lng": 84.1467
+  },
+  "BANDA": {
+    "circle": "UE",
+    "lat": 25.4792,
+    "lng": 80.3328
+  },
+  "BARA BANKI": {
+    "circle": "UE",
+    "lat": 26.9371,
+    "lng": 81.1947
+  },
+  "BASTI": {
+    "circle": "UE",
+    "lat": 26.8003,
+    "lng": 82.7295
+  },
+  "BHADOHI": {
+    "circle": "UE",
+    "lat": 25.3955,
+    "lng": 82.5694
+  },
+  "CHANDAULI": {
+    "circle": "UE",
+    "lat": 25.2661,
+    "lng": 83.269
+  },
+  "DEORIA": {
+    "circle": "UE",
+    "lat": 26.5032,
+    "lng": 83.7802
+  },
+  "FARRUKHABAD": {
+    "circle": "UE",
+    "lat": 27.3963,
+    "lng": 79.58
+  },
+  "FATEHPUR": {
+    "circle": "UE",
+    "lat": 25.93,
+    "lng": 80.81
+  },
+  "GHAZIPUR": {
+    "circle": "UE",
+    "lat": 25.5773,
+    "lng": 83.5724
+  },
+  "GONDA": {
+    "circle": "UE",
+    "lat": 27.1328,
+    "lng": 81.9608
+  },
+  "GORAKHPUR": {
+    "circle": "UE",
+    "lat": 26.7606,
+    "lng": 83.3732
+  },
+  "HARDOI": {
+    "circle": "UE",
+    "lat": 27.3941,
+    "lng": 80.1286
+  },
+  "JALAUN": {
+    "circle": "UE",
+    "lat": 26.1468,
+    "lng": 79.3369
+  },
+  "JAUNPUR": {
+    "circle": "UE",
+    "lat": 25.7462,
+    "lng": 82.6836
+  },
+  "JHANSI": {
+    "circle": "UE",
+    "lat": 25.4484,
+    "lng": 78.5685
+  },
+  "KANNAUJ": {
+    "circle": "UE",
+    "lat": 27.0577,
+    "lng": 79.9153
+  },
+  "KANPUR NAGAR": {
+    "circle": "UE",
+    "lat": 26.4499,
+    "lng": 80.3319
+  },
+  "KUSHINAGAR": {
+    "circle": "UE",
+    "lat": 26.7399,
+    "lng": 83.889
+  },
+  "LALITPUR": {
+    "circle": "UE",
+    "lat": 24.6887,
+    "lng": 78.4143
+  },
+  "LUCKNOW": {
+    "circle": "UE",
+    "lat": 26.8467,
+    "lng": 80.9462
+  },
+  "MAHOBA": {
+    "circle": "UE",
+    "lat": 25.29,
+    "lng": 79.869
+  },
+  "MAHRAJGANJ": {
+    "circle": "UE",
+    "lat": 27.1293,
+    "lng": 83.5591
+  },
+  "MIRZAPUR": {
+    "circle": "UE",
+    "lat": 25.1459,
+    "lng": 82.569
+  },
+  "PRATAPGARH": {
+    "circle": "RJ",
+    "lat": 24.03,
+    "lng": 74.78
+  },
+  "RAE BARELI": {
+    "circle": "UE",
+    "lat": 26.233,
+    "lng": 81.2354
+  },
+  "SANT KABIR NAGAR": {
+    "circle": "UE",
+    "lat": 26.7869,
+    "lng": 82.9843
+  },
+  "SHAHJAHANPUR": {
+    "circle": "UE",
+    "lat": 27.883,
+    "lng": 79.905
+  },
+  "SHRAWASTI": {
+    "circle": "UE",
+    "lat": 27.7,
+    "lng": 81.9
+  },
+  "SIDDHARTHNAGAR": {
+    "circle": "UE",
+    "lat": 27.2964,
+    "lng": 83.0916
+  },
+  "SITAPUR": {
+    "circle": "UE",
+    "lat": 27.5604,
+    "lng": 80.6806
+  },
+  "SONBHADRA": {
+    "circle": "UE",
+    "lat": 24.6907,
+    "lng": 82.9748
+  },
+  "SULTANPUR": {
+    "circle": "UE",
+    "lat": 26.2649,
+    "lng": 82.0722
+  },
+  "UNNAO": {
+    "circle": "UE",
+    "lat": 26.5476,
+    "lng": 80.4896
+  },
+  "VARANASI": {
+    "circle": "UE",
+    "lat": 25.3176,
+    "lng": 82.9739
+  },
+  "ANANTNAG": {
+    "circle": "JK",
+    "lat": 33.7311,
+    "lng": 75.1481
+  },
+  "BADGAM": {
+    "circle": "JK",
+    "lat": 33.909875,
+    "lng": 74.627036
+  },
+  "BANDIPURA": {
+    "circle": "JK",
+    "lat": 34.4225,
+    "lng": 74.641
+  },
+  "BARAMULA": {
+    "circle": "JK",
+    "lat": 34.20869,
+    "lng": 74.343498
+  },
+  "DODA": {
+    "circle": "JK",
+    "lat": 33.13261,
+    "lng": 75.589008
+  },
+  "GANDERBAL": {
+    "circle": "JK",
+    "lat": 34.288932,
+    "lng": 75.040798
+  },
+  "JAMMU": {
+    "circle": "JK",
+    "lat": 32.7266,
+    "lng": 74.857
+  },
+  "KARGIL": {
+    "circle": "JK",
+    "lat": 34.559305,
+    "lng": 76.125577
+  },
+  "KATHUA": {
+    "circle": "JK",
+    "lat": 32.376552,
+    "lng": 75.524304
+  },
+  "KISHTWAR": {
+    "circle": "JK",
+    "lat": 33.61562,
+    "lng": 75.879397
+  },
+  "KULGAM": {
+    "circle": "JK",
+    "lat": 33.64469,
+    "lng": 75.018843
+  },
+  "KUPWARA": {
+    "circle": "JK",
+    "lat": 34.51407,
+    "lng": 74.191367
+  },
+  "LEH": {
+    "circle": "JK",
+    "lat": 34.164203,
+    "lng": 77.584813
+  },
+  "PULWAMA": {
+    "circle": "JK",
+    "lat": 33.949047,
+    "lng": 75.041833
+  },
+  "RAJAURI": {
+    "circle": "JK",
+    "lat": 33.377249,
+    "lng": 74.313233
+  },
+  "RAMBAN": {
+    "circle": "JK",
+    "lat": 33.211637,
+    "lng": 75.205099
+  },
+  "SAMBA": {
+    "circle": "JK",
+    "lat": 32.575912,
+    "lng": 75.120345
+  },
+  "SRINAGAR": {
+    "circle": "JK",
+    "lat": 34.0837,
+    "lng": 74.7973
+  },
+  "UDHAMPUR": {
+    "circle": "JK",
+    "lat": 32.921973,
+    "lng": 75.133148
+  },
+  "ALIPUR DUAR": {
+    "circle": "WB",
+    "lat": 26.485157,
+    "lng": 89.524693
+  },
+  "BANKURA": {
+    "circle": "WB",
+    "lat": 23.132377,
+    "lng": 87.208192
+  },
+  "BIRBHUM": {
+    "circle": "WB",
+    "lat": 23.9,
+    "lng": 87.53
+  },
+  "DARJILING": {
+    "circle": "WB",
+    "lat": 27.037755,
+    "lng": 88.263176
+  },
+  "GANGTOK": {
+    "circle": "WB",
+    "lat": 27.329046,
+    "lng": 88.612267
+  },
+  "JALPAIGURI": {
+    "circle": "WB",
+    "lat": 26.626281,
+    "lng": 88.733448
+  },
+  "JHARGRAM": {
+    "circle": "WB",
+    "lat": 22.453851,
+    "lng": 86.994948
+  },
+  "KALIMPONG": {
+    "circle": "WB",
+    "lat": 27.070287,
+    "lng": 88.472368
+  },
+  "MALDAH": {
+    "circle": "BR",
+    "lat": 25.005745,
+    "lng": 88.139848
+  },
+  "NAMCHI": {
+    "circle": "WB",
+    "lat": 27.303102,
+    "lng": 88.378596
+  },
+  "PAKUR": {
+    "circle": "JH",
+    "lat": 24.532591,
+    "lng": 87.593232
+  },
+  "PURULIYA": {
+    "circle": "WB",
+    "lat": 23.202097,
+    "lng": 86.322899
+  },
+  "ARARIA": {
+    "circle": "BR",
+    "lat": 26.134646,
+    "lng": 87.465406
+  },
+  "ARWAL": {
+    "circle": "BR",
+    "lat": 25.2487,
+    "lng": 84.682
+  },
+  "AURANGABAD": {
+    "circle": "BR",
+    "lat": 24.7506,
+    "lng": 84.37
+  },
+  "BANKA": {
+    "circle": "BR",
+    "lat": 24.832827,
+    "lng": 86.816111
+  },
+  "BEGUSARAI": {
+    "circle": "BR",
+    "lat": 25.512541,
+    "lng": 86.088339
+  },
+  "BHAGALPUR": {
+    "circle": "BR",
+    "lat": 25.286135,
+    "lng": 87.130423
+  },
+  "BUXAR": {
+    "circle": "BR",
+    "lat": 25.504483,
+    "lng": 84.109752
+  },
+  "CHATRA": {
+    "circle": "JH",
+    "lat": 24.106232,
+    "lng": 84.862338
+  },
+  "DARBHANGA": {
+    "circle": "BR",
+    "lat": 26.08299,
+    "lng": 86.032495
+  },
+  "DEOGHAR": {
+    "circle": "JH",
+    "lat": 24.489832,
+    "lng": 86.699018
+  },
+  "GAYA": {
+    "circle": "BR",
+    "lat": 24.796436,
+    "lng": 85.007956
+  },
+  "GODDA": {
+    "circle": "JH",
+    "lat": 24.864589,
+    "lng": 87.298484
+  },
+  "GOPALGANJ": {
+    "circle": "BR",
+    "lat": 26.421117,
+    "lng": 84.373913
+  },
+  "GUMLA": {
+    "circle": "JH",
+    "lat": 23.160376,
+    "lng": 84.459957
+  },
+  "JAHANABAD": {
+    "circle": "BR",
+    "lat": 25.238535,
+    "lng": 85.021988
+  },
+  "JAMUI": {
+    "circle": "BR",
+    "lat": 24.756251,
+    "lng": 86.301113
+  },
+  "KAIMUR": {
+    "circle": "BR",
+    "lat": 25.0187,
+    "lng": 83.5906
+  },
+  "KATIHAR": {
+    "circle": "BR",
+    "lat": 25.558642,
+    "lng": 87.64572
+  },
+  "KHAGARIA": {
+    "circle": "BR",
+    "lat": 25.493051,
+    "lng": 86.698226
+  },
+  "KISHANGANJ": {
+    "circle": "BR",
+    "lat": 26.298414,
+    "lng": 87.946671
+  },
+  "LAKHISARAI": {
+    "circle": "BR",
+    "lat": 25.154394,
+    "lng": 86.174496
+  },
+  "MADHEPURA": {
+    "circle": "BR",
+    "lat": 25.780612,
+    "lng": 86.936475
+  },
+  "MADHUBANI": {
+    "circle": "BR",
+    "lat": 26.350308,
+    "lng": 86.229642
+  },
+  "MUNGER": {
+    "circle": "BR",
+    "lat": 25.220286,
+    "lng": 86.516148
+  },
+  "MUZAFFARPUR": {
+    "circle": "BR",
+    "lat": 26.148255,
+    "lng": 85.33161
+  },
+  "NALANDA": {
+    "circle": "BR",
+    "lat": 25.136491,
+    "lng": 85.443655
+  },
+  "NAWADA": {
+    "circle": "BR",
+    "lat": 24.817325,
+    "lng": 85.517909
+  },
+  "PALAMU": {
+    "circle": "JH",
+    "lat": 23.8333,
+    "lng": 84.5
+  },
+  "PATNA": {
+    "circle": "BR",
+    "lat": 25.609324,
+    "lng": 85.123525
+  },
+  "PURNIA": {
+    "circle": "BR",
+    "lat": 25.775872,
+    "lng": 87.408767
+  },
+  "ROHTAS": {
+    "circle": "BR",
+    "lat": 24.9957,
+    "lng": 83.7851
+  },
+  "SAHARSA": {
+    "circle": "BR",
+    "lat": 25.833076,
+    "lng": 86.614375
+  },
+  "SAHIBGANJ": {
+    "circle": "JH",
+    "lat": 25.032044,
+    "lng": 87.691764
+  },
+  "SAMASTIPUR": {
+    "circle": "BR",
+    "lat": 25.774788,
+    "lng": 85.867231
+  },
+  "SHEIKHPURA": {
+    "circle": "BR",
+    "lat": 25.125074,
+    "lng": 85.816077
+  },
+  "SHEOHAR": {
+    "circle": "BR",
+    "lat": 26.493423,
+    "lng": 85.271756
+  },
+  "SITAMARHI": {
+    "circle": "BR",
+    "lat": 26.594284,
+    "lng": 85.500428
+  },
+  "SIWAN": {
+    "circle": "BR",
+    "lat": 26.131008,
+    "lng": 84.391075
+  },
+  "SUPAUL": {
+    "circle": "BR",
+    "lat": 26.276809,
+    "lng": 86.795961
+  },
+  "ANUGUL": {
+    "circle": "OR",
+    "lat": 21.102538,
+    "lng": 84.953682
+  },
+  "BALANGIR": {
+    "circle": "OR",
+    "lat": 20.609518,
+    "lng": 83.167303
+  },
+  "BARGARH": {
+    "circle": "OR",
+    "lat": 21.231992,
+    "lng": 83.565274
+  },
+  "BHADRAK": {
+    "circle": "OR",
+    "lat": 20.985405,
+    "lng": 86.593423
+  },
+  "CUTTACK": {
+    "circle": "OR",
+    "lat": 20.4686,
+    "lng": 85.8792
+  },
+  "DEOGARH": {
+    "circle": "OR",
+    "lat": 21.537079,
+    "lng": 84.730118
+  },
+  "DHENKANAL": {
+    "circle": "OR",
+    "lat": 20.835149,
+    "lng": 85.602231
+  },
+  "JAGATSINGHPUR": {
+    "circle": "OR",
+    "lat": 20.259387,
+    "lng": 86.166088
+  },
+  "JAJAPUR": {
+    "circle": "OR",
+    "lat": 20.874679,
+    "lng": 86.121539
+  },
+  "JHARSUGUDA": {
+    "circle": "OR",
+    "lat": 21.801937,
+    "lng": 83.971396
+  },
+  "KENDRAPARA": {
+    "circle": "OR",
+    "lat": 20.547516,
+    "lng": 86.529617
+  },
+  "KHORDHA": {
+    "circle": "OR",
+    "lat": 20.053815,
+    "lng": 85.502331
+  },
+  "NABARANGAPUR": {
+    "circle": "OR",
+    "lat": 19.228896,
+    "lng": 82.566571
+  },
+  "NAYAGARH": {
+    "circle": "OR",
+    "lat": 20.239368,
+    "lng": 85.050728
+  },
+  "PURI": {
+    "circle": "OR",
+    "lat": 19.807608,
+    "lng": 85.825254
+  },
+  "RAYAGARHA": {
+    "circle": "OR",
+    "lat": 19.44267,
+    "lng": 83.587305
+  },
+  "SAMBALPUR": {
+    "circle": "OR",
+    "lat": 21.557061,
+    "lng": 84.152851
+  },
+  "SUNDARGARH": {
+    "circle": "OR",
+    "lat": 22.060515,
+    "lng": 83.935915
+  },
+  "AJMER": {
+    "circle": "RJ",
+    "lat": 26.4691,
+    "lng": 74.639
+  },
+  "ALWAR": {
+    "circle": "RJ",
+    "lat": 27.414005,
+    "lng": 76.617039
+  },
+  "BALOTRA": {
+    "circle": "RJ",
+    "lat": 25.830056,
+    "lng": 72.247095
+  },
+  "BANSWARA": {
+    "circle": "RJ",
+    "lat": 23.491505,
+    "lng": 74.350217
+  },
+  "BARAN": {
+    "circle": "RJ",
+    "lat": 24.920817,
+    "lng": 76.682198
+  },
+  "BARMER": {
+    "circle": "RJ",
+    "lat": 25.581485,
+    "lng": 71.192492
+  },
+  "BEAWAR": {
+    "circle": "RJ",
+    "lat": 26.107056,
+    "lng": 74.312842
+  },
+  "BHARATPUR": {
+    "circle": "RJ",
+    "lat": 27.024696,
+    "lng": 77.292012
+  },
+  "BHILWARA": {
+    "circle": "RJ",
+    "lat": 25.470994,
+    "lng": 74.696132
+  },
+  "BIKANER": {
+    "circle": "RJ",
+    "lat": 28.015929,
+    "lng": 73.317137
+  },
+  "BUNDI": {
+    "circle": "RJ",
+    "lat": 25.436766,
+    "lng": 75.736147
+  },
+  "CHITTAURGARH": {
+    "circle": "RJ",
+    "lat": 24.717158,
+    "lng": 74.471813
+  },
+  "CHURU": {
+    "circle": "RJ",
+    "lat": 28.204778,
+    "lng": 74.6913
+  },
+  "DAUSA": {
+    "circle": "RJ",
+    "lat": 26.804866,
+    "lng": 76.443746
+  },
+  "DHAULPUR": {
+    "circle": "RJ",
+    "lat": 26.653033,
+    "lng": 77.624104
+  },
+  "DUNGARPUR": {
+    "circle": "RJ",
+    "lat": 23.853889,
+    "lng": 73.708718
+  },
+  "GANGANAGAR": {
+    "circle": "RJ",
+    "lat": 25.906139,
+    "lng": 76.48155
+  },
+  "HANUMANGARH": {
+    "circle": "RJ",
+    "lat": 29.365953,
+    "lng": 74.298429
+  },
+  "JAIPUR": {
+    "circle": "RJ",
+    "lat": 26.9124,
+    "lng": 75.7873
+  },
+  "JAISALMER": {
+    "circle": "RJ",
+    "lat": 27.026416,
+    "lng": 70.777512
+  },
+  "JALOR": {
+    "circle": "RJ",
+    "lat": 25.209348,
+    "lng": 72.317889
+  },
+  "JHALAWAR": {
+    "circle": "RJ",
+    "lat": 24.313237,
+    "lng": 76.522108
+  },
+  "JHUNJHUNUN": {
+    "circle": "RJ",
+    "lat": 28.079894,
+    "lng": 75.542421
+  },
+  "JODHPUR": {
+    "circle": "RJ",
+    "lat": 26.2389,
+    "lng": 73.0243
+  },
+  "KARAULI": {
+    "circle": "RJ",
+    "lat": 26.515833,
+    "lng": 77.056596
+  },
+  "KOTA": {
+    "circle": "RJ",
+    "lat": 25.173702,
+    "lng": 75.857419
+  },
+  "NAGAUR": {
+    "circle": "RJ",
+    "lat": 26.987344,
+    "lng": 73.738901
+  },
+  "PALI": {
+    "circle": "RJ",
+    "lat": 25.455221,
+    "lng": 73.419389
+  },
+  "RAJSAMAND": {
+    "circle": "RJ",
+    "lat": 25.289246,
+    "lng": 73.824108
+  },
+  "SAWAI MADHOPUR": {
+    "circle": "RJ",
+    "lat": 26.229019,
+    "lng": 76.304356
+  },
+  "SIKAR": {
+    "circle": "RJ",
+    "lat": 27.662416,
+    "lng": 75.027997
+  },
+  "SIROHI": {
+    "circle": "RJ",
+    "lat": 24.811405,
+    "lng": 72.830026
+  },
+  "TONK": {
+    "circle": "RJ",
+    "lat": 26.12232,
+    "lng": 75.663224
+  },
+  "UDAIPUR": {
+    "circle": "RJ",
+    "lat": 24.578721,
+    "lng": 73.686257
+  },
+  "BAJALI": {
+    "circle": "AS",
+    "lat": 26.5,
+    "lng": 90.8
+  },
+  "BAKSA": {
+    "circle": "AS",
+    "lat": 26.69,
+    "lng": 91.66
+  },
+  "BARPETA": {
+    "circle": "AS",
+    "lat": 26.345941,
+    "lng": 91.039708
+  },
+  "BISWANATH": {
+    "circle": "NE",
+    "lat": 26.728,
+    "lng": 93.14
+  },
+  "BONGAIGAON": {
+    "circle": "AS",
+    "lat": 26.480013,
+    "lng": 90.558039
+  },
+  "CHARAIDEO": {
+    "circle": "NE",
+    "lat": 27.013,
+    "lng": 94.805
+  },
+  "DHUBRI": {
+    "circle": "AS",
+    "lat": 26.132275,
+    "lng": 90.124996
+  },
+  "DIBRUGARH": {
+    "circle": "AS",
+    "lat": 27.48446,
+    "lng": 94.901945
+  },
+  "EAST SIANG": {
+    "circle": "NE",
+    "lat": 28.0803,
+    "lng": 95.0956
+  },
+  "GOALPARA": {
+    "circle": "NE",
+    "lat": 26.049188,
+    "lng": 90.600186
+  },
+  "GOLAGHAT": {
+    "circle": "NE",
+    "lat": 26.510826,
+    "lng": 93.974369
+  },
+  "HAILAKANDI": {
+    "circle": "NE",
+    "lat": 24.684692,
+    "lng": 92.564584
+  },
+  "HOJAI": {
+    "circle": "AS",
+    "lat": 25.96294,
+    "lng": 92.981829
+  },
+  "JORHAT": {
+    "circle": "NE",
+    "lat": 26.757793,
+    "lng": 94.207965
+  },
+  "LAKHIMPUR": {
+    "circle": "NE",
+    "lat": 27.2326,
+    "lng": 94.1042
+  },
+  "LOWER DIBANG VALLEY": {
+    "circle": "NE",
+    "lat": 27.803,
+    "lng": 95.96
+  },
+  "MAJULI": {
+    "circle": "AS",
+    "lat": 26.95,
+    "lng": 94.17
+  },
+  "MARIGAON": {
+    "circle": "AS",
+    "lat": 26.255148,
+    "lng": 92.329088
+  },
+  "NAGAON": {
+    "circle": "AS",
+    "lat": 26.331365,
+    "lng": 92.752476
+  },
+  "NALBARI": {
+    "circle": "AS",
+    "lat": 26.353363,
+    "lng": 91.398366
+  },
+  "SIBSAGAR": {
+    "circle": "NE",
+    "lat": 26.983494,
+    "lng": 94.639423
+  },
+  "SONITPUR": {
+    "circle": "NE",
+    "lat": 26.6308,
+    "lng": 92.8427
+  },
+  "TAMULPUR": {
+    "circle": "AS",
+    "lat": 26.65,
+    "lng": 91.8
+  },
+  "TINSUKIA": {
+    "circle": "NE",
+    "lat": 27.487972,
+    "lng": 95.360186
+  },
+  "TIRAP": {
+    "circle": "NE",
+    "lat": 27.026,
+    "lng": 95.531
+  },
+  "WEST KARBI ANGLONG": {
+    "circle": "AS",
+    "lat": 25.75,
+    "lng": 92.75
+  },
+  "AIZAWL": {
+    "circle": "NE",
+    "lat": 23.727763,
+    "lng": 92.717995
+  },
+  "ANJAW": {
+    "circle": "NE",
+    "lat": 28.027,
+    "lng": 96.838
+  },
+  "BISHNUPUR": {
+    "circle": "NE",
+    "lat": 24.621,
+    "lng": 93.7698
+  },
+  "CHAMPHAI": {
+    "circle": "NE",
+    "lat": 23.631732,
+    "lng": 93.349318
+  },
+  "CHANGLANG": {
+    "circle": "NE",
+    "lat": 27.1147,
+    "lng": 95.7426
+  },
+  "CHURACHANDPUR": {
+    "circle": "NE",
+    "lat": 24.346884,
+    "lng": 93.699414
+  },
+  "DHALAI": {
+    "circle": "NE",
+    "lat": 23.7569,
+    "lng": 91.806
+  },
+  "DIBANG VALLEY": {
+    "circle": "NE",
+    "lat": 28.6369,
+    "lng": 95.982
+  },
+  "DIMAPUR": {
+    "circle": "NE",
+    "lat": 25.904138,
+    "lng": 93.717761
+  },
+  "EAST KAMENG": {
+    "circle": "NE",
+    "lat": 27.3333,
+    "lng": 92.75
+  },
+  "KHAWZAWL": {
+    "circle": "NE",
+    "lat": 23.487789,
+    "lng": 93.140294
+  },
+  "KHOWAI": {
+    "circle": "NE",
+    "lat": 24.0651,
+    "lng": 91.6038
+  },
+  "KOHIMA": {
+    "circle": "NE",
+    "lat": 25.661876,
+    "lng": 94.101916
+  },
+  "KOLASIB": {
+    "circle": "NE",
+    "lat": 24.190547,
+    "lng": 92.71366
+  },
+  "KRA DAADI": {
+    "circle": "NE",
+    "lat": 27.5,
+    "lng": 93.2
+  },
+  "KURUNG KUMEY": {
+    "circle": "NE",
+    "lat": 27.85,
+    "lng": 93.45
+  },
+  "LAWNGTLAI": {
+    "circle": "NE",
+    "lat": 22.391338,
+    "lng": 92.739719
+  },
+  "LEPA RADA": {
+    "circle": "NE",
+    "lat": 28.0,
+    "lng": 94.75
+  },
+  "LOHIT": {
+    "circle": "NE",
+    "lat": 28.078,
+    "lng": 96.31
+  },
+  "LONGDING": {
+    "circle": "NE",
+    "lat": 27.373,
+    "lng": 95.412
+  },
+  "LOWER SIANG": {
+    "circle": "NE",
+    "lat": 27.9,
+    "lng": 94.75
+  },
+  "LOWER SUBANSIRI": {
+    "circle": "NE",
+    "lat": 27.45,
+    "lng": 93.8
+  },
+  "LUNGLEI": {
+    "circle": "NE",
+    "lat": 22.951997,
+    "lng": 92.633883
+  },
+  "MOKOKCHUNG": {
+    "circle": "NE",
+    "lat": 26.479586,
+    "lng": 94.510527
+  },
+  "MON": {
+    "circle": "NE",
+    "lat": 26.666667,
+    "lng": 95.0
+  },
+  "NAMSAI": {
+    "circle": "NE",
+    "lat": 27.714031,
+    "lng": 96.015971
+  },
+  "NORTH TRIPURA": {
+    "circle": "NE",
+    "lat": 24.4154,
+    "lng": 92.0195
+  },
+  "PAKKE KESSANG": {
+    "circle": "NE",
+    "lat": 27.25,
+    "lng": 93.25
+  },
+  "SAITUAL": {
+    "circle": "NE",
+    "lat": 23.812857,
+    "lng": 92.972797
+  },
+  "SENAPATI": {
+    "circle": "NE",
+    "lat": 25.39337,
+    "lng": 94.150177
+  },
+  "SEPAHIJALA": {
+    "circle": "NE",
+    "lat": 23.45,
+    "lng": 91.65
+  },
+  "SHI YOMI": {
+    "circle": "NE",
+    "lat": 28.5,
+    "lng": 94.0
+  },
+  "SIANG": {
+    "circle": "NE",
+    "lat": 28.45,
+    "lng": 95.4
+  },
+  "SOUTH TRIPURA": {
+    "circle": "NE",
+    "lat": 23.25,
+    "lng": 91.75
+  },
+  "TAWANG": {
+    "circle": "NE",
+    "lat": 27.587919,
+    "lng": 91.863733
+  },
+  "THOUBAL": {
+    "circle": "NE",
+    "lat": 24.638695,
+    "lng": 93.996871
+  },
+  "TUENSANG": {
+    "circle": "NE",
+    "lat": 26.234211,
+    "lng": 94.741553
+  },
+  "UKHRUL": {
+    "circle": "NE",
+    "lat": 25.098265,
+    "lng": 94.363167
+  },
+  "UNAKOTI": {
+    "circle": "NE",
+    "lat": 24.3247,
+    "lng": 92.0812
+  },
+  "UPPER SIANG": {
+    "circle": "NE",
+    "lat": 28.85,
+    "lng": 95.25
+  },
+  "UPPER SUBANSIRI": {
+    "circle": "NE",
+    "lat": 27.95,
+    "lng": 94.25
+  },
+  "WEST KAMENG": {
+    "circle": "NE",
+    "lat": 27.2,
+    "lng": 92.5
+  },
+  "WEST SIANG": {
+    "circle": "NE",
+    "lat": 28.05,
+    "lng": 94.35
+  },
+  "WEST TRIPURA": {
+    "circle": "NE",
+    "lat": 23.8315,
+    "lng": 91.4988
+  },
+  "BOKARO": {
+    "circle": "JH",
+    "lat": 23.699128,
+    "lng": 85.991069
+  },
+  "DHANBAD": {
+    "circle": "JH",
+    "lat": 23.795281,
+    "lng": 86.430964
+  },
+  "DUMKA": {
+    "circle": "JH",
+    "lat": 24.267794,
+    "lng": 87.248549
+  },
+  "GARHWA": {
+    "circle": "JH",
+    "lat": 24.053577,
+    "lng": 83.652682
+  },
+  "GIRIDIH": {
+    "circle": "JH",
+    "lat": 24.331455,
+    "lng": 86.154812
+  },
+  "HAZARIBAGH": {
+    "circle": "JH",
+    "lat": 24.086696,
+    "lng": 85.491223
+  },
+  "JAMTARA": {
+    "circle": "JH",
+    "lat": 23.980164,
+    "lng": 86.924364
+  },
+  "KHUNTI": {
+    "circle": "JH",
+    "lat": 22.92818,
+    "lng": 85.281447
+  },
+  "LOHARDAGA": {
+    "circle": "JH",
+    "lat": 23.477004,
+    "lng": 84.698668
+  },
+  "RAMGARH": {
+    "circle": "JH",
+    "lat": 23.693479,
+    "lng": 85.521599
+  },
+  "RANCHI": {
+    "circle": "JH",
+    "lat": 23.3441,
+    "lng": 85.3096
+  },
+  "NTR": {
+    "circle": "AP",
+    "lat": 16.5193,
+    "lng": 80.6305
+  },
+  "PRAKASAM": {
+    "circle": "AP",
+    "lat": 15.3381,
+    "lng": 79.5006
+  },
+  "RAJANNA SIRCILLA": {
+    "circle": "AP",
+    "lat": 18.385,
+    "lng": 78.833
+  },
+  "SRI POTTI SRIRAMULU NELLORE": {
+    "circle": "AP",
+    "lat": 14.4426,
+    "lng": 79.9865
+  },
+  "WANPARTI": {
+    "circle": "AP",
+    "lat": 16.359,
+    "lng": 78.061
+  },
+  "YADADRI BHUVANAGIRI": {
+    "circle": "AP",
+    "lat": 17.57,
+    "lng": 79.06
+  },
+  "YANAM": {
+    "circle": "AP",
+    "lat": 16.729,
+    "lng": 82.213
+  },
+  "YSR KADAPA": {
+    "circle": "AP",
+    "lat": 14.4753,
+    "lng": 78.8208
+  },
+  "Bengaluru (Rural)": {
+    "circle": "KK",
+    "lat": 13.0827,
+    "lng": 77.5877
+  },
+  "Dakshina Kannada": {
+    "circle": "KK",
+    "lat": 12.8438,
+    "lng": 74.99
+  },
+  "Kodagu": {
+    "circle": "KK",
+    "lat": 12.3375,
+    "lng": 75.8069
+  },
+  "Uttara Kannada": {
+    "circle": "KK",
+    "lat": 14.798,
+    "lng": 74.692
+  },
+  "Vijayanagara": {
+    "circle": "KK",
+    "lat": 15.1394,
+    "lng": 76.9214
+  },
+  "DAKSHIN BASTAR DANTEWARA": {
+    "circle": "MP",
+    "lat": 18.896,
+    "lng": 81.344
+  },
+  "JANJGIR - CHAMPA": {
+    "circle": "MP",
+    "lat": 22.0079,
+    "lng": 82.5691
+  },
+  "JHABUA": {
+    "circle": "MP",
+    "lat": 22.7679,
+    "lng": 74.59
+  },
+  "KAWARDHA (KABIRDHAM)": {
+    "circle": "MP",
+    "lat": 22.0841,
+    "lng": 81.273
+  },
+  "KHAIRGARH-CHHUIKHADAN-GANDAI": {
+    "circle": "MP",
+    "lat": 21.42,
+    "lng": 80.99
+  },
+  "KOREA": {
+    "circle": "MP",
+    "lat": 23.2072,
+    "lng": 82.558
+  },
+  "MANENDRAGARH-CHIRMIRI-BHARATPUR": {
+    "circle": "MP",
+    "lat": 23.2,
+    "lng": 82.2
+  },
+  "NARMADAPURAM": {
+    "circle": "MP",
+    "lat": 22.75,
+    "lng": 77.73
+  },
+  "NIWARI": {
+    "circle": "MP",
+    "lat": 25.0,
+    "lng": 78.7
+  },
+  "PANDHURNA": {
+    "circle": "MP",
+    "lat": 21.6,
+    "lng": 78.5
+  },
+  "PANNA": {
+    "circle": "MP",
+    "lat": 24.7222,
+    "lng": 80.1882
+  },
+  "MUMBAI SUBURBAN": {
+    "circle": "MU",
+    "lat": 19.133,
+    "lng": 72.94
+  },
+  "CHAMOLI": {
+    "circle": "UW",
+    "lat": 30.415,
+    "lng": 79.32
+  },
+  "CHHOTAUDEPUR": {
+    "circle": "GJ",
+    "lat": 22.3074,
+    "lng": 74.0125
+  },
+  "GIR SOMNATH": {
+    "circle": "GJ",
+    "lat": 20.9049,
+    "lng": 70.375
+  },
+  "MAHISAGAR": {
+    "circle": "GJ",
+    "lat": 23.074,
+    "lng": 73.587
+  },
+  "NARMADA": {
+    "circle": "GJ",
+    "lat": 21.874,
+    "lng": 73.647
+  },
+  "TAPI": {
+    "circle": "GJ",
+    "lat": 21.144,
+    "lng": 73.477
+  },
+  "DHARASHIV": {
+    "circle": "MH",
+    "lat": 18.179,
+    "lng": 76.039
+  },
+  "Ernakulam": {
+    "circle": "KL",
+    "lat": 10.119866,
+    "lng": 77.546707
+  },
+  "KARAIKAL": {
+    "circle": "TN",
+    "lat": 10.9258,
+    "lng": 79.834
+  },
+  "HAORA": {
+    "circle": "KO",
+    "lat": 22.5843,
+    "lng": 88.3096
+  },
+  "HUGLI": {
+    "circle": "KO",
+    "lat": 22.8974,
+    "lng": 88.3964
+  },
+  "AMBEDKAR NAGAR": {
+    "circle": "UE",
+    "lat": 26.437,
+    "lng": 82.535
+  },
+  "KHERI": {
+    "circle": "UE",
+    "lat": 27.905,
+    "lng": 80.782
+  },
+  "RIASI": {
+    "circle": "JK",
+    "lat": 33.069103,
+    "lng": 74.83787
+  },
+  "SHUPIYAN": {
+    "circle": "JK",
+    "lat": 33.718807,
+    "lng": 74.833331
+  },
+  "DAKSHIN DINAJPUR": {
+    "circle": "WB",
+    "lat": 25.5,
+    "lng": 88.75
+  },
+  "MURSHIDABAD": {
+    "circle": "WB",
+    "lat": 24.1756,
+    "lng": 88.2699
+  },
+  "PASCHIM MEDINIPUR": {
+    "circle": "WB",
+    "lat": 22.4242,
+    "lng": 87.3193
+  },
+  "PURBA MEDINIPUR": {
+    "circle": "WB",
+    "lat": 22.15,
+    "lng": 87.85
+  },
+  "UTTAR DINAJPUR": {
+    "circle": "WB",
+    "lat": 26.15,
+    "lng": 87.88
+  },
+  "SARAN": {
+    "circle": "BR",
+    "lat": 25.95,
+    "lng": 84.85
+  },
+  "BOUDH": {
+    "circle": "OR",
+    "lat": 20.838,
+    "lng": 84.328
+  },
+  "GAJAPATI": {
+    "circle": "OR",
+    "lat": 19.239,
+    "lng": 84.076
+  },
+  "KANDHAMAL": {
+    "circle": "OR",
+    "lat": 20.115,
+    "lng": 84.0
+  },
+  "MALKANGIRI": {
+    "circle": "OR",
+    "lat": 18.349,
+    "lng": 81.892
+  },
+  "NUAPARHA": {
+    "circle": "OR",
+    "lat": 20.8326,
+    "lng": 82.549
+  },
+  "SIMDEGA": {
+    "circle": "OR",
+    "lat": 22.61,
+    "lng": 84.501
+  },
+  "SUBARNAPUR": {
+    "circle": "OR",
+    "lat": 20.829,
+    "lng": 83.91
+  },
+  "SALUMBAR": {
+    "circle": "RJ",
+    "lat": 24.12,
+    "lng": 74.01
+  },
+  "DARANG": {
+    "circle": "AS",
+    "lat": 26.4514,
+    "lng": 91.7526
+  },
+  "UDALGURI": {
+    "circle": "AS",
+    "lat": 26.7519,
+    "lng": 92.095
+  },
+  "SAIHA": {
+    "circle": "NE",
+    "lat": 22.489957,
+    "lng": 92.981211
+  },
+  "WOKHA": {
+    "circle": "NE",
+    "lat": 26.092,
+    "lng": 94.2624
+  },
+  "EAST SINGHBHUM": {
+    "circle": "JH",
+    "lat": 22.8046,
+    "lng": 86.2029
+  },
+  "LATEHAR": {
+    "circle": "JH",
+    "lat": 23.736,
+    "lng": 84.502
+  }
+}

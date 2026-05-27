@@ -44,33 +44,33 @@ export default function Header() {
     const maintCount = allTowers.filter(t => t.status === 'maintenance').length;
     const fiveGCount = allTowers.filter(t => t.bandwidth === '5G' || t.bandwidth === '4G/5G').length;
     const fiveGPct = ((fiveGCount / allTowers.length) * 100).toFixed(0);
-
-    return [
-      { label: 'Total Subscribers', value: formatNumber(totalSubs) },
-      {
-        label: 'Active Subscribers',
-        value: formatNumber(activeSubs),
-        badge: { text: `${activePct}%`, variant: 'green' as const },
-      },
-      {
-        label: 'Network Coverage',
-        value: `${metadata.networkCoverage}%`,
-        badge: { text: 'Excellent', variant: 'green' as const },
-      },
-      {
-        label: 'Avg Signal',
-        value: `${metadata.avgSignalStrength} dBm`,
-        badge: { text: 'Good', variant: 'blue' as const },
-      },
-      {
-        label: '5G / 4G/5G Towers',
-        value: `${fiveGCount}`,
-        badge: { text: `${fiveGPct}%`, variant: 'blue' as const },
-      },
-      maintCount > 0
-        ? { label: 'Under Maintenance', value: `${maintCount} towers`, badge: { text: 'Alert', variant: 'warn' as const } }
-        : { label: 'Tower Uptime', value: '99.4%', badge: { text: 'Healthy', variant: 'green' as const } },
-    ];
+return []
+    // return [
+    //   { label: 'Total Subscribers', value: formatNumber(totalSubs) },
+    //   {
+    //     label: 'Active Subscribers',
+    //     value: formatNumber(activeSubs),
+    //     badge: { text: `${activePct}%`, variant: 'green' as const },
+    //   },
+    //   {
+    //     label: 'Network Coverage',
+    //     value: `${metadata.networkCoverage}%`,
+    //     badge: { text: 'Excellent', variant: 'green' as const },
+    //   },
+    //   {
+    //     label: 'Avg Signal',
+    //     value: `${metadata.avgSignalStrength} dBm`,
+    //     badge: { text: 'Good', variant: 'blue' as const },
+    //   },
+    //   {
+    //     label: '5G / 4G/5G Towers',
+    //     value: `${fiveGCount}`,
+    //     badge: { text: `${fiveGPct}%`, variant: 'blue' as const },
+    //   },
+    //   maintCount > 0
+    //     ? { label: 'Under Maintenance', value: `${maintCount} towers`, badge: { text: 'Alert', variant: 'warn' as const } }
+    //     : { label: 'Tower Uptime', value: '99.4%', badge: { text: 'Healthy', variant: 'green' as const } },
+    // ]; 
   }, [data, selectedState, allTowers, metadata]);
 
   const ts = new Date(metadata.generatedAt).toLocaleDateString('en-IN', {
@@ -110,7 +110,7 @@ export default function Header() {
 
       {/* Screen toggle */}
       <div className="flex bg-card border border-border rounded-md text-[11px] font-semibold overflow-hidden ml-auto">
-        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks']] as [ScreenMode, string][]).map(([mode, label]) => (
+        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map']] as [ScreenMode, string][]).map(([mode, label]) => (
           <button
             key={mode}
             onClick={() => setScreenMode(mode)}

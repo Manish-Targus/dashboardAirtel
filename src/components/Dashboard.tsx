@@ -5,6 +5,7 @@ import MapView from './MapView';
 import AlertsSidebar from './AlertsSidebar';
 import BngScreen from './BngScreen';
 import MobileNetworkScreen from './MobileNetworkScreen';
+import MobileHubsScreen from './MobileHubsScreen';
 
 function DashboardInner() {
   const { screenMode } = useDashboard();
@@ -19,6 +20,8 @@ function DashboardInner() {
           </>
         ) : screenMode === 'bng' ? (
           <BngScreen />
+        ) : screenMode === 'hubs' ? (
+          <MobileHubsScreen />
         ) : (
           <MobileNetworkScreen />
         )}

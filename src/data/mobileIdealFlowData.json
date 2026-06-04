@@ -1,0 +1,3270 @@
+{
+  "PB": [
+    {
+      "source": "ANANDPURSAHIB",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "AMRITSAR",
+      "target": "Jalandhar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhatinda",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "FEROZPUR",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gurdaspur",
+      "target": "Jalandhar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Hoshiarpur",
+      "target": "Jalandhar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kotakpura",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Samrala",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Lahargagga",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Malerkotla",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Mogha",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Patiala",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Phagwara",
+      "target": "Jalandhar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Pathankot",
+      "target": "Jalandhar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sangarur",
+      "target": "Ludhiana",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Ludhiana",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Mohali",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jalandhar",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "BHJH": [
+    {
+      "source": "AURANGABAD-BHJH",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BEGUSARAI",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bokaro",
+      "target": "Ranchi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BARHI",
+      "target": "Ranchi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "DALTONGAN",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dumka",
+      "target": "Bhagalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "FORBESGANJ",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gopalganj",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "GAYA",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jamui",
+      "target": "Bhagalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jamshedpur",
+      "target": "Ranchi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KHAGARIA",
+      "target": "Bhagalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KURU",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Motihari",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Muzaffarpur",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nawada",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Pipra",
+      "target": "Patna",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Patna",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Ranchi",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhagalpur",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Siliguri",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Varanasi",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Sambalpur",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "MH": [
+    {
+      "source": "AURANGABAD-MH",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Ahmednagar",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Amravati",
+      "target": "Nagpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "CHANDRAPUR",
+      "target": "Nagpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dhule",
+      "target": "Nagpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Edlabad",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HATHKHAMBA",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "JALNA",
+      "target": "Nagpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kalyan",
+      "target": "Kolhapur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MANJARSUMBHA",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nasik",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Panjim",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sholapur",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Vellapur",
+      "target": "NANDEDT2",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Yavatmal",
+      "target": "Nagpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "NANDEDT2",
+      "target": "Mumbai-Spectrum",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Pune Epark",
+      "target": "Mumbai-Spectrum",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Nagpur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Kolhapur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Pune_vega(Old)",
+      "target": "Mumbai-Spectrum",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jabalpur",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Pune(Espace)",
+      "target": "Mumbai-Spectrum",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "JK": [
+    {
+      "source": "ANANTNAG",
+      "target": "Jammu",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sapore",
+      "target": "Jammu",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BATOTE",
+      "target": "Jammu",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PULWAMA",
+      "target": "SRINAGAR",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RAJOURI",
+      "target": "Jammu",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Udhampur",
+      "target": "Jammu",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jammu",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "SRINAGAR",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Mohali",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jalandhar",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "NESA": [
+    {
+      "source": "Agartala",
+      "target": "Shillong",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Aizwal",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Babejia",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BONGAIGAON",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dimapur",
+      "target": "Jorhat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Itanagar",
+      "target": "Jorhat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Imphal",
+      "target": "Jorhat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KUMARGHAT",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kohima",
+      "target": "Jorhat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "LUMDING",
+      "target": "Shillong",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MORANHAT",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Silchar",
+      "target": "Shillong",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TINSUKIA",
+      "target": "Jorhat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Tezpur",
+      "target": "Guwahati",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Guwahati",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jorhat",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Shillong",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Siliguri",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "HPHP": [
+    {
+      "source": "AMBALAGALU",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Baddi",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dharamshala",
+      "target": "Shimla",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HAMIRPUR",
+      "target": "Shimla",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jawalaji",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "NURPUR",
+      "target": "Shimla",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PONTA",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Rori",
+      "target": "Mohali",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Mohali",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Shimla",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Ambala",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Hisar",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "RAJ": [
+    {
+      "source": "Ajmer",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Alwar",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bikaner",
+      "target": "Jodhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BANSWARA",
+      "target": "Udaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bharatpur",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhilwara",
+      "target": "Udaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "DEOLI",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "GANGAPUR",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kota",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MAKRANA",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Neem ka thana",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nagaur",
+      "target": "Jodhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Pachpadra",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Phalodi",
+      "target": "Jodhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PALI",
+      "target": "Jodhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Rajgarh",
+      "target": "Udaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RATANGARH",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sanchore",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sriganganagar",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SUJANGARH",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SIROHI",
+      "target": "Udaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SAWAIMADHOPUR",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TIBI",
+      "target": "Jaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jaipur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jodhpur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Udaipur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "AGRA",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "UPW": [
+    {
+      "source": "Aligarh",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "ALMORA2",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BUDAYUN",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bijnaur",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bareilly",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bulandshahar",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Chandausi",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dehradun(Old)",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "DEHRADHUN",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Etah",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Etawah",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gajraula",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Haridwar",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kosi",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MOHAN",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Muzaffarnagar",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Pauri",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PILIBHIT",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Rudrapur",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RUDRAPRAYAG",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Saharnpur",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SHAHJAHANPUR",
+      "target": "Moradabad",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Meerut",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "AGRA",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Moradabad",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Gangaganj",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Gorakhpur",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Lucknow",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "KL": [
+    {
+      "source": "ALAPPUZHA",
+      "target": "Cochin",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kumli",
+      "target": "Calicut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kannur",
+      "target": "Calicut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PALAKKAD",
+      "target": "Pollachi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Thrissur",
+      "target": "Cochin",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Trivandrum",
+      "target": "Calicut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    }
+  ],
+  "GUJ": [
+    {
+      "source": "Amreli",
+      "target": "Rajkot",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bharuch",
+      "target": "Surat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhavnagar",
+      "target": "Surat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "DHORAJI",
+      "target": "Rajkot",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gamdi",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Godhra",
+      "target": "Surat",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HIMMATNAGAR",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "JAMNAGA",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Limdi",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Mehsana",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PALANPUR",
+      "target": "Udaipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SIHORI",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Samkhayali",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "VADODRA",
+      "target": "Ahmedabad(Changodhar)",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Ahmedabad(Changodhar)",
+      "target": "Bhopal(GP)",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Surat(Old)",
+      "target": "Bhopal(GP)",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "AP": [
+    {
+      "source": "ANANTAPUR",
+      "target": "Adoni",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HINDUPUR",
+      "target": "Adoni",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KARIMNAGAR",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kakinada",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KURNOO",
+      "target": "Prodattur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MAHABUBNAGAR",
+      "target": "Adoni",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MEDAK",
+      "target": "Adoni",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MARKAPUR",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nellore",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nizamabad",
+      "target": "Adoni",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nuzvid",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "ONGOLE",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Palamner",
+      "target": "Prodattur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SRIKAKULAM",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SURYAPET",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Tirupati",
+      "target": "Prodattur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "URAVAKONDA",
+      "target": "Prodattur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Vizag",
+      "target": "Prodattur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Warangal",
+      "target": "Vijaywada",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Prodattur",
+      "target": "HYDERABAD UPPAL",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Adoni",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Vijaywada",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Hubli",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhuvaneswar",
+      "target": "HYDERABAD UPPAL",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "MPCG": [
+    {
+      "source": "AMBIKAPUR-",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BILASPUR",
+      "target": "Raipur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BIORA",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Chhatarpur",
+      "target": "SATNA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dewas",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "GUNA",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gwalior",
+      "target": "AGRA",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Indore",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Itarasi",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KULPA",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RAIGARH",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RATLAM",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sidhi",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SHAHDOL",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SENDWA",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "SEONI",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sagar",
+      "target": "Jabalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jabalpur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Raipur",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "SATNA",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "AGRA",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Sambalpur",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Lucknow",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "TN": [
+    {
+      "source": "Attur",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Coimbatore",
+      "target": "Pollachi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Cuddalore",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "CHIDAMBARAM",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dindigul",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Dharmapuri",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Erode",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "GUDALORE",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HOSUR",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Karur",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kanchipuram",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KARAIKUDI",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KARVETNAGAR",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MUNDAKKAYAM",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "NAGERCOIL",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PATTUKOTTAI",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Pondicherry",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RAMANATHAPURAM",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TUTICORIN",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TIRUVANNAMALAI",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "THENI",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "THANJAVUR",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Tiruppur",
+      "target": "Pollachi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "THIRUNELVEL",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Uttukotai",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Vellore(Old)",
+      "target": "TRICHY",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "VELLORE",
+      "target": "Salem",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "VIRUDHUNAGAR",
+      "target": "Madurai",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TRICHY",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Pollachi",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Salem",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Madurai",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Calicut",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Adoni",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Prodattur",
+      "target": "Chennai Serisuri",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Cochin",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Trichy(Old)",
+      "target": "Chennai Serisuri",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "UPE": [
+    {
+      "source": "Azamgarh",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BADAGAON",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Behraich",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BANDA",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Fatehpur",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Faizabad",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gonda",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jhansi",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jaunpur",
+      "target": "Varanasi",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kanpur",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KANNAUJ",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Mau",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Munsiganj",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Prayagraj",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PHARENDA",
+      "target": "Gorakhpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sultanpur",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sitapur",
+      "target": "Lucknow",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gorakhpur",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Varanasi",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Gangaganj",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Lucknow",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "WB": [
+    {
+      "source": "BURDMAN",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BANKURA",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BUNIYADPUR",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "COOCHBIHAR",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "DALKHOLA",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Durgapur",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HABRA",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HELENCHA",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KOLAGHAT",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MALDA",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Madarihat",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Omarpur",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Puruliya",
+      "target": "Asansol",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Asansol",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Behrampur-WB",
+      "target": "Kharagpur (NEW)",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Siliguri",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Kharagpur (OLD)",
+      "target": "Kharagpur (NEW)",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "KK": [
+    {
+      "source": "BIDAR",
+      "target": "Kolhapur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BAGALKOT-",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BIJAPUR",
+      "target": "Kolhapur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bellary",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Belgaum",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "CHITRADURGA",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Davangere",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "GADAG",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Gulbarga",
+      "target": "Kolhapur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HASSAN",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Hospet",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kumta",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MADIKERI",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "MALAVALLI",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Mysore",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RAICHUR",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Sorbha",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Shimoga",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "TUMKUR",
+      "target": "Mangalore",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Udipi",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "YADIGIRI",
+      "target": "Hubli",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Hubli",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Mangalore",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Kolhapur",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "ORR": [
+    {
+      "source": "BORIGUMA",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BOLANGIR",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BARIPADA",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Behrampur-ORR",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Balasore",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "BHAWANIPATNA",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Cuttak",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "JHARSUGUDA",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "JASHIPUR",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "KENDUJHAR",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Nalconagar",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "NAYAGARH",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PALLAHARA",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "PANIKOLLI",
+      "target": "Bhuvaneswar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "RAYAGADA",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Rourkela",
+      "target": "Sambalpur",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Bhuvaneswar",
+      "target": "Kharagpur (NEW)",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Sambalpur",
+      "target": "Kolkata",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "HAR": [
+    {
+      "source": "CHARKHIDADRI",
+      "target": "Hisar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Fatehabad",
+      "target": "Hisar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "HANSI",
+      "target": "Hisar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Yamunanagar",
+      "target": "Ambala",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Jind",
+      "target": "Hisar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Kaithal",
+      "target": "Ambala",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Karnal",
+      "target": "Ambala",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Panipat",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Rohtak",
+      "target": "Hisar",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "REWARI",
+      "target": "Meerut",
+      "sourceTier": "T3",
+      "targetTier": "T2",
+      "traffic": 50,
+      "traffic95": 45,
+      "isRerouted": false
+    },
+    {
+      "source": "Hisar",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Mohali",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Ambala",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Jalandhar",
+      "target": "Manesar",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    },
+    {
+      "source": "Meerut",
+      "target": "Noida",
+      "sourceTier": "T2",
+      "targetTier": "T1",
+      "traffic": 200,
+      "traffic95": 180,
+      "isRerouted": false
+    }
+  ],
+  "NCR": []
+}

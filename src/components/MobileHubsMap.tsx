@@ -2,6 +2,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, CircleMarker, GeoJSON, Tooltip, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import indiaStates from '@/data/india_states_simple.json';
 import rawHubMapping from '@/data/districtHubMapping.json';
 import rawHubVolume from '@/data/hubVolumeData.json';
@@ -117,6 +118,8 @@ const HUBS: Hub[] = [
   // WB – West Bengal
   { name: 'Kharagpur',   circle: 'WB',   lat: 22.346, lng: 87.325, throughput: 1752 },
   { name: 'Siliguri',    circle: 'WB',   lat: 26.727, lng: 88.395, throughput: 1291 },
+  // AN – Andaman & Nicobar (source: mobilehubs.xlsx "Andman" circle)
+  { name: 'Andaman',     circle: 'AN',   lat: 11.674, lng: 92.726, throughput: 17   },
 ];
 
 /* ── Circle labels ── */
@@ -127,7 +130,7 @@ const HUB_CIRCLE_LABELS: Record<string, string> = {
   MH: 'Maharashtra',    MP: 'Madhya Pradesh',MU: 'Mumbai',
   NE: 'NE + Assam',     OR: 'Odisha',        RJ: 'Rajasthan',
   TN: 'Tamil Nadu',     UN: 'Punjab + HR',   UE: 'UP East',
-  UW: 'UP West',        WB: 'West Bengal',
+  UW: 'UP West',        WB: 'West Bengal',   AN: 'Andaman & Nicobar',
 };
 
 /* ── Colors (golden-angle hue spread) ── */
@@ -226,11 +229,215 @@ const TT: React.CSSProperties = {
   borderRadius: 4, padding: '4px 8px', fontSize: 11, lineHeight: 1.6,
 };
 
+/* ── Circle analytics panel ── */
+function HubCirclePanel({ circleCode, dateIdx, gen, onClose, onSelectHub }: {
+  circleCode: string;
+  dateIdx: number;
+  gen: GenMode;
+  onClose: () => void;
+  onSelectHub: (hub: Hub) => void;
+}) {
+  const color = HUB_CIRCLE_COLORS[circleCode];
+  const hubs = HUBS.filter(h => h.circle === circleCode);
+  const districts = ALL_CONNECTIONS.filter(c => c.hubCircle === circleCode);
+
+  const hubStats = hubs.map(h => {
+    const entry = hubVolIndex[`${h.circle}::${h.name}`];
+    const v4 = entry?.vals4g[dateIdx] ?? 0;
+    const v5 = entry?.vals5g[dateIdx] ?? 0;
+    const total = gen === '4g' ? v4 : gen === '5g' ? v5 : v4 + v5;
+    const distCount = ALL_CONNECTIONS.filter(c => c.hub.name === h.name && c.hub.circle === h.circle).length;
+    return { hub: h, entry, v4, v5, total, distCount };
+  }).sort((a, b) => b.total - a.total);
+
+  const totalV4 = hubStats.reduce((s, h) => s + h.v4, 0);
+  const totalV5 = hubStats.reduce((s, h) => s + h.v5, 0);
+  const totalVol = gen === '4g' ? totalV4 : gen === '5g' ? totalV5 : totalV4 + totalV5;
+  const totalBackhaul = hubs.reduce((s, h) => s + h.throughput, 0);
+
+  const tb2pb = (tb: number) => parseFloat((tb / 1000).toFixed(3));
+
+  const barData = hubStats.map(h => ({ name: h.hub.name, vol: tb2pb(h.total), v4: tb2pb(h.v4), v5: tb2pb(h.v5) }));
+
+  const pieData = hubStats.slice(0, 8).map(h => ({ name: h.hub.name, value: tb2pb(h.total) }));
+  if (hubStats.length > 8) pieData.push({ name: 'Others', value: tb2pb(hubStats.slice(8).reduce((s, h) => s + h.total, 0)) });
+
+  const genLabel = gen === '4g' ? '4G' : gen === '5g' ? '5G' : '4G+5G';
+
+  return (
+    <div className="fixed inset-4 z-[3000] flex flex-col bg-panel border border-border shadow-2xl rounded-xl overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-panel/50 backdrop-blur-md flex-shrink-0">
+        <div>
+          <div className="text-[22px] font-bold" style={{ color }}>{circleCode} — {HUB_CIRCLE_LABELS[circleCode]}</div>
+          <div className="text-[13px] text-muted mt-1">Hub Analytics · {genLabel} · {DATES[dateIdx]}</div>
+        </div>
+        <button onClick={onClose} className="text-muted hover:text-txt text-3xl leading-none transition-colors">×</button>
+      </div>
+
+      {/* KPI bar */}
+      <div className="bg-border/30 px-6 py-3 flex-shrink-0 border-b border-border flex gap-10 items-center">
+        <div>
+          <div className="text-[28px] font-bold text-blue-400">{(totalV4 / 1000).toFixed(3)} PB</div>
+          <div className="text-[12px] text-muted">Total 4G Volume</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-purple-400">{(totalV5 / 1000).toFixed(3)} PB</div>
+          <div className="text-[12px] text-muted">Total 5G Volume</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{hubs.length}</div>
+          <div className="text-[12px] text-muted">Hubs</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{districts.length}</div>
+          <div className="text-[12px] text-muted">Districts</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-cyan-400">{totalBackhaul.toLocaleString()} Gbps</div>
+          <div className="text-[12px] text-muted">Backhaul Capacity</div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-1 overflow-hidden gap-4 p-5">
+        {/* Left: charts */}
+        <div className="flex flex-col gap-4 w-[420px] flex-shrink-0">
+          {/* Bar chart */}
+          <div className="bg-panel rounded-xl border border-border p-4 shadow-sm flex-1 overflow-hidden flex flex-col">
+            <h3 className="text-[13px] font-bold text-txt mb-2 flex-shrink-0">{genLabel} Volume per Hub (PB)</h3>
+            <div className="flex-1 overflow-y-auto">
+              <div style={{ height: Math.max(180, hubStats.length * 30) }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={barData} layout="vertical" margin={{ top: 2, right: 55, left: 8, bottom: 2 }}>
+                    <XAxis type="number" tick={{ fontSize: 10, fill: '#8b949e' }} tickFormatter={(v: number) => `${v}PB`} />
+                    <YAxis dataKey="name" type="category" width={80} tick={{ fontSize: 10, fill: '#8b949e' }} />
+                    <RTooltip
+                      cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+                      contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: 11, borderRadius: 6 }}
+                      formatter={(val: number, name: string) => [`${val} PB`, name === 'vol' ? genLabel : name === 'v4' ? '4G' : '5G']}
+                    />
+                    {gen === 'both' ? (
+                      <>
+                        <Bar dataKey="v4" stackId="a" barSize={14} fill="#3b82f6" radius={[0, 0, 0, 0]} />
+                        <Bar dataKey="v5" stackId="a" barSize={14} fill="#a855f7" radius={[0, 4, 4, 0]} />
+                      </>
+                    ) : (
+                      <Bar dataKey="vol" radius={[0, 4, 4, 0]} barSize={14}>
+                        {barData.map((_, i) => (
+                          <Cell key={i} fill={gen === '4g' ? '#3b82f6' : '#a855f7'} />
+                        ))}
+                      </Bar>
+                    )}
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          {/* Pie chart */}
+          <div className="bg-panel rounded-xl border border-border p-4 shadow-sm flex-shrink-0">
+            <h3 className="text-[13px] font-bold text-txt mb-2">Volume Share — {genLabel}</h3>
+            <div className="flex gap-3 items-center">
+              <div style={{ width: 150, height: 150, flexShrink: 0 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={pieData} dataKey="value" cx="50%" cy="50%" innerRadius={38} outerRadius={68} paddingAngle={2}>
+                      {pieData.map((entry) => (
+                        <Cell key={entry.name} fill={entry.name === 'Others' ? '#374151' : color} opacity={entry.name === 'Others' ? 1 : 0.7 + (pieData.indexOf(entry) === 0 ? 0.3 : 0)} />
+                      ))}
+                    </Pie>
+                    <RTooltip
+                      contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: 11, borderRadius: 6 }}
+                      formatter={(val: number) => [`${val} PB`, genLabel]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex flex-col gap-1 overflow-y-auto max-h-[140px]">
+                {pieData.map((entry) => (
+                  <div key={entry.name} className="flex items-center gap-1.5 text-[10px] text-muted whitespace-nowrap">
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: entry.name === 'Others' ? '#374151' : color }} />
+                    <span className="truncate max-w-[90px]">{entry.name}</span>
+                    <span className="ml-auto font-mono text-txt">
+                      {totalVol > 0 ? ((entry.value / totalVol) * 100).toFixed(1) : '0.0'}%
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: hub table */}
+        <div className="flex-1 flex flex-col bg-panel rounded-xl border border-border overflow-hidden shadow-sm">
+          <div className="px-5 py-3 border-b border-border bg-panel/80 flex-shrink-0">
+            <h2 className="text-[15px] font-bold text-txt">Hub Breakdown ({hubs.length})</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            <table className="w-full text-left text-[13px] border-collapse">
+              <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
+                <tr>
+                  <th className="py-2.5 px-4">#</th>
+                  <th className="py-2.5 px-4">Hub</th>
+                  <th className="py-2.5 px-4 text-right text-blue-400">4G PB</th>
+                  <th className="py-2.5 px-4 text-right text-purple-400">5G PB</th>
+                  <th className="py-2.5 px-4 text-right">% Share</th>
+                  <th className="py-2.5 px-4 text-right">Districts</th>
+                  <th className="py-2.5 px-4 text-right text-cyan-400">Backhaul</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/50">
+                {hubStats.map(({ hub, v4, v5, total, distCount }, idx) => {
+                  const share = totalVol > 0 ? (total / totalVol) * 100 : 0;
+                  return (
+                    <tr
+                      key={`${hub.circle}-${hub.name}`}
+                      className="hover:bg-border/20 transition-colors cursor-pointer"
+                      onClick={() => { onSelectHub(hub); onClose(); }}
+                    >
+                      <td className="py-2.5 px-4 text-muted text-[11px]">{idx + 1}</td>
+                      <td className="py-2.5 px-4">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: color }} />
+                          <span className="font-bold text-txt">{hub.name}</span>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 text-right font-mono text-blue-400">{(v4 / 1000).toFixed(3)}</td>
+                      <td className="py-2.5 px-4 text-right font-mono text-purple-400">{(v5 / 1000).toFixed(3)}</td>
+                      <td className="py-2.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <div className="w-14 h-1.5 rounded-full bg-border overflow-hidden">
+                            <div className="h-full rounded-full" style={{ width: `${share}%`, background: color }} />
+                          </div>
+                          <span className="font-mono text-muted text-[11px] w-9 text-right">{share.toFixed(1)}%</span>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 text-right font-mono text-muted">{distCount}</td>
+                      <td className="py-2.5 px-4 text-right font-mono text-cyan-400 text-[11px]">
+                        {hub.throughput > 0 ? `${hub.throughput.toLocaleString()}G` : '—'}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className="px-5 py-2 border-t border-border text-[10px] text-muted flex-shrink-0">
+            Click a hub row to focus it on the map
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Main component ── */
 export default function MobileHubsMap() {
   const [activeCircles, setActiveCircles]     = useState<Set<string>>(new Set(HUB_CIRCLE_CODES));
   const [selectedHub, setSelectedHub]         = useState<Hub | null>(null);
   const [selectedDistrict, setSelectedDistrict] = useState<Connection | null>(null);
+  const [selectedCircle, setSelectedCircle]   = useState<string | null>(null);
   const [showLines, setShowLines]             = useState(true);
   const [showFixed, setShowFixed]             = useState(false);
   const [dateIdx, setDateIdx]                 = useState(DATES.length - 1);
@@ -494,30 +701,43 @@ export default function MobileHubsMap() {
           >None</button>
         </div>
         {circleStats.map(({ code, hubCount, distCount, throughput }) => {
-          const active = activeCircles.has(code);
-          const color  = HUB_CIRCLE_COLORS[code];
+          const active  = activeCircles.has(code);
+          const isSelCircle = selectedCircle === code;
+          const color   = HUB_CIRCLE_COLORS[code];
           return (
             <div
               key={code}
-              onClick={() => toggleCircle(code)}
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all cursor-pointer whitespace-nowrap flex-shrink-0"
+              className="flex items-center rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all whitespace-nowrap flex-shrink-0 overflow-hidden"
               style={{
-                background:   active ? `${color}18` : 'rgba(22,27,34,0.85)',
-                borderColor:  active ? color : '#30363d',
-                color:        active ? color : '#8b949e',
+                background:  isSelCircle ? `${color}30` : active ? `${color}18` : 'rgba(22,27,34,0.85)',
+                borderColor: isSelCircle ? color : active ? `${color}88` : '#30363d',
               }}
             >
-              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : '#30363d' }} />
-              <span className="font-black tracking-wide" style={{ minWidth: 36 }}>{code}</span>
-              <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
-                {HUB_CIRCLE_LABELS[code]?.split(/[+\s]/)[0]}
-              </span>
-              <span className="ml-auto text-[9px] font-mono" style={{ color: '#8b949e' }}>
-                {throughput.toLocaleString()}G
-              </span>
-              <span style={{ color: '#6b7280', fontSize: 9 }}>
-                {hubCount}h/{distCount}d
-              </span>
+              {/* Dot — toggles map visibility only */}
+              <button
+                onClick={() => toggleCircle(code)}
+                className="px-1.5 py-1.5 flex items-center flex-shrink-0 hover:opacity-70 transition-opacity"
+                title="Toggle on map"
+              >
+                <span className="w-2 h-2 rounded-full" style={{ background: active ? color : '#30363d' }} />
+              </button>
+
+              {/* Label — opens the circle analytics panel */}
+              <button
+                onClick={() => setSelectedCircle(isSelCircle ? null : code)}
+                className="flex items-center gap-1.5 py-1.5 pr-2 flex-1 text-left hover:opacity-80 transition-opacity"
+              >
+                <span className="font-black tracking-wide" style={{ color: active ? color : '#8b949e', minWidth: 30 }}>{code}</span>
+                <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
+                  {HUB_CIRCLE_LABELS[code]?.split(/[+\s]/)[0]}
+                </span>
+                <span className="ml-auto text-[9px] font-mono" style={{ color: '#8b949e' }}>
+                  {throughput.toLocaleString()}G
+                </span>
+                <span style={{ color: '#6b7280', fontSize: 9 }}>
+                  {hubCount}h/{distCount}d
+                </span>
+              </button>
             </div>
           );
         })}
@@ -674,6 +894,17 @@ export default function MobileHubsMap() {
             )}
           </div>
         </div>
+      )}
+
+      {/* ── Circle analytics panel ── */}
+      {selectedCircle && !selectedHub && !selectedDistrict && (
+        <HubCirclePanel
+          circleCode={selectedCircle}
+          dateIdx={dateIdx}
+          gen={gen}
+          onClose={() => setSelectedCircle(null)}
+          onSelectHub={(hub) => { setSelectedHub(hub); setSelectedCircle(null); }}
+        />
       )}
 
       {/* ── District detail panel ── */}

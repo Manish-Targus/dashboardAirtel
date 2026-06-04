@@ -36,7 +36,7 @@ export default function Header() {
   const { data, selectedState, allTowers, mapMode, isAlertsOpen, setIsAlertsOpen, screenMode, setScreenMode } = useDashboard();
   const { metadata } = data;
 
-  const kpis = useMemo(() => {
+  const kpis: any[] = useMemo(() => {
     const stateData = selectedState ? data.states[selectedState] : null;
     const totalSubs = stateData ? stateData.totalSubscribers : metadata.totalSubscribers;
     const activeSubs = stateData ? stateData.activeSubscribers : metadata.activeSubscribers;
@@ -110,7 +110,7 @@ return []
 
       {/* Screen toggle */}
       <div className="flex bg-card border border-border rounded-md text-[11px] font-semibold overflow-hidden ml-auto">
-        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map']] as [ScreenMode, string][]).map(([mode, label]) => (
+        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map'], ['mobileflow', 'Mobile Flow']] as [ScreenMode, string][]).map(([mode, label]) => (
           <button
             key={mode}
             onClick={() => setScreenMode(mode)}

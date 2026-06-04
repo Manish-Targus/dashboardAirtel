@@ -405,7 +405,7 @@ function ComplaintBngPanel({ bngName, data, onClose }: { bngName: string, data: 
   );
 }
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import * as XLSX from 'xlsx';
 
 function exportIdealViewExcel() {
@@ -615,7 +615,6 @@ for (const [circleName, circleData] of Object.entries(data)) {
 
 /* ── Ideal BNG panel ── */
 function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Record<string, CircleData>, onClose: () => void }) {
-  const [activeList, setActiveList] = useState<'Original' | 'Ideal'>('Original');
 
   let beforeSubs = 0;
   let beforeCities = 0;
@@ -667,7 +666,26 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
     { name: 'Ideal', Distance: Math.round(idealDistance) }
   ];
 
-  const currentList = activeList === 'Original' ? originalCitiesList : idealCitiesList;
+  const originalNames = new Set(originalCitiesList.map(e => e.city.name));
+  const idealNames = new Set(idealCitiesList.map(e => e.city.name));
+
+  type MergedEntry = { city: CityData; distance: number; hub: string; status: 'added' | 'removed' | 'same' };
+  const mergedList: MergedEntry[] = [];
+
+  for (const entry of originalCitiesList) {
+    mergedList.push({ ...entry, status: idealNames.has(entry.city.name) ? 'same' : 'removed' });
+  }
+  for (const entry of idealCitiesList) {
+    if (!originalNames.has(entry.city.name)) {
+      mergedList.push({ ...entry, status: 'added' });
+    }
+  }
+
+  mergedList.sort((a, b) => {
+    const order = { removed: 0, same: 1, added: 2 };
+    if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
+    return b.city.totalCount - a.city.totalCount;
+  });
 
   return (
     <div className="fixed inset-4 z-[3000] flex flex-col bg-panel border border-border shadow-2xl rounded-xl overflow-hidden">
@@ -685,7 +703,7 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
           <div className="text-[14px] text-muted mt-1">Total Distance Saved (Original Connected Cities)</div>
         </div>
         <div className="text-[13px] text-muted max-w-sm text-right">
-          Click on any bar chart below to inspect the exact OLT cities connected to this hub in either the Original or Ideal network topology.
+          Cities highlighted in green will be added in the ideal topology; cities in red will be removed.
         </div>
       </div>
 
@@ -696,14 +714,14 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
             <h3 className="text-[13px] font-bold text-txt mb-2">Subscribers (Before vs Ideal)</h3>
             <div className="h-[90px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={subsData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }} onClick={(e) => { if (e && e.activePayload) setActiveList(e.activePayload[0].payload.name as any) }}>
+                <BarChart data={subsData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
                   <XAxis type="number" hide />
                   <YAxis dataKey="name" type="category" width={70} tick={{ fontSize: 12, fill: '#8b949e' }} />
                   <RechartsTooltip
                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                     contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: '12px', borderRadius: '6px' }}
                   />
-                  <Bar dataKey="Subs" fill="#3b82f6" radius={[0, 4, 4, 0]} barSize={28} className="cursor-pointer transition-opacity hover:opacity-80" />
+                  <Bar dataKey="Subs" fill="#3b82f6" radius={[0, 4, 4, 0]} barSize={28} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -713,14 +731,14 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
             <h3 className="text-[13px] font-bold text-txt mb-2">Connected Cities (Before vs Ideal)</h3>
             <div className="h-[90px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={citiesData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }} onClick={(e) => { if (e && e.activePayload) setActiveList(e.activePayload[0].payload.name as any) }}>
+                <BarChart data={citiesData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
                   <XAxis type="number" hide />
                   <YAxis dataKey="name" type="category" width={70} tick={{ fontSize: 12, fill: '#8b949e' }} />
                   <RechartsTooltip
                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                     contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: '12px', borderRadius: '6px' }}
                   />
-                  <Bar dataKey="Cities" fill="#10b981" radius={[0, 4, 4, 0]} barSize={28} className="cursor-pointer transition-opacity hover:opacity-80" />
+                  <Bar dataKey="Cities" fill="#10b981" radius={[0, 4, 4, 0]} barSize={28} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -730,14 +748,14 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
             <h3 className="text-[13px] font-bold text-txt mb-2">Total Distance (km)</h3>
             <div className="h-[90px] w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={distanceData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }} onClick={(e) => { if (e && e.activePayload) setActiveList(e.activePayload[0].payload.name as any) }}>
+                <BarChart data={distanceData} layout="vertical" margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
                   <XAxis type="number" hide />
                   <YAxis dataKey="name" type="category" width={70} tick={{ fontSize: 12, fill: '#8b949e' }} />
                   <RechartsTooltip
                     cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                     contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: '12px', borderRadius: '6px' }}
                   />
-                  <Bar dataKey="Distance" fill="#f59e0b" radius={[0, 4, 4, 0]} barSize={28} className="cursor-pointer transition-opacity hover:opacity-80" />
+                  <Bar dataKey="Distance" fill="#f59e0b" radius={[0, 4, 4, 0]} barSize={28} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -747,21 +765,19 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
         {/* List Section */}
         <div className="flex-1 flex flex-col bg-panel rounded-xl border border-border overflow-hidden shadow-sm">
           <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-panel/80">
-            <h2 className="text-[16px] font-bold text-txt flex items-center gap-2">
-              <span className={`px-2 py-1 rounded text-[12px] ${activeList === 'Original' ? 'bg-blue-500/20 text-blue-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
-                {activeList}
-              </span>
-              Connected OLT Cities ({currentList.length})
+            <h2 className="text-[16px] font-bold text-txt">
+              Connected OLT Cities — Ideal View ({mergedList.length})
             </h2>
-            <div className="flex gap-2 bg-border/50 p-1 rounded-md">
-              <button
-                onClick={() => setActiveList('Original')}
-                className={`px-4 py-1.5 text-[12px] font-semibold rounded transition-colors ${activeList === 'Original' ? 'bg-panel text-txt shadow' : 'text-muted hover:text-txt'}`}
-              >Original Network</button>
-              <button
-                onClick={() => setActiveList('Ideal')}
-                className={`px-4 py-1.5 text-[12px] font-semibold rounded transition-colors ${activeList === 'Ideal' ? 'bg-panel text-txt shadow' : 'text-muted hover:text-txt'}`}
-              >Ideal Topology</button>
+            <div className="flex items-center gap-4 text-[12px]">
+              <span className="flex items-center gap-1.5 text-green-400 font-semibold">
+                <span className="text-[15px] font-bold">+</span> Added ({mergedList.filter(e => e.status === 'added').length})
+              </span>
+              <span className="flex items-center gap-1.5 text-red-400 font-semibold">
+                <span className="text-[15px] font-bold">−</span> Removed ({mergedList.filter(e => e.status === 'removed').length})
+              </span>
+              <span className="flex items-center gap-1.5 text-muted font-semibold">
+                Unchanged ({mergedList.filter(e => e.status === 'same').length})
+              </span>
             </div>
           </div>
 
@@ -769,6 +785,7 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
             <table className="w-full text-left text-[13px] border-collapse">
               <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
                 <tr>
+                  <th className="py-3 px-4 whitespace-nowrap w-8"></th>
                   <th className="py-3 px-6 whitespace-nowrap">City Name</th>
                   <th className="py-3 px-6 whitespace-nowrap">BNG Hub</th>
                   <th className="py-3 px-6 text-right whitespace-nowrap">Subscribers</th>
@@ -776,28 +793,221 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/50">
-                {currentList.sort((a, b) => b.city.totalCount - a.city.totalCount).map(({ city, distance, hub }, idx) => (
-                  <tr key={idx} className="hover:bg-border/20 transition-colors">
-                    <td className="py-3 px-6 font-bold text-txt">{city.name}</td>
-                    <td className="py-3 px-6">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: BNG_CITY_COLORS[hub] ?? '#94a3b8' }}></span>
-                        <span style={{ color: BNG_CITY_COLORS[hub] ?? '#94a3b8', fontWeight: 600 }}>{hub}</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-6 text-right font-mono text-txt">{city.totalCount.toLocaleString()}</td>
-                    <td className="py-3 px-6 text-right font-mono text-muted">{Math.round(distance)} km</td>
-                  </tr>
-                ))}
-                {currentList.length === 0 && (
+                {mergedList.map(({ city, distance, hub, status }, idx) => {
+                  const isAdded = status === 'added';
+                  const isRemoved = status === 'removed';
+                  return (
+                    <tr
+                      key={idx}
+                      className={`transition-colors ${isRemoved ? 'bg-red-500/5 hover:bg-red-500/10' : isAdded ? 'bg-green-500/5 hover:bg-green-500/10' : 'hover:bg-border/20'}`}
+                    >
+                      <td className="py-3 px-4 text-center">
+                        {isAdded && <span className="text-green-400 font-bold text-[16px]">+</span>}
+                        {isRemoved && <span className="text-red-400 font-bold text-[16px]">−</span>}
+                      </td>
+                      <td className={`py-3 px-6 font-bold ${isRemoved ? 'text-red-400' : isAdded ? 'text-green-400' : 'text-txt'}`}>{city.name}</td>
+                      <td className="py-3 px-6">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: BNG_CITY_COLORS[hub] ?? '#94a3b8' }}></span>
+                          <span style={{ color: BNG_CITY_COLORS[hub] ?? '#94a3b8', fontWeight: 600 }}>{hub}</span>
+                        </div>
+                      </td>
+                      <td className={`py-3 px-6 text-right font-mono ${isRemoved ? 'text-red-400/80' : isAdded ? 'text-green-400/80' : 'text-txt'}`}>{city.totalCount.toLocaleString()}</td>
+                      <td className="py-3 px-6 text-right font-mono text-muted">{Math.round(distance)} km</td>
+                    </tr>
+                  );
+                })}
+                {mergedList.length === 0 && (
                   <tr>
-                    <td colSpan={4} className="py-12 text-center text-muted">
+                    <td colSpan={5} className="py-12 text-center text-muted">
                       No cities found for this view.
                     </td>
                   </tr>
                 )}
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Circle panel ── */
+function CirclePanel({ circleCode, onClose, onSelectBng }: {
+  circleCode: string;
+  onClose: () => void;
+  onSelectBng: (bng: string) => void;
+}) {
+  const circleNames = (CIRCLES_BY_CODE[circleCode] ?? []).filter(c => CIRCLE_NAMES.includes(c));
+  const color = CIRCLE_CODE_COLORS[circleCode] ?? '#ffffff';
+
+  type HubStat = { name: string; cities: number; subscribers: number; totalDist: number };
+  const hubMap = new Map<string, HubStat>();
+
+  for (const circleName of circleNames) {
+    for (const city of data[circleName].cities) {
+      if (!city.bngCity) continue;
+      if (!hubMap.has(city.bngCity)) hubMap.set(city.bngCity, { name: city.bngCity, cities: 0, subscribers: 0, totalDist: 0 });
+      const h = hubMap.get(city.bngCity)!;
+      h.cities++;
+      h.subscribers += city.totalCount;
+      h.totalDist += city.distanceKm;
+    }
+  }
+
+  const hubs = Array.from(hubMap.values()).sort((a, b) => b.subscribers - a.subscribers);
+  const totalSubs = hubs.reduce((s, h) => s + h.subscribers, 0);
+  const totalCities = hubs.reduce((s, h) => s + h.cities, 0);
+
+  const pieData = hubs.slice(0, 9).map(h => ({ name: h.name, value: h.subscribers }));
+  if (hubs.length > 9) pieData.push({ name: 'Others', value: hubs.slice(9).reduce((s, h) => s + h.subscribers, 0) });
+
+  return (
+    <div className="fixed inset-4 z-[3000] flex flex-col bg-panel border border-border shadow-2xl rounded-xl overflow-hidden">
+      {/* Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-panel/50 backdrop-blur-md flex-shrink-0">
+        <div>
+          <div className="text-[22px] font-bold" style={{ color }}>{circleCode} — Circle Analytics</div>
+          <div className="text-[13px] text-muted mt-1">{circleNames.join(' · ')}</div>
+        </div>
+        <button onClick={onClose} className="text-muted hover:text-txt text-3xl leading-none transition-colors">×</button>
+      </div>
+
+      {/* KPI bar */}
+      <div className="bg-border/30 px-6 py-3 flex-shrink-0 border-b border-border flex gap-10 items-center">
+        <div>
+          <div className="text-[28px] font-bold text-txt">{totalSubs.toLocaleString()}</div>
+          <div className="text-[12px] text-muted">Total Subscribers</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{hubs.length}</div>
+          <div className="text-[12px] text-muted">BNG Hubs</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{totalCities}</div>
+          <div className="text-[12px] text-muted">OLT Cities</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{circleNames.length}</div>
+          <div className="text-[12px] text-muted">States / UTs</div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-1 overflow-hidden gap-4 p-5">
+        {/* Left: charts stacked */}
+        <div className="flex flex-col gap-4 w-[420px] flex-shrink-0">
+          {/* Bar chart — subscribers per hub */}
+          <div className="bg-panel rounded-xl border border-border p-4 shadow-sm flex-1 overflow-hidden flex flex-col">
+            <h3 className="text-[13px] font-bold text-txt mb-2 flex-shrink-0">Subscribers per Hub</h3>
+            <div className="flex-1 overflow-y-auto">
+              <div style={{ height: Math.max(180, hubs.length * 26) }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={hubs} layout="vertical" margin={{ top: 2, right: 55, left: 8, bottom: 2 }}>
+                    <XAxis type="number" tick={{ fontSize: 10, fill: '#8b949e' }} tickFormatter={(v: number) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : String(v)} />
+                    <YAxis dataKey="name" type="category" width={82} tick={{ fontSize: 10, fill: '#8b949e' }} />
+                    <RechartsTooltip
+                      cursor={{ fill: 'rgba(255,255,255,0.04)' }}
+                      contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: 12, borderRadius: 6 }}
+                      formatter={(val: number) => [val.toLocaleString(), 'Subscribers']}
+                    />
+                    <Bar dataKey="subscribers" radius={[0, 4, 4, 0]} barSize={14}>
+                      {hubs.map((h) => (
+                        <Cell key={h.name} fill={BNG_CITY_COLORS[h.name] ?? '#3b82f6'} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          {/* Pie chart — share */}
+          <div className="bg-panel rounded-xl border border-border p-4 shadow-sm flex-shrink-0">
+            <h3 className="text-[13px] font-bold text-txt mb-2">Subscriber Share (top hubs)</h3>
+            <div className="flex gap-3 items-center">
+              <div style={{ width: 150, height: 150, flexShrink: 0 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={pieData} dataKey="value" cx="50%" cy="50%" innerRadius={38} outerRadius={68} paddingAngle={2}>
+                      {pieData.map((entry) => (
+                        <Cell key={entry.name} fill={entry.name === 'Others' ? '#374151' : (BNG_CITY_COLORS[entry.name] ?? '#3b82f6')} />
+                      ))}
+                    </Pie>
+                    <RechartsTooltip
+                      contentStyle={{ backgroundColor: '#0d1117', borderColor: '#30363d', fontSize: 11, borderRadius: 6 }}
+                      formatter={(val: number) => [val.toLocaleString(), 'Subscribers']}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="flex flex-col gap-1 overflow-y-auto max-h-[140px]">
+                {pieData.map((entry) => (
+                  <div key={entry.name} className="flex items-center gap-1.5 text-[10px] text-muted whitespace-nowrap">
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: entry.name === 'Others' ? '#374151' : (BNG_CITY_COLORS[entry.name] ?? '#3b82f6') }} />
+                    <span className="truncate max-w-[90px]">{entry.name}</span>
+                    <span className="ml-auto font-mono text-txt">{((entry.value / totalSubs) * 100).toFixed(1)}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: hub table */}
+        <div className="flex-1 flex flex-col bg-panel rounded-xl border border-border overflow-hidden shadow-sm">
+          <div className="px-5 py-3 border-b border-border bg-panel/80 flex-shrink-0">
+            <h2 className="text-[15px] font-bold text-txt">Hub Breakdown ({hubs.length})</h2>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            <table className="w-full text-left text-[13px] border-collapse">
+              <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
+                <tr>
+                  <th className="py-2.5 px-4 whitespace-nowrap">#</th>
+                  <th className="py-2.5 px-4 whitespace-nowrap">BNG Hub</th>
+                  <th className="py-2.5 px-4 text-right whitespace-nowrap">OLT Cities</th>
+                  <th className="py-2.5 px-4 text-right whitespace-nowrap">Subscribers</th>
+                  <th className="py-2.5 px-4 text-right whitespace-nowrap">% Share</th>
+                  <th className="py-2.5 px-4 text-right whitespace-nowrap">Avg Distance</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/50">
+                {hubs.map((h, idx) => {
+                  const share = totalSubs > 0 ? (h.subscribers / totalSubs) * 100 : 0;
+                  const avgDist = h.cities > 0 ? Math.round(h.totalDist / h.cities) : 0;
+                  return (
+                    <tr
+                      key={h.name}
+                      className="hover:bg-border/20 transition-colors cursor-pointer"
+                      onClick={() => { onSelectBng(h.name); onClose(); }}
+                    >
+                      <td className="py-2.5 px-4 text-muted text-[11px]">{idx + 1}</td>
+                      <td className="py-2.5 px-4">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }} />
+                          <span className="font-bold" style={{ color: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }}>{h.name}</span>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 text-right font-mono text-muted">{h.cities}</td>
+                      <td className="py-2.5 px-4 text-right font-mono font-bold text-txt">{h.subscribers.toLocaleString()}</td>
+                      <td className="py-2.5 px-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <div className="w-16 h-1.5 rounded-full bg-border overflow-hidden">
+                            <div className="h-full rounded-full" style={{ width: `${share}%`, background: BNG_CITY_COLORS[h.name] ?? '#3b82f6' }} />
+                          </div>
+                          <span className="font-mono text-muted text-[11px] w-10 text-right">{share.toFixed(1)}%</span>
+                        </div>
+                      </td>
+                      <td className="py-2.5 px-4 text-right font-mono text-muted">{avgDist} km</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className="px-5 py-2 border-t border-border text-[10px] text-muted flex-shrink-0">
+            Click a hub row to open its detail panel
           </div>
         </div>
       </div>
@@ -817,16 +1027,25 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
   const [activeCircleCodes, setActiveCircleCodes] = useState<Set<string>>(new Set(['MH', 'UW', 'UE', 'TN']));
   const [selected, setSelected] = useState<{ city: CityData; circleName: string } | null>(null);
   const [selectedBng, setSelectedBng] = useState<string | null>(null);
+  const [selectedCircleCode, setSelectedCircleCode] = useState<string | null>(null);
   const [legendOpen, setLegendOpen] = useState(true);
 
   function handleSelectCity(city: CityData, circleName: string) {
     setSelected({ city, circleName });
     setSelectedBng(null);
+    setSelectedCircleCode(null);
   }
 
   function handleSelectBng(bngName: string) {
     setSelectedBng(bngName);
     setSelected(null);
+    setSelectedCircleCode(null);
+  }
+
+  function handleSelectCircleCode(code: string) {
+    setSelectedCircleCode(code);
+    setSelected(null);
+    setSelectedBng(null);
   }
 
   function toggleCircleCode(code: string) {
@@ -1068,24 +1287,37 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
           const cityCount = circleNames
             .filter(c => CIRCLE_NAMES.includes(c))
             .reduce((sum, c) => sum + data[c].cities.length, 0);
+          const isSelected = selectedCircleCode === code;
 
           return (
             <div
               key={code}
-              onClick={() => toggleCircleCode(code)}
-              className="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap cursor-pointer"
+              className="flex items-center gap-1.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all flex-shrink-0 whitespace-nowrap overflow-hidden"
               style={{
-                background: active ? `${color}22` : 'rgba(22,27,34,0.85)',
-                borderColor: active ? color : '#30363d',
-                color: active ? color : '#8b949e',
+                background: isSelected ? `${color}33` : active ? `${color}18` : 'rgba(22,27,34,0.85)',
+                borderColor: isSelected ? color : active ? `${color}88` : '#30363d',
               }}
             >
-              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: active ? color : '#30363d' }} />
-              <span className="font-bold tracking-wide">{code}</span>
-              <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
-                {circleNames.filter(c => CIRCLE_NAMES.includes(c)).join(', ').substring(0, 22) || code}
-              </span>
-              <span style={{ color: '#8b949e', fontWeight: 400 }}>({cityCount})</span>
+              {/* Toggle dot — clicking only toggles map visibility */}
+              <button
+                onClick={() => toggleCircleCode(code)}
+                className="px-1.5 py-1.5 flex items-center flex-shrink-0 hover:opacity-70 transition-opacity"
+                title="Toggle on map"
+              >
+                <span className="w-2 h-2 rounded-full" style={{ background: active ? color : '#30363d' }} />
+              </button>
+
+              {/* Label — clicking opens the CirclePanel */}
+              <button
+                onClick={() => handleSelectCircleCode(code)}
+                className="flex items-center gap-1.5 py-1.5 pr-2.5 flex-1 text-left hover:opacity-80 transition-opacity"
+              >
+                <span className="font-bold tracking-wide" style={{ color: active ? color : '#8b949e' }}>{code}</span>
+                <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
+                  {circleNames.filter(c => CIRCLE_NAMES.includes(c)).join(', ').substring(0, 18) || code}
+                </span>
+                <span style={{ color: '#8b949e', fontWeight: 400 }}>({cityCount})</span>
+              </button>
             </div>
           );
         })}
@@ -1215,6 +1447,13 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
             onClose={() => setSelectedBng(null)}
           />
         )
+      )}
+      {selectedCircleCode && !selected && !selectedBng && (
+        <CirclePanel
+          circleCode={selectedCircleCode}
+          onClose={() => setSelectedCircleCode(null)}
+          onSelectBng={handleSelectBng}
+        />
       )}
     </div>
   );

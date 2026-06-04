@@ -6,7 +6,7 @@ import rawData from '@/data/grouped.json';
 const data = rawData as unknown as NetworkData;
 
 export type MapMode = 'complaints' | 'network' | 'ideal';
-export type ScreenMode = 'map' | 'bng' | 'mobile' | 'hubs';
+export type ScreenMode = 'map' | 'bng' | 'mobile' | 'hubs' | 'mobileflow';
 
 interface DashboardCtx {
   screenMode: ScreenMode;

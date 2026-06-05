@@ -94,6 +94,7 @@ function SeverityDots({ critical, high, medium }: { critical: number; high: numb
 export default function BngScreen() {
   const [selectedCircle, setSelectedCircle] = useState<string | null>(null);
   const [filterCat, setFilterCat]           = useState<FilterCat>('all');
+  const [selectedBrasType, setSelectedBrasType] = useState('MX960');
   const [search, setSearch]                 = useState('');
   const [selectedAe, setSelectedAe]         = useState<{ ae: AeIface; node: BrasNode } | null>(null);
   const [collapsedBras, setCollapsedBras]   = useState<Set<string>>(new Set());
@@ -122,10 +123,16 @@ export default function BngScreen() {
       .sort((a, b) => b.max_util - a.max_util);
   }
 
+  const brasTypes = useMemo(() => {
+    const types = Array.from(new Set(allNodes.map(n => n.bras_type))).sort();
+    return ['All', ...types];
+  }, []);
+
   // Circle sidebar stats
   const circleStats = useMemo(() => {
     const map: Record<string, { count: number; critical: number; high: number; medium: number }> = {};
     for (const n of allNodes) {
+      if (selectedBrasType !== 'All' && n.bras_type !== selectedBrasType) continue;
       if (!map[n.circle]) map[n.circle] = { count: 0, critical: 0, high: 0, medium: 0 };
       map[n.circle].count++;
       const u = nodeMaxUtil(n);
@@ -136,11 +143,12 @@ export default function BngScreen() {
     return Object.entries(map)
       .map(([code, s]) => ({ code, ...s }))
       .sort((a, b) => (b.critical*3 + b.high*2 + b.medium) - (a.critical*3 + a.high*2 + a.medium));
-  }, []);
+  }, [selectedBrasType]);
 
   // Build Circle → City → BRAS hierarchy for main panel
   const hierarchy = useMemo(() => {
     const base = allNodes
+      .filter(n => selectedBrasType === 'All' || n.bras_type === selectedBrasType)
       .filter(n => !selectedCircle || n.circle === selectedCircle)
       .filter(n => !search ||
         n.node.toLowerCase().includes(search.toLowerCase()) ||
@@ -176,7 +184,9 @@ export default function BngScreen() {
   }, [selectedCircle, search]);
 
   const aeSummary = useMemo(() => {
-    const all = allNodes.flatMap(n => n.ae_interfaces);
+    const all = allNodes
+      .filter(n => selectedBrasType === 'All' || n.bras_type === selectedBrasType)
+      .flatMap(n => n.ae_interfaces);
     return {
       total:    all.length,
       critical: all.filter(a => a.max_util >= 90).length,
@@ -184,7 +194,7 @@ export default function BngScreen() {
       medium:   all.filter(a => a.max_util >= 70 && a.max_util < 80).length,
       normal:   all.filter(a => a.max_util < 70).length,
     };
-  }, []);
+  }, [selectedBrasType]);
 
   const CATS: { key: FilterCat; label: string; color: string }[] = [
     { key: 'all',      label: 'All',    color: '#6b7280' },
@@ -244,6 +254,15 @@ export default function BngScreen() {
             onChange={e => setSearch(e.target.value)}
             className="bg-card border border-border rounded px-2 py-1 text-[11px] text-txt placeholder:text-muted focus:outline-none focus:border-accent2 w-52"
           />
+          <select
+            value={selectedBrasType}
+            onChange={e => { setSelectedBrasType(e.target.value); setSelectedAe(null); }}
+            className="bg-card border border-border rounded px-2 py-1 text-[11px] text-txt focus:outline-none focus:border-accent2"
+          >
+            {brasTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
           <div className="flex gap-1 ml-auto">
             {CATS.map(cat => (
               <button

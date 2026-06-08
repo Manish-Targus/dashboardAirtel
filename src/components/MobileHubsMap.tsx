@@ -229,6 +229,104 @@ const TT: React.CSSProperties = {
   borderRadius: 4, padding: '4px 8px', fontSize: 11, lineHeight: 1.6,
 };
 
+/* ── Haversine ── */
+function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+/* ── DC Recommendation types ── */
+interface MigDistrict {
+  district: string; distLat: number; distLng: number;
+  oldDistKm: number; newDistKm: number; distSaved: number;
+  vol4g: number; vol5g: number;
+}
+interface DCRecommendation {
+  circle: string;
+  parentHub: Hub;
+  proposedDC: { lat: number; lng: number; label: string };
+  migratingDistricts: MigDistrict[];
+  impactScore: number;
+  districtCount: number;
+  volumeOffloaded4G: number; volumeOffloaded5G: number;
+  avgDistBefore: number; avgDistAfter: number;
+}
+
+/* ── Recommendation engine ── */
+function computeDCRecommendations(dateIdx: number): Map<string, DCRecommendation> {
+  const result = new Map<string, DCRecommendation>();
+
+  for (const circleCode of HUB_CIRCLE_CODES) {
+    const hubs = HUBS.filter(h => h.circle === circleCode);
+    if (!hubs.length) continue;
+    const circleConns = ALL_CONNECTIONS.filter(c => c.hubCircle === circleCode);
+    if (!circleConns.length) continue;
+
+    // Pick the most load-pressured hub in this circle
+    type HubLoad = { hub: Hub; conns: Connection[]; avgDist: number; score: number };
+    const hubLoads: HubLoad[] = hubs.flatMap(hub => {
+      const conns = circleConns.filter(c => c.hub.name === hub.name && c.hub.circle === hub.circle);
+      if (!conns.length) return [];
+      const dists = conns.map(c => districtHubMapping[c.district]?.distKm ?? 0);
+      const avgDist = dists.reduce((s, d) => s + d, 0) / dists.length;
+      const entry = hubVolIndex[`${hub.circle}::${hub.name}`];
+      const vol = (entry?.vals4g[dateIdx] ?? 0) + (entry?.vals5g[dateIdx] ?? 0);
+      const score = conns.length * avgDist * Math.max(vol, 1) / Math.max(hub.throughput, 1);
+      return [{ hub, conns, avgDist, score }];
+    });
+    if (!hubLoads.length) continue;
+    hubLoads.sort((a, b) => b.score - a.score);
+    const top = hubLoads[0];
+
+    // Proposed DC = centroid of ALL districts served by the most-pressured hub
+    const centLat = top.conns.reduce((s, c) => s + c.distLat, 0) / top.conns.length;
+    const centLng = top.conns.reduce((s, c) => s + c.distLng, 0) / top.conns.length;
+
+    // Label = district nearest to centroid
+    let label = top.conns[0].district;
+    let minD = Infinity;
+    for (const c of top.conns) {
+      const d = haversineKm(centLat, centLng, c.distLat, c.distLng);
+      if (d < minD) { minD = d; label = c.district; }
+    }
+    label = label.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+
+    // Migrating = any district genuinely closer to the proposed DC than to its current hub
+    const migrating: MigDistrict[] = top.conns.flatMap(c => {
+      const oldKm = districtHubMapping[c.district]?.distKm ?? 0;
+      const newKm = Math.round(haversineKm(c.distLat, c.distLng, centLat, centLng));
+      if (newKm >= oldKm) return [];
+      const v4 = (distVol4g.get(`${c.distCircle}|${c.district}`)?.[dateIdx] ?? 0) as number;
+      const v5 = (distVol5g.get(`${c.distCircle}|${c.district}`)?.[dateIdx] ?? 0) as number;
+      return [{ district: c.district, distLat: c.distLat, distLng: c.distLng, oldDistKm: oldKm, newDistKm: newKm, distSaved: oldKm - newKm, vol4g: v4, vol5g: v5 }];
+    });
+    if (!migrating.length) continue;
+
+    migrating.sort((a, b) => b.distSaved - a.distSaved);
+    const avgBefore = Math.round(migrating.reduce((s, d) => s + d.oldDistKm, 0) / migrating.length);
+    const avgAfter  = Math.round(migrating.reduce((s, d) => s + d.newDistKm, 0) / migrating.length);
+    const rawScore  = migrating.length * (avgBefore - avgAfter) * Math.max(
+      migrating.reduce((s, d) => s + d.vol4g + d.vol5g, 0), 1
+    );
+
+    result.set(circleCode, {
+      circle: circleCode, parentHub: top.hub,
+      proposedDC: { lat: centLat, lng: centLng, label },
+      migratingDistricts: migrating,
+      districtCount: migrating.length,
+      volumeOffloaded4G: migrating.reduce((s, d) => s + d.vol4g, 0),
+      volumeOffloaded5G: migrating.reduce((s, d) => s + d.vol5g, 0),
+      avgDistBefore: avgBefore, avgDistAfter: avgAfter,
+      impactScore: Math.round(rawScore / 1e6),
+    });
+  }
+
+  return result;
+}
+
 /* ── Circle analytics panel ── */
 function HubCirclePanel({ circleCode, dateIdx, gen, onClose, onSelectHub }: {
   circleCode: string;
@@ -442,6 +540,9 @@ export default function MobileHubsMap() {
   const [showFixed, setShowFixed]             = useState(false);
   const [dateIdx, setDateIdx]                 = useState(DATES.length - 1);
   const [gen, setGen]                         = useState<GenMode>('both');
+  const [selectedRec, setSelectedRec]         = useState<DCRecommendation | null>(null);
+
+  const recommendations = useMemo(() => computeDCRecommendations(dateIdx), [dateIdx]);
 
   const maxVol = useMemo(() => {
     const activeHubs = HUBS.filter(h => activeCircles.has(h.circle));
@@ -642,6 +743,57 @@ export default function MobileHubsMap() {
             </CircleMarker>
           );
         })}
+
+        {/* 4 – Recommended DC overlays */}
+        {selectedRec && (<>
+          {/* Dashed red lines: migrating districts → overloaded hub */}
+          {selectedRec.migratingDistricts.map(d => (
+            <Polyline
+              key={`old-${d.district}`}
+              positions={[[d.distLat, d.distLng], [selectedRec.parentHub.lat, selectedRec.parentHub.lng]]}
+              pathOptions={{ color: '#ef4444', weight: 1.5, opacity: 0.6, dashArray: '5 4' }}
+            />
+          ))}
+          {/* Green lines: migrating districts → proposed DC */}
+          {selectedRec.migratingDistricts.map(d => (
+            <Polyline
+              key={`new-${d.district}`}
+              positions={[[d.distLat, d.distLng], [selectedRec.proposedDC.lat, selectedRec.proposedDC.lng]]}
+              pathOptions={{ color: '#10b981', weight: 1.8, opacity: 0.85 }}
+            />
+          ))}
+          {/* Migrating district dots highlighted red */}
+          {selectedRec.migratingDistricts.map(d => (
+            <CircleMarker
+              key={`mig-${d.district}`}
+              center={[d.distLat, d.distLng]}
+              radius={5}
+              pathOptions={{ color: '#fca5a5', fillColor: '#ef4444', fillOpacity: 0.9, weight: 1.5 }}
+            >
+              <Tooltip direction="top" offset={[0, -5]}>
+                <div style={TT}>
+                  <div style={{ fontWeight: 700, color: '#fff' }}>{d.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</div>
+                  <div style={{ color: '#ef4444', fontSize: 10 }}>Currently {d.oldDistKm} km from hub</div>
+                  <div style={{ color: '#10b981', fontSize: 10 }}>→ {d.newDistKm} km to proposed DC (save {d.distSaved} km)</div>
+                  <div style={{ color: '#94a3b8', fontSize: 10 }}>{(d.vol4g + d.vol5g).toFixed(1)} TB/day</div>
+                </div>
+              </Tooltip>
+            </CircleMarker>
+          ))}
+          {/* Gold star: proposed DC */}
+          <CircleMarker
+            center={[selectedRec.proposedDC.lat, selectedRec.proposedDC.lng]}
+            radius={14}
+            pathOptions={{ color: '#f59e0b', fillColor: '#fbbf24', fillOpacity: 0.95, weight: 3 }}
+            eventHandlers={{ click: () => setSelectedRec(null) }}
+          >
+            <Tooltip permanent direction="top" offset={[0, -14]}>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b' }}>
+                ⭐ Proposed DC · {selectedRec.proposedDC.label}
+              </span>
+            </Tooltip>
+          </CircleMarker>
+        </>)}
       </MapContainer>
 
       {/* ── Top-centre controls ── */}
@@ -701,16 +853,17 @@ export default function MobileHubsMap() {
           >None</button>
         </div>
         {circleStats.map(({ code, hubCount, distCount, throughput }) => {
-          const active  = activeCircles.has(code);
+          const active      = activeCircles.has(code);
           const isSelCircle = selectedCircle === code;
-          const color   = HUB_CIRCLE_COLORS[code];
+          const isRecActive = selectedRec?.circle === code;
+          const color       = HUB_CIRCLE_COLORS[code];
           return (
             <div
               key={code}
               className="flex items-center rounded-md text-[11px] font-semibold border backdrop-blur-sm transition-all whitespace-nowrap flex-shrink-0 overflow-hidden"
               style={{
-                background:  isSelCircle ? `${color}30` : active ? `${color}18` : 'rgba(22,27,34,0.85)',
-                borderColor: isSelCircle ? color : active ? `${color}88` : '#30363d',
+                background:  isRecActive ? `${color}35` : isSelCircle ? `${color}30` : active ? `${color}18` : 'rgba(22,27,34,0.85)',
+                borderColor: isRecActive ? color : isSelCircle ? color : active ? `${color}88` : '#30363d',
               }}
             >
               {/* Dot — toggles map visibility only */}
@@ -722,15 +875,28 @@ export default function MobileHubsMap() {
                 <span className="w-2 h-2 rounded-full" style={{ background: active ? color : '#30363d' }} />
               </button>
 
-              {/* Label — opens the circle analytics panel */}
+              {/* Label — shows recommended DC for this circle on map */}
               <button
-                onClick={() => setSelectedCircle(isSelCircle ? null : code)}
+                onClick={() => {
+                  const rec = recommendations.get(code) ?? null;
+                  if (selectedRec?.circle === code) {
+                    setSelectedRec(null);
+                  } else {
+                    setSelectedRec(rec);
+                    setSelectedHub(null);
+                    setSelectedDistrict(null);
+                    setSelectedCircle(null);
+                  }
+                }}
                 className="flex items-center gap-1.5 py-1.5 pr-2 flex-1 text-left hover:opacity-80 transition-opacity"
               >
                 <span className="font-black tracking-wide" style={{ color: active ? color : '#8b949e', minWidth: 30 }}>{code}</span>
                 <span style={{ color: '#8b949e', fontWeight: 400, fontSize: 10 }}>
                   {HUB_CIRCLE_LABELS[code]?.split(/[+\s]/)[0]}
                 </span>
+                {recommendations.has(code) && (
+                  <span className="text-[9px]" style={{ color: selectedRec?.circle === code ? '#f59e0b' : '#4b5563' }}>⭐</span>
+                )}
                 <span className="ml-auto text-[9px] font-mono" style={{ color: '#8b949e' }}>
                   {throughput.toLocaleString()}G
                 </span>
@@ -895,6 +1061,101 @@ export default function MobileHubsMap() {
           </div>
         </div>
       )}
+
+      {/* ── DC Recommendation panel ── */}
+      {selectedRec && !selectedHub && !selectedDistrict && (() => {
+        const rec   = selectedRec;
+        const color = HUB_CIRCLE_COLORS[rec.circle];
+        const totalVol = rec.volumeOffloaded4G + rec.volumeOffloaded5G;
+        return (
+          <div className="absolute top-0 right-0 h-full z-[2000] flex flex-col bg-panel border-l border-border shadow-2xl overflow-hidden" style={{ width: 360 }}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border flex-shrink-0" style={{ background: `${color}18` }}>
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[11px] font-black px-2 py-0.5 rounded" style={{ background: color, color: '#000' }}>{rec.circle}</span>
+                  <span className="text-[14px] font-bold text-txt">{HUB_CIRCLE_LABELS[rec.circle]}</span>
+                </div>
+                <div className="text-[11px] text-amber-400 font-semibold">⭐ Proposed DC near {rec.proposedDC.label}</div>
+                <div className="text-[10px] text-muted">Offloads hub: <span className="text-txt font-semibold">{rec.parentHub.name}</span>
+                  <span className="ml-2 text-cyan-400">{rec.parentHub.throughput.toLocaleString()} Gbps</span>
+                </div>
+              </div>
+              <button onClick={() => setSelectedRec(null)} className="text-muted hover:text-txt text-xl leading-none">×</button>
+            </div>
+
+            {/* KPIs */}
+            <div className="grid grid-cols-2 gap-px bg-border flex-shrink-0">
+              <div className="bg-panel px-3 py-2.5 text-center">
+                <div className="text-[20px] font-black text-red-400">{rec.avgDistBefore} km</div>
+                <div className="text-[9px] text-muted uppercase tracking-wide">Avg dist · current</div>
+              </div>
+              <div className="bg-panel px-3 py-2.5 text-center">
+                <div className="text-[20px] font-black text-green-400">{rec.avgDistAfter} km</div>
+                <div className="text-[9px] text-muted uppercase tracking-wide">Avg dist · after DC</div>
+              </div>
+              <div className="bg-panel px-3 py-2.5 text-center">
+                <div className="text-[20px] font-black text-blue-400">{rec.volumeOffloaded4G.toFixed(1)} TB</div>
+                <div className="text-[9px] text-muted uppercase tracking-wide">4G offloaded/day</div>
+              </div>
+              <div className="bg-panel px-3 py-2.5 text-center">
+                <div className="text-[20px] font-black text-purple-400">{rec.volumeOffloaded5G.toFixed(1)} TB</div>
+                <div className="text-[9px] text-muted uppercase tracking-wide">5G offloaded/day</div>
+              </div>
+            </div>
+
+            {/* Summary */}
+            <div className="flex items-center gap-3 px-4 py-2 border-b border-border flex-shrink-0">
+              <div className="text-[11px] text-muted">
+                <span className="font-bold text-txt">{rec.districtCount}</span> districts migrate ·{' '}
+                <span className="font-bold text-txt">{totalVol.toFixed(1)} TB</span> total offload/day ·{' '}
+                <span className="text-green-400 font-bold">save {rec.avgDistBefore - rec.avgDistAfter} km avg</span>
+              </div>
+            </div>
+
+            {/* Map legend */}
+            <div className="px-4 py-1.5 border-b border-border flex-shrink-0 flex gap-4 text-[10px] text-muted">
+              <span className="flex items-center gap-1.5"><span className="inline-block w-5 border-t border-dashed border-red-400" /> old path</span>
+              <span className="flex items-center gap-1.5"><span className="inline-block w-5 border-t border-green-400" /> new path</span>
+              <span className="flex items-center gap-1.5"><span className="text-amber-400">⭐</span> proposed DC</span>
+            </div>
+
+            {/* District table */}
+            <div className="px-4 py-1.5 border-b border-border text-[11px] font-semibold text-txt flex-shrink-0 flex justify-between">
+              <span>Migrating Districts ({rec.districtCount})</span>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <table className="w-full text-[11px] border-collapse">
+                <thead className="sticky top-0 bg-border/60 text-muted z-10 backdrop-blur-sm">
+                  <tr>
+                    <th className="py-2 px-3 text-left font-medium">District</th>
+                    <th className="py-2 px-3 text-right font-medium text-red-400">Old km</th>
+                    <th className="py-2 px-3 text-right font-medium text-green-400">New km</th>
+                    <th className="py-2 px-3 text-right font-medium text-amber-400">Saved</th>
+                    <th className="py-2 px-3 text-right font-medium text-blue-400">TB/day</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40">
+                  {rec.migratingDistricts.map(d => (
+                    <tr key={d.district} className="hover:bg-card/40 transition-colors">
+                      <td className="py-1.5 px-3 text-[10px] text-txt font-mono">
+                        {d.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                      </td>
+                      <td className="py-1.5 px-3 text-right font-mono text-red-400/80">{d.oldDistKm}</td>
+                      <td className="py-1.5 px-3 text-right font-mono text-green-400/80">{d.newDistKm}</td>
+                      <td className="py-1.5 px-3 text-right font-mono font-bold text-amber-400">{d.distSaved}</td>
+                      <td className="py-1.5 px-3 text-right font-mono text-blue-300/80">{(d.vol4g + d.vol5g).toFixed(1)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="px-4 py-2 border-t border-border flex-shrink-0 text-[10px] text-muted font-mono">
+              Proposed DC: {rec.proposedDC.lat.toFixed(4)}, {rec.proposedDC.lng.toFixed(4)}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── Circle analytics panel ── */}
       {selectedCircle && !selectedHub && !selectedDistrict && (

@@ -834,31 +834,70 @@ function IdealBngPanel({ bngName, data, onClose }: { bngName: string, data: Reco
 }
 
 /* ── Circle panel ── */
-function CirclePanel({ circleCode, onClose, onSelectBng }: {
+function CirclePanel({ circleCode, onClose, onSelectBng, mode = 'network' }: {
   circleCode: string;
   onClose: () => void;
   onSelectBng: (bng: string) => void;
+  mode?: 'network' | 'complaints' | 'ideal';
 }) {
+  const [activeTab, setActiveTab] = useState<'hubs' | 'msans'>('hubs');
+  const [msanSearch, setMsanSearch] = useState('');
   const circleNames = (CIRCLES_BY_CODE[circleCode] ?? []).filter(c => CIRCLE_NAMES.includes(c));
   const color = CIRCLE_CODE_COLORS[circleCode] ?? '#ffffff';
 
-  type HubStat = { name: string; cities: number; subscribers: number; totalDist: number };
+  type HubStat = { name: string; cities: number; subscribers: number; totalDist: number; msans: number };
+  type MsanDetail = { msan: string; vlan: string; count: number; bras: string; city: string; hub: string };
+
   const hubMap = new Map<string, HubStat>();
+  const msanList: MsanDetail[] = [];
 
   for (const circleName of circleNames) {
     for (const city of data[circleName].cities) {
       if (!city.bngCity) continue;
-      if (!hubMap.has(city.bngCity)) hubMap.set(city.bngCity, { name: city.bngCity, cities: 0, subscribers: 0, totalDist: 0 });
-      const h = hubMap.get(city.bngCity)!;
+
+      let bngHub = city.bngCity;
+      let distance = city.distanceKm;
+
+      if (mode === 'ideal') {
+        const key = `${circleName}-${city.name}-${city.bngCity}`;
+        const shorter = IDEAL_SHORTER_BNG_MAP.get(key);
+        if (shorter) {
+          bngHub = shorter.name;
+          distance = shorter.distKm;
+        }
+      }
+
+      if (!hubMap.has(bngHub)) hubMap.set(bngHub, { name: bngHub, cities: 0, subscribers: 0, totalDist: 0, msans: 0 });
+      const h = hubMap.get(bngHub)!;
       h.cities++;
       h.subscribers += city.totalCount;
-      h.totalDist += city.distanceKm;
+      h.totalDist += distance;
+
+      for (const b of city.bras) {
+        h.msans += b.msans.length;
+        for (const m of b.msans) {
+          msanList.push({ msan: m.msan, vlan: m.vlan, count: m.count, bras: b.bras, city: city.name, hub: bngHub });
+        }
+      }
     }
   }
 
   const hubs = Array.from(hubMap.values()).sort((a, b) => b.subscribers - a.subscribers);
   const totalSubs = hubs.reduce((s, h) => s + h.subscribers, 0);
   const totalCities = hubs.reduce((s, h) => s + h.cities, 0);
+  const totalMsans = msanList.length;
+
+  msanList.sort((a, b) => b.count - a.count);
+
+  const filteredMsans = msanSearch.trim()
+    ? msanList.filter(m =>
+        m.msan.toLowerCase().includes(msanSearch.toLowerCase()) ||
+        m.bras.toLowerCase().includes(msanSearch.toLowerCase()) ||
+        m.city.toLowerCase().includes(msanSearch.toLowerCase()) ||
+        m.hub.toLowerCase().includes(msanSearch.toLowerCase()) ||
+        m.vlan.toLowerCase().includes(msanSearch.toLowerCase())
+      )
+    : msanList;
 
   const pieData = hubs.slice(0, 9).map(h => ({ name: h.name, value: h.subscribers }));
   if (hubs.length > 9) pieData.push({ name: 'Others', value: hubs.slice(9).reduce((s, h) => s + h.subscribers, 0) });
@@ -869,7 +908,10 @@ function CirclePanel({ circleCode, onClose, onSelectBng }: {
       <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-panel/50 backdrop-blur-md flex-shrink-0">
         <div>
           <div className="text-[22px] font-bold" style={{ color }}>{circleCode} — Circle Analytics</div>
-          <div className="text-[13px] text-muted mt-1">{circleNames.join(' · ')}</div>
+          <div className="text-[13px] text-muted mt-1">
+            {circleNames.join(' · ')}
+            {mode === 'ideal' && <span className="ml-2 font-semibold text-amber-400">(Ideal View)</span>}
+          </div>
         </div>
         <button onClick={onClose} className="text-muted hover:text-txt text-3xl leading-none transition-colors">×</button>
       </div>
@@ -887,6 +929,10 @@ function CirclePanel({ circleCode, onClose, onSelectBng }: {
         <div>
           <div className="text-[28px] font-bold text-txt">{totalCities}</div>
           <div className="text-[12px] text-muted">OLT Cities</div>
+        </div>
+        <div>
+          <div className="text-[28px] font-bold text-txt">{totalMsans.toLocaleString()}</div>
+          <div className="text-[12px] text-muted">MSANs</div>
         </div>
         <div>
           <div className="text-[28px] font-bold text-txt">{circleNames.length}</div>
@@ -955,60 +1001,139 @@ function CirclePanel({ circleCode, onClose, onSelectBng }: {
           </div>
         </div>
 
-        {/* Right: hub table */}
+        {/* Right: tabbed panel */}
         <div className="flex-1 flex flex-col bg-panel rounded-xl border border-border overflow-hidden shadow-sm">
-          <div className="px-5 py-3 border-b border-border bg-panel/80 flex-shrink-0">
-            <h2 className="text-[15px] font-bold text-txt">Hub Breakdown ({hubs.length})</h2>
+          {/* Tab bar */}
+          <div className="flex border-b border-border bg-panel/80 flex-shrink-0">
+            <button
+              className={`px-5 py-3 text-[13px] font-semibold transition-colors border-b-2 ${activeTab === 'hubs' ? 'border-current text-txt' : 'border-transparent text-muted hover:text-txt'}`}
+              style={activeTab === 'hubs' ? { borderColor: color } : {}}
+              onClick={() => setActiveTab('hubs')}
+            >
+              Hub Breakdown ({hubs.length})
+            </button>
+            <button
+              className={`px-5 py-3 text-[13px] font-semibold transition-colors border-b-2 ${activeTab === 'msans' ? 'border-current text-txt' : 'border-transparent text-muted hover:text-txt'}`}
+              style={activeTab === 'msans' ? { borderColor: color } : {}}
+              onClick={() => setActiveTab('msans')}
+            >
+              MSAN Details ({totalMsans.toLocaleString()})
+            </button>
           </div>
-          <div className="flex-1 overflow-y-auto">
-            <table className="w-full text-left text-[13px] border-collapse">
-              <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
-                <tr>
-                  <th className="py-2.5 px-4 whitespace-nowrap">#</th>
-                  <th className="py-2.5 px-4 whitespace-nowrap">BNG Hub</th>
-                  <th className="py-2.5 px-4 text-right whitespace-nowrap">OLT Cities</th>
-                  <th className="py-2.5 px-4 text-right whitespace-nowrap">Subscribers</th>
-                  <th className="py-2.5 px-4 text-right whitespace-nowrap">% Share</th>
-                  <th className="py-2.5 px-4 text-right whitespace-nowrap">Avg Distance</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/50">
-                {hubs.map((h, idx) => {
-                  const share = totalSubs > 0 ? (h.subscribers / totalSubs) * 100 : 0;
-                  const avgDist = h.cities > 0 ? Math.round(h.totalDist / h.cities) : 0;
-                  return (
-                    <tr
-                      key={h.name}
-                      className="hover:bg-border/20 transition-colors cursor-pointer"
-                      onClick={() => { onSelectBng(h.name); onClose(); }}
-                    >
-                      <td className="py-2.5 px-4 text-muted text-[11px]">{idx + 1}</td>
-                      <td className="py-2.5 px-4">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }} />
-                          <span className="font-bold" style={{ color: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }}>{h.name}</span>
-                        </div>
-                      </td>
-                      <td className="py-2.5 px-4 text-right font-mono text-muted">{h.cities}</td>
-                      <td className="py-2.5 px-4 text-right font-mono font-bold text-txt">{h.subscribers.toLocaleString()}</td>
-                      <td className="py-2.5 px-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <div className="w-16 h-1.5 rounded-full bg-border overflow-hidden">
-                            <div className="h-full rounded-full" style={{ width: `${share}%`, background: BNG_CITY_COLORS[h.name] ?? '#3b82f6' }} />
-                          </div>
-                          <span className="font-mono text-muted text-[11px] w-10 text-right">{share.toFixed(1)}%</span>
-                        </div>
-                      </td>
-                      <td className="py-2.5 px-4 text-right font-mono text-muted">{avgDist} km</td>
+
+          {/* Hub Breakdown tab */}
+          {activeTab === 'hubs' && (
+            <>
+              <div className="flex-1 overflow-y-auto">
+                <table className="w-full text-left text-[13px] border-collapse">
+                  <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
+                    <tr>
+                      <th className="py-2.5 px-4 whitespace-nowrap">#</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">BNG Hub</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">OLT Cities</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">MSANs</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">Subscribers</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">% Share</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">Avg Distance</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <div className="px-5 py-2 border-t border-border text-[10px] text-muted flex-shrink-0">
-            Click a hub row to open its detail panel
-          </div>
+                  </thead>
+                  <tbody className="divide-y divide-border/50">
+                    {hubs.map((h, idx) => {
+                      const share = totalSubs > 0 ? (h.subscribers / totalSubs) * 100 : 0;
+                      const avgDist = h.cities > 0 ? Math.round(h.totalDist / h.cities) : 0;
+                      return (
+                        <tr
+                          key={h.name}
+                          className="hover:bg-border/20 transition-colors cursor-pointer"
+                          onClick={() => { onSelectBng(h.name); onClose(); }}
+                        >
+                          <td className="py-2.5 px-4 text-muted text-[11px]">{idx + 1}</td>
+                          <td className="py-2.5 px-4">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }} />
+                              <span className="font-bold" style={{ color: BNG_CITY_COLORS[h.name] ?? '#94a3b8' }}>{h.name}</span>
+                            </div>
+                          </td>
+                          <td className="py-2.5 px-4 text-right font-mono text-muted">{h.cities}</td>
+                          <td className="py-2.5 px-4 text-right font-mono text-muted">{h.msans.toLocaleString()}</td>
+                          <td className="py-2.5 px-4 text-right font-mono font-bold text-txt">{h.subscribers.toLocaleString()}</td>
+                          <td className="py-2.5 px-4 text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <div className="w-16 h-1.5 rounded-full bg-border overflow-hidden">
+                                <div className="h-full rounded-full" style={{ width: `${share}%`, background: BNG_CITY_COLORS[h.name] ?? '#3b82f6' }} />
+                              </div>
+                              <span className="font-mono text-muted text-[11px] w-10 text-right">{share.toFixed(1)}%</span>
+                            </div>
+                          </td>
+                          <td className="py-2.5 px-4 text-right font-mono text-muted">{avgDist} km</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className="px-5 py-2 border-t border-border text-[10px] text-muted flex-shrink-0">
+                Click a hub row to open its detail panel
+              </div>
+            </>
+          )}
+
+          {/* MSAN Details tab */}
+          {activeTab === 'msans' && (
+            <>
+              <div className="px-4 py-2.5 border-b border-border flex-shrink-0">
+                <input
+                  type="text"
+                  placeholder="Search MSAN, BRAS, city, hub, VLAN…"
+                  value={msanSearch}
+                  onChange={e => setMsanSearch(e.target.value)}
+                  className="w-full bg-card border border-border rounded-md px-3 py-1.5 text-[12px] text-txt placeholder:text-muted outline-none focus:border-slate-500"
+                />
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                <table className="w-full text-left text-[12px] border-collapse">
+                  <thead className="sticky top-0 bg-border/50 text-muted font-semibold z-10 backdrop-blur-md">
+                    <tr>
+                      <th className="py-2.5 px-4 whitespace-nowrap">#</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">MSAN</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">VLAN</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">BRAS</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">City</th>
+                      <th className="py-2.5 px-4 whitespace-nowrap">BNG Hub</th>
+                      <th className="py-2.5 px-4 text-right whitespace-nowrap">Count</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/50">
+                    {filteredMsans.map((m, idx) => (
+                      <tr key={idx} className="hover:bg-border/20 transition-colors">
+                        <td className="py-2 px-4 text-muted text-[11px]">{idx + 1}</td>
+                        <td className="py-2 px-4 font-mono font-semibold text-txt">{m.msan}</td>
+                        <td className="py-2 px-4 font-mono text-muted">{m.vlan}</td>
+                        <td className="py-2 px-4 text-muted text-[11px]">{m.bras || '—'}</td>
+                        <td className="py-2 px-4 text-txt text-[11px]">{m.city}</td>
+                        <td className="py-2 px-4">
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: BNG_CITY_COLORS[m.hub] ?? '#94a3b8' }} />
+                            <span className="text-[11px] font-semibold" style={{ color: BNG_CITY_COLORS[m.hub] ?? '#94a3b8' }}>{m.hub}</span>
+                          </div>
+                        </td>
+                        <td className="py-2 px-4 text-right font-mono text-txt">{m.count.toLocaleString()}</td>
+                      </tr>
+                    ))}
+                    {filteredMsans.length === 0 && (
+                      <tr>
+                        <td colSpan={7} className="py-10 text-center text-muted text-[12px]">No MSANs match your search.</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="px-5 py-2 border-t border-border text-[10px] text-muted flex-shrink-0 flex justify-between">
+                <span>Showing {filteredMsans.length} of {totalMsans} MSANs</span>
+                {mode === 'ideal' && <span className="text-amber-400">BNG Hub reflects ideal topology</span>}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -1451,6 +1576,7 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
       {selectedCircleCode && !selected && !selectedBng && (
         <CirclePanel
           circleCode={selectedCircleCode}
+          mode={mode}
           onClose={() => setSelectedCircleCode(null)}
           onSelectBng={handleSelectBng}
         />

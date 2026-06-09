@@ -327,6 +327,62 @@ function computeDCRecommendations(dateIdx: number): Map<string, DCRecommendation
   return result;
 }
 
+/* ── Manual proposed-DC from any district ── */
+function computeManualDCRecommendation(conn: Connection, dateIdx: number): DCRecommendation | null {
+  const circleCode = conn.hubCircle;
+  const hubs = HUBS.filter(h => h.circle === circleCode);
+  if (!hubs.length) return null;
+  const circleConns = ALL_CONNECTIONS.filter(c => c.hubCircle === circleCode);
+  if (!circleConns.length) return null;
+
+  type HubLoad = { hub: Hub; conns: Connection[]; avgDist: number; score: number };
+  const hubLoads: HubLoad[] = hubs.flatMap(hub => {
+    const conns = circleConns.filter(c => c.hub.name === hub.name && c.hub.circle === hub.circle);
+    if (!conns.length) return [];
+    const dists = conns.map(c => districtHubMapping[c.district]?.distKm ?? 0);
+    const avgDist = dists.reduce((s, d) => s + d, 0) / dists.length;
+    const entry = hubVolIndex[`${hub.circle}::${hub.name}`];
+    const vol = (entry?.vals4g[dateIdx] ?? 0) + (entry?.vals5g[dateIdx] ?? 0);
+    const score = conns.length * avgDist * Math.max(vol, 1) / Math.max(hub.throughput, 1);
+    return [{ hub, conns, avgDist, score }];
+  });
+  if (!hubLoads.length) return null;
+  hubLoads.sort((a, b) => b.score - a.score);
+  const top = hubLoads[0];
+
+  const propLat = conn.distLat;
+  const propLng = conn.distLng;
+  const label = conn.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+
+  const migrating: MigDistrict[] = circleConns.flatMap(c => {
+    const oldKm = districtHubMapping[c.district]?.distKm ?? 0;
+    const newKm = Math.round(haversineKm(c.distLat, c.distLng, propLat, propLng));
+    if (newKm >= oldKm) return [];
+    const v4 = (distVol4g.get(`${c.distCircle}|${c.district}`)?.[dateIdx] ?? 0) as number;
+    const v5 = (distVol5g.get(`${c.distCircle}|${c.district}`)?.[dateIdx] ?? 0) as number;
+    return [{ district: c.district, distLat: c.distLat, distLng: c.distLng, oldDistKm: oldKm, newDistKm: newKm, distSaved: oldKm - newKm, vol4g: v4, vol5g: v5 }];
+  });
+  if (!migrating.length) return null;
+
+  migrating.sort((a, b) => b.distSaved - a.distSaved);
+  const avgBefore = Math.round(migrating.reduce((s, d) => s + d.oldDistKm, 0) / migrating.length);
+  const avgAfter  = Math.round(migrating.reduce((s, d) => s + d.newDistKm, 0) / migrating.length);
+  const rawScore  = migrating.length * (avgBefore - avgAfter) * Math.max(
+    migrating.reduce((s, d) => s + d.vol4g + d.vol5g, 0), 1
+  );
+
+  return {
+    circle: circleCode, parentHub: top.hub,
+    proposedDC: { lat: propLat, lng: propLng, label },
+    migratingDistricts: migrating,
+    districtCount: migrating.length,
+    volumeOffloaded4G: migrating.reduce((s, d) => s + d.vol4g, 0),
+    volumeOffloaded5G: migrating.reduce((s, d) => s + d.vol5g, 0),
+    avgDistBefore: avgBefore, avgDistAfter: avgAfter,
+    impactScore: Math.round(rawScore / 1e6),
+  };
+}
+
 /* ── Circle analytics panel ── */
 function HubCirclePanel({ circleCode, dateIdx, gen, onClose, onSelectHub }: {
   circleCode: string;
@@ -1245,6 +1301,17 @@ export default function MobileHubsMap() {
               <div className="text-[10px] text-muted mt-1 font-mono">
                 {c.distLat.toFixed(4)}, {c.distLng.toFixed(4)}
               </div>
+              {!HUBS.some(h => h.circle === c.hubCircle && h.name.toLowerCase() === c.district.toLowerCase()) && (
+                <button
+                  onClick={() => {
+                    const rec = computeManualDCRecommendation(c, dateIdx);
+                    if (rec) { setSelectedRec(rec); setSelectedDistrict(null); }
+                  }}
+                  className="mt-2 w-full py-1.5 rounded text-[11px] font-semibold bg-amber-500/15 border border-amber-500/40 text-amber-400 hover:bg-amber-500/25 transition-colors"
+                >
+                  ⭐ Set as Proposed DC
+                </button>
+              )}
             </div>
 
             {/* Date table */}

@@ -110,7 +110,7 @@ return []
 
       {/* Screen toggle */}
       <div className="flex bg-card border border-border rounded-md text-[11px] font-semibold overflow-hidden ml-auto">
-        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map'], ['mobileflow', 'Mobile Flow']] as [ScreenMode, string][]).map(([mode, label]) => (
+        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map'], ['mobileflow', 'Transport Flow']] as [ScreenMode, string][]).map(([mode, label]) => (
           <button
             key={mode}
             onClick={() => setScreenMode(mode)}

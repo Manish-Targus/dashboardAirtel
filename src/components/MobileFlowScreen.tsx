@@ -164,7 +164,7 @@ function HubPanel({
   return (
     <div className="w-52 bg-card rounded-lg border border-border/50 shadow-sm flex flex-col overflow-hidden flex-shrink-0">
       <div className="px-3 py-2.5 border-b border-border/50 bg-accent2/5 flex-shrink-0">
-        <div className="text-[13px] font-semibold text-text">Mobile Hubs</div>
+        <div className="text-[13px] font-semibold text-text">Transport Hubs</div>
         {totalRerouted > 0 && (
           <div className="text-[10px] text-orange-400 mt-0.5 font-mono">
             {totalRerouted}G rerouted incoming

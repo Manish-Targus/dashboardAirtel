@@ -1,5 +1,5 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import rawAeData from '@/data/bngAeData.json';
 
 interface AeIface {
@@ -30,7 +30,12 @@ interface BrasOptResult {
   l3: { canFix: boolean; avgUtil: number; projectedUtil: number; donorCities: { city: string; headroomGbps: number; nodes: { name: string; avgUtil: number }[] }[]; cardsNeeded: number };
 }
 
-const allNodes = rawAeData as BrasNode[];
+interface UploadMeta {
+  date: string;
+  filename: string;
+  uploadedAt: number;
+  nodeCount: number;
+}
 
 const CIRCLE_LABELS: Record<string, string> = {
   AP: 'Andhra Pradesh', BHJH: 'Bihar & Jharkhand', GUJ: 'Gujarat',
@@ -49,7 +54,7 @@ function utilStyle(u: number) {
 }
 
 function nodeMaxUtil(n: BrasNode) {
-  return n.ae_interfaces.length ? Math.max(...n.ae_interfaces.map(a => a.max_util)) : 0;
+  return n.ae_interfaces.length ? Math.max(...n.ae_interfaces.map(a => a.max_util ?? 0)) : 0;
 }
 
 function severity(u: number) {
@@ -62,14 +67,15 @@ function severity(u: number) {
 function AeCube({ ae, nodeKey, selected, onClick, optimizedUtil }: {
   ae: AeIface; nodeKey: string; selected: boolean; onClick: () => void; optimizedUtil?: number;
 }) {
-  const s     = utilStyle(optimizedUtil !== undefined ? optimizedUtil : ae.max_util);
-  const realS = utilStyle(ae.max_util);
+  const util  = ae.max_util ?? 0;
+  const s     = utilStyle(optimizedUtil !== undefined ? optimizedUtil : util);
+  const realS = utilStyle(util);
   return (
     <button
       onClick={onClick}
       title={optimizedUtil !== undefined
-        ? `${ae.name} · ${ae.max_util.toFixed(1)}% now → ${optimizedUtil.toFixed(1)}% after`
-        : `${ae.name} · ${ae.link_type} · ${ae.bw_gb ?? '?'}G · ${ae.max_util.toFixed(1)}%`}
+        ? `${ae.name} · ${util.toFixed(1)}% now → ${optimizedUtil.toFixed(1)}% after`
+        : `${ae.name} · ${ae.link_type} · ${ae.bw_gb ?? '?'}G · ${util.toFixed(1)}%`}
       style={{
         width: 80, height: 80,
         background: s.bgGrad,
@@ -88,14 +94,14 @@ function AeCube({ ae, nodeKey, selected, onClick, optimizedUtil }: {
       {optimizedUtil !== undefined ? (
         <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:1 }}>
           <span style={{ fontSize:11, fontWeight:700, color: realS.badge, lineHeight:1, textDecoration:'line-through', opacity:0.85 }}>
-            {ae.max_util.toFixed(1)}%
+            {util.toFixed(1)}%
           </span>
           <span style={{ fontSize:13, fontWeight:900, color:'#fff', lineHeight:1 }}>
             →{optimizedUtil.toFixed(0)}%
           </span>
         </div>
       ) : (
-        <span style={{ fontSize:15, fontWeight:900, color:'#fff', lineHeight:1 }}>{ae.max_util.toFixed(1)}%</span>
+        <span style={{ fontSize:15, fontWeight:900, color:'#fff', lineHeight:1 }}>{util.toFixed(1)}%</span>
       )}
 
       <span style={{ fontSize:9, color:'rgba(255,255,255,0.45)', lineHeight:1, maxWidth:70, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap', textAlign:'center' }}>
@@ -143,6 +149,63 @@ function SeverityDots({ critical, high, medium }: { critical: number; high: numb
 }
 
 export default function BngScreen() {
+  const [allNodes, setAllNodes]         = useState<BrasNode[]>(rawAeData as BrasNode[]);
+  const [uploads, setUploads]           = useState<UploadMeta[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string>('default');
+  const [uploading, setUploading]       = useState(false);
+  const [uploadError, setUploadError]   = useState<{ message: string; details?: string[] } | null>(null);
+  const fileInputRef                    = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetch('/api/bng/list')
+      .then(r => r.json())
+      .then((list: UploadMeta[]) => {
+        setUploads(list);
+        if (list.length > 0) {
+          fetch(`/api/bng/load?date=${encodeURIComponent(list[0].date)}`)
+            .then(r => r.json())
+            .then((nodes: BrasNode[]) => { setAllNodes(nodes); setSelectedDate(list[0].date); });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  async function handleFile(file: File) {
+    setUploading(true);
+    setUploadError(null);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res  = await fetch('/api/bng/upload', { method: 'POST', body: form });
+      const data = await res.json() as { date?: string; nodeCount?: number; error?: string; details?: string[] };
+      if (!res.ok || data.error) {
+        setUploadError({ message: data.error ?? 'Upload failed.', details: data.details });
+        return;
+      }
+      const nodesRes = await fetch(`/api/bng/load?date=${encodeURIComponent(data.date!)}`);
+      const nodes    = await nodesRes.json() as BrasNode[];
+      const fresh    = await (await fetch('/api/bng/list')).json() as UploadMeta[];
+      setUploads(fresh);
+      setAllNodes(nodes);
+      setSelectedDate(data.date!);
+    } catch {
+      setUploadError({ message: 'Network error — could not reach the upload API.' });
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function switchToDate(date: string) {
+    if (date === 'default') {
+      setAllNodes(rawAeData as BrasNode[]);
+      setSelectedDate('default');
+    } else {
+      const nodes = await (await fetch(`/api/bng/load?date=${encodeURIComponent(date)}`)).json() as BrasNode[];
+      setAllNodes(nodes);
+      setSelectedDate(date);
+    }
+  }
+
   const [selectedCircle, setSelectedCircle] = useState<string | null>(null);
   const [filterCat, setFilterCat]           = useState<FilterCat>('all');
   const [selectedBrasType, setSelectedBrasType] = useState('MX960');
@@ -173,13 +236,13 @@ export default function BngScreen() {
         if (filterCat === 'normal')   return a.max_util < 70;
         return true;
       })
-      .sort((a, b) => b.max_util - a.max_util);
+      .sort((a, b) => (b.max_util ?? 0) - (a.max_util ?? 0));
   }
 
   const brasTypes = useMemo(() => {
     const types = Array.from(new Set(allNodes.map(n => n.bras_type))).sort();
     return ['All', ...types];
-  }, []);
+  }, [allNodes]);
 
   // Circle sidebar stats
   const circleStats = useMemo(() => {
@@ -196,7 +259,7 @@ export default function BngScreen() {
     return Object.entries(map)
       .map(([code, s]) => ({ code, ...s }))
       .sort((a, b) => (b.critical*3 + b.high*2 + b.medium) - (a.critical*3 + a.high*2 + a.medium));
-  }, [selectedBrasType]);
+  }, [allNodes, selectedBrasType]);
 
   // Build Circle → City → BRAS hierarchy for main panel
   const hierarchy = useMemo(() => {
@@ -233,7 +296,7 @@ export default function BngScreen() {
         return { circle, cities, critical, high, medium };
       })
       .sort((a, b) => (b.critical*3 + b.high*2 + b.medium) - (a.critical*3 + a.high*2 + a.medium));
-  }, [selectedCircle, search]);
+  }, [allNodes, selectedCircle, search]);
 
   const aeSummary = useMemo(() => {
     const all = allNodes
@@ -246,7 +309,7 @@ export default function BngScreen() {
       medium:   all.filter(a => a.max_util >= 70 && a.max_util < 80).length,
       normal:   all.filter(a => a.max_util < 70).length,
     };
-  }, [selectedBrasType]);
+  }, [allNodes, selectedBrasType]);
 
   // ── Optimisation computation: MX960 BRAS-DOWNLINK only ──
   const optimData = useMemo(() => {
@@ -263,10 +326,10 @@ export default function BngScreen() {
     const brasStats: BrasStats[] = mx960.flatMap(n => {
       const aes = n.ae_interfaces.filter(a => a.link_type === 'BRAS-DOWNLINK');
       if (!aes.length) return [];
-      const trafficGbps = aes.reduce((s, a) => s + (a.max_util / 100) * (a.bw_gb ?? CARD_BW), 0);
+      const trafficGbps = aes.reduce((s, a) => s + ((a.max_util ?? 0) / 100) * (a.bw_gb ?? CARD_BW), 0);
       const bwGbps      = aes.reduce((s, a) => s + (a.bw_gb ?? CARD_BW), 0);
       const avgUtil     = bwGbps > 0 ? (trafficGbps / bwGbps) * 100 : 0;
-      const maxUtil     = Math.max(...aes.map(a => a.max_util));
+      const maxUtil     = Math.max(...aes.map(a => a.max_util ?? 0));
       return [{ node: n, aes, trafficGbps, bwGbps, avgUtil, maxUtil }];
     });
 
@@ -376,7 +439,7 @@ export default function BngScreen() {
     };
 
     return { results, summary };
-  }, []);
+  }, [allNodes]);
 
   const CATS: { key: FilterCat; label: string; color: string }[] = [
     { key: 'all',      label: 'All',    color: '#6b7280' },
@@ -455,6 +518,65 @@ export default function BngScreen() {
 
       {/* ── Main area ── */}
       <div className="flex-1 flex flex-col overflow-hidden">
+
+        {/* Data source bar */}
+        <div className="flex-shrink-0 px-4 py-1.5 bg-card/60 border-b border-border flex items-center gap-3 flex-wrap">
+          <span className="text-[10px] text-muted uppercase tracking-wider font-semibold">Data source</span>
+
+          {/* Upload button */}
+          <label
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded border text-[11px] font-semibold cursor-pointer transition-colors select-none
+              ${uploading ? 'border-accent2/40 text-accent2/60' : 'border-border text-muted hover:text-txt hover:border-txt/40 bg-card'}`}
+          >
+            {uploading ? '⏳ Parsing…' : '↑ Upload xlsx'}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".xlsx,.xls"
+              className="hidden"
+              onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); e.target.value = ''; }}
+            />
+          </label>
+
+          {/* History dropdown */}
+          {uploads.length > 0 && (
+            <select
+              value={selectedDate}
+              onChange={e => switchToDate(e.target.value)}
+              className="bg-card border border-border rounded px-2 py-1 text-[11px] text-txt focus:outline-none focus:border-accent2 max-w-[260px]"
+            >
+              {uploads.map(u => (
+                <option key={u.date} value={u.date}>
+                  {u.date} · {u.nodeCount} nodes · {u.filename.slice(0, 28)}{u.filename.length > 28 ? '…' : ''}
+                </option>
+              ))}
+              <option value="default">Default (built-in snapshot)</option>
+            </select>
+          )}
+
+          {selectedDate !== 'default' && (
+            <span className="text-[10px] text-accent2 font-semibold ml-1">
+              Viewing {selectedDate}
+            </span>
+          )}
+        </div>
+
+        {/* Upload error banner */}
+        {uploadError && (
+          <div className="flex-shrink-0 px-4 py-2.5 bg-red-950/60 border-b border-red-700/50 flex items-start gap-3">
+            <span className="text-red-400 text-[11px] font-black mt-0.5 flex-shrink-0">Upload failed</span>
+            <div className="flex flex-col gap-1 flex-1 min-w-0">
+              <span className="text-red-300 text-[11px] font-semibold">{uploadError.message}</span>
+              {uploadError.details && uploadError.details.map((d, i) => (
+                <span key={i} className="text-red-400/80 text-[10px] font-mono">{d}</span>
+              ))}
+            </div>
+            <button
+              onClick={() => setUploadError(null)}
+              className="text-red-500 hover:text-red-300 text-lg leading-none flex-shrink-0"
+            >×</button>
+          </div>
+        )}
 
         {/* Top bar */}
         <div className="flex-shrink-0 px-4 py-2 bg-panel border-b border-border flex items-center gap-3 flex-wrap">
@@ -632,7 +754,8 @@ export default function BngScreen() {
 
             {/* ── AE detail panel ── */}
             {selectedAe && (() => {
-              const s = utilStyle(selectedAe.ae.max_util);
+              const aeUtil = selectedAe.ae.max_util ?? 0;
+              const s = utilStyle(aeUtil);
               return (
                 <div className="w-56 flex-shrink-0 bg-panel border-l border-border flex flex-col overflow-hidden">
                   <div className="px-4 py-3 border-b border-border flex justify-between items-center">
@@ -648,12 +771,12 @@ export default function BngScreen() {
                         display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:5,
                       }}>
                         <span style={{ fontSize:16, fontWeight:900, color:s.text, fontFamily:'monospace' }}>{selectedAe.ae.name}</span>
-                        <span style={{ fontSize:24, fontWeight:900, color:'#fff', lineHeight:1 }}>{selectedAe.ae.max_util.toFixed(1)}%</span>
+                        <span style={{ fontSize:24, fontWeight:900, color:'#fff', lineHeight:1 }}>{aeUtil.toFixed(1)}%</span>
                       </div>
                     </div>
                     <div>
                       <div className="h-2 rounded-full bg-card overflow-hidden border border-border">
-                        <div className="h-full rounded-full" style={{ width:`${Math.min(selectedAe.ae.max_util,100)}%`, background: s.border }} />
+                        <div className="h-full rounded-full" style={{ width:`${Math.min(aeUtil,100)}%`, background: s.border }} />
                       </div>
                       <div className="flex justify-between text-[9px] text-muted mt-0.5">
                         <span>0</span><span style={{color:'#f59e0b'}}>70</span><span style={{color:'#f87171'}}>80</span><span style={{color:'#ef4444'}}>90</span><span>100%</span>
@@ -663,7 +786,7 @@ export default function BngScreen() {
                       { label: 'Interface', value: selectedAe.ae.name },
                       { label: 'Link Type', value: selectedAe.ae.link_type.replace('BRAS-','').replace('-LINK','') },
                       { label: 'Bandwidth', value: selectedAe.ae.bw_gb ? `${selectedAe.ae.bw_gb} Gb` : 'N/A' },
-                      { label: 'Max Util',  value: `${selectedAe.ae.max_util.toFixed(2)}%` },
+                      { label: 'Max Util',  value: `${aeUtil.toFixed(2)}%` },
                       { label: 'BRAS Node', value: selectedAe.node.node },
                       { label: 'City',      value: selectedAe.node.city },
                       { label: 'Circle',    value: selectedAe.node.circle },
@@ -675,12 +798,12 @@ export default function BngScreen() {
                     ))}
                     <div className="rounded-lg p-3 border" style={{ background:`${s.border}14`, borderColor:`${s.border}40` }}>
                       <div className="text-[12px] font-bold" style={{ color: s.text }}>
-                        {selectedAe.ae.max_util >= 90 ? 'CRITICAL' : selectedAe.ae.max_util >= 80 ? 'HIGH' : selectedAe.ae.max_util >= 70 ? 'MEDIUM' : 'NORMAL'}
+                        {aeUtil >= 90 ? 'CRITICAL' : aeUtil >= 80 ? 'HIGH' : aeUtil >= 70 ? 'MEDIUM' : 'NORMAL'}
                       </div>
                       <div className="text-[10px] text-muted mt-0.5">
-                        {selectedAe.ae.max_util >= 90 ? 'Severely congested. Act now.' :
-                         selectedAe.ae.max_util >= 80 ? 'Near saturation. Plan upgrade.' :
-                         selectedAe.ae.max_util >= 70 ? 'Elevated. Monitor closely.' : 'Within healthy bounds.'}
+                        {aeUtil >= 90 ? 'Severely congested. Act now.' :
+                         aeUtil >= 80 ? 'Near saturation. Plan upgrade.' :
+                         aeUtil >= 70 ? 'Elevated. Monitor closely.' : 'Within healthy bounds.'}
                       </div>
                     </div>
                   </div>

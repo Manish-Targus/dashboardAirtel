@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { MapContainer, TileLayer, CircleMarker, GeoJSON, Tooltip, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { BarChart, Bar, XAxis, YAxis, Tooltip as RTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
@@ -140,6 +140,43 @@ HUB_CIRCLE_CODES.forEach((c, i) => {
   const hue = Math.round((i * 137.508) % 360);
   HUB_CIRCLE_COLORS[c] = `hsl(${hue}, 85%, ${i % 2 === 0 ? 62 : 70}%)`;
 });
+
+/* ── Hub circle → GeoJSON state names it covers ── */
+const CIRCLE_TO_STATES: Record<string, string[]> = {
+  AN: ['Andaman and Nicobar'],
+  AP: ['Andhra Pradesh'],
+  BR: ['Bihar', 'Jharkhand'],
+  DL: ['Delhi'],
+  GJ: ['Gujarat', 'Daman and Diu'],
+  JK: ['Jammu and Kashmir'],
+  KK: ['Karnataka'],
+  KL: ['Kerala', 'Lakshadweep'],
+  KN: ['Tamil Nadu', 'Puducherry'],
+  KO: ['West Bengal'],
+  MH: ['Maharashtra', 'Goa', 'Dadra and Nagar Haveli'],
+  MP: ['Madhya Pradesh', 'Chhattisgarh'],
+  MU: ['Maharashtra'],
+  NE: ['Arunachal Pradesh', 'Assam', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Sikkim', 'Tripura'],
+  OR: ['Orissa'],
+  RJ: ['Rajasthan'],
+  TN: ['Tamil Nadu', 'Puducherry'],
+  UE: ['Uttar Pradesh'],
+  UN: ['Chandigarh', 'Haryana', 'Himachal Pradesh', 'Punjab', 'Uttaranchal'],
+  UW: ['Uttar Pradesh'],
+  WB: ['West Bengal'],
+};
+
+/* ── Pre-filtered GeoJSON per circle (computed once at module load) ── */
+const CIRCLE_GEOJSON: Record<string, { type: 'FeatureCollection'; features: any[] }> = {};
+for (const code of Object.keys(CIRCLE_TO_STATES)) {
+  const names = CIRCLE_TO_STATES[code];
+  CIRCLE_GEOJSON[code] = {
+    type: 'FeatureCollection',
+    features: (indiaStates as any).features.filter(
+      (f: any) => names.includes(f.properties?.name)
+    ),
+  };
+}
 
 /* ── Districts that had wrong coordinates (same-name duplicates across states) ── */
 const FIXED_DISTRICTS = new Set([
@@ -586,6 +623,586 @@ function HubCirclePanel({ circleCode, dateIdx, gen, onClose, onSelectHub }: {
   );
 }
 
+/* ── DC Planning Overlay ── */
+function DCPlanningOverlay({
+  dateIdx,
+  onApply,
+  onClose,
+}: {
+  dateIdx: number;
+  onApply: (recs: DCRecommendation[]) => void;
+  onClose: () => void;
+}) {
+  const [search, setSearch]             = useState('');
+  const [circleFilter, setCircleFilter] = useState<string | null>(null);
+  const [sortBy, setSortBy]             = useState<'vol' | 'dist' | 'name'>('vol');
+  const [planned, setPlanned]           = useState<{ key: string; rec: DCRecommendation }[]>([]);
+  const [excludedHubs, setExcludedHubs] = useState<Set<string>>(new Set());
+
+  const plannedKeys = useMemo(() => new Set(planned.map(p => p.key)), [planned]);
+  const hubKey = (hub: Hub) => `${hub.circle}::${hub.name}`;
+
+  const distKey = (conn: Connection) => `${conn.hubCircle}::${conn.district}`;
+
+  // Hub cities as synthetic connections (hub name → proposed DC location)
+  const hubConnections = useMemo((): Connection[] =>
+    HUBS.map(h => ({
+      district:   h.name.toUpperCase(),
+      distCircle: h.circle,
+      hubCircle:  h.circle,
+      distLat:    h.lat,
+      distLng:    h.lng,
+      hub:        h,
+    })),
+  []);
+
+  const districtList = useMemo(() => {
+    // Existing district keys as a Set so we can mark hub-city duplicates
+    const districtKeys = new Set(ALL_CONNECTIONS.map(c => c.district.toUpperCase()));
+
+    const fromDistricts = ALL_CONNECTIONS.map(conn => {
+      const v4 = (distVol4g.get(`${conn.distCircle}|${conn.district}`)?.[dateIdx] ?? 0) as number;
+      const v5 = (distVol5g.get(`${conn.distCircle}|${conn.district}`)?.[dateIdx] ?? 0) as number;
+      const distKm = districtHubMapping[conn.district]?.distKm ?? 0;
+      return { conn, vol: v4 + v5, distKm, isHub: false };
+    });
+
+    // Add hub cities that aren't already district entries
+    const fromHubs = hubConnections
+      .filter(h => !districtKeys.has(h.district))
+      .map(conn => ({ conn, vol: 0, distKm: 0, isHub: true }));
+
+    return [...fromDistricts, ...fromHubs];
+  }, [dateIdx, hubConnections]);
+
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase().trim();
+    return districtList
+      .filter(d => {
+        if (circleFilter && d.conn.hubCircle !== circleFilter) return false;
+        if (q && !d.conn.district.toLowerCase().includes(q) && !d.conn.hubCircle.toLowerCase().includes(q)) return false;
+        return true;
+      })
+      .sort((a, b) =>
+        sortBy === 'vol'  ? b.vol - a.vol :
+        sortBy === 'dist' ? b.distKm - a.distKm :
+        a.conn.district.localeCompare(b.conn.district)
+      );
+  }, [districtList, search, circleFilter, sortBy]);
+
+  function toggleDistrict(conn: Connection) {
+    const key = distKey(conn);
+    if (plannedKeys.has(key)) {
+      setPlanned(prev => prev.filter(p => p.key !== key));
+      return;
+    }
+    const rec = computeManualDCRecommendation(conn, dateIdx);
+    if (!rec) return;
+    setPlanned(prev => [...prev, { key, rec }]);
+  }
+
+  // Current/active DC data (optionally filtered by selected circle)
+  const currentHubs = useMemo(() => {
+    const hubs = circleFilter ? HUBS.filter(h => h.circle === circleFilter) : HUBS;
+    return hubs.map(hub => {
+      const entry = hubVolIndex[`${hub.circle}::${hub.name}`];
+      const v4    = entry?.vals4g[dateIdx] ?? 0;
+      const v5    = entry?.vals5g[dateIdx] ?? 0;
+      const districtCount = ALL_CONNECTIONS.filter(
+        c => c.hub.name === hub.name && c.hubCircle === hub.circle
+      ).length;
+      // Sum districts + volume being pulled away by any planned DC
+      let lostDistricts = 0;
+      let lostVol = 0;
+      for (const p of planned) {
+        for (const d of p.rec.migratingDistricts) {
+          const src = ALL_CONNECTIONS.find(c => c.district === d.district)?.hub;
+          if (src?.name === hub.name && src?.circle === hub.circle) {
+            lostDistricts++;
+            lostVol += d.vol4g + d.vol5g;
+          }
+        }
+      }
+      return { hub, v4, v5, total: v4 + v5, districtCount, lostDistricts, lostVol };
+    }).sort((a, b) => b.total - a.total);
+  }, [circleFilter, dateIdx, planned]);
+
+  // Combined pie: existing hubs (remaining vol after offload) + proposed DCs (offload vol)
+  const HUB_PALETTE = [
+    '#22d3ee','#60a5fa','#34d399','#a78bfa','#f87171',
+    '#fb923c','#e879f9','#2dd4bf','#818cf8','#4ade80',
+    '#f472b6','#7dd3fc','#86efac','#c084fc','#fdba74',
+    '#38bdf8','#a3e635','#fb7185','#67e8f9','#d946ef',
+  ];
+  const AMBER_PALETTE = ['#f59e0b','#fbbf24','#d97706','#f97316','#b45309'];
+
+  const pieData = useMemo(() => {
+    type PieEntry = { name: string; value: number; color: string; pct: number; isProposed: boolean };
+    const entries: PieEntry[] = [];
+    currentHubs.forEach((h, i) => {
+      if (h.total <= 0) return;
+      if (excludedHubs.has(hubKey(h.hub))) return;
+      entries.push({
+        name: `${h.hub.name} (${h.hub.circle})`,
+        value: Math.max(0, h.total - h.lostVol),
+        color: HUB_PALETTE[i % HUB_PALETTE.length],
+        pct: 0,
+        isProposed: false,
+      });
+    });
+    planned.forEach((p, i) => {
+      entries.push({
+        name: `⭐ ${p.rec.proposedDC.label} (${p.rec.circle})`,
+        value: p.rec.volumeOffloaded4G + p.rec.volumeOffloaded5G,
+        color: AMBER_PALETTE[i % AMBER_PALETTE.length],
+        pct: 0,
+        isProposed: true,
+      });
+    });
+    const total = entries.reduce((s, e) => s + e.value, 0);
+    entries.forEach(e => { e.pct = total > 0 ? (e.value / total) * 100 : 0; });
+    return { entries, total };
+  }, [currentHubs, planned]);
+
+  return (
+    <div className="fixed inset-0 z-[5000] flex flex-col bg-[#0d1117]/97 backdrop-blur-md">
+
+      {/* ── Header ── */}
+      <div className="flex items-center justify-between px-6 py-3 border-b border-border flex-shrink-0 bg-panel/80 backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <span className="text-[16px] font-black text-txt">DC Planning</span>
+          {planned.length > 0 && (
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 font-semibold">
+              {planned.length} DC{planned.length !== 1 ? 's' : ''} planned
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          {planned.length > 0 && (
+            <>
+              <button
+                onClick={() => setPlanned([])}
+                className="px-3 py-1.5 rounded text-[11px] text-red-400/70 hover:text-red-400 border border-red-500/20 hover:border-red-500/40 transition-colors"
+              >
+                Clear all
+              </button>
+              <button
+                onClick={() => { onApply(planned.map(p => p.rec)); onClose(); }}
+                className="px-4 py-1.5 rounded text-[12px] font-bold bg-amber-500 hover:bg-amber-400 text-black transition-colors shadow-lg"
+              >
+                Apply to Map
+              </button>
+            </>
+          )}
+          <button onClick={onClose} className="ml-2 text-muted hover:text-txt text-2xl leading-none">×</button>
+        </div>
+      </div>
+
+      {/* ── Body ── */}
+      <div className="flex flex-1 overflow-hidden">
+
+        {/* Left – searchable district list */}
+        <div className="w-[380px] flex-shrink-0 flex flex-col border-r border-border">
+
+          {/* Search + circle chips */}
+          <div className="px-4 pt-3 pb-2 border-b border-border flex-shrink-0 space-y-2">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search districts or circles…"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="w-full bg-card border border-border rounded-md px-3 py-2 pl-8 text-[12px] text-txt placeholder-muted focus:outline-none focus:border-accent2 transition-colors"
+                autoFocus
+              />
+              <svg className="absolute left-2.5 top-2.5 text-muted pointer-events-none" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+              {search && (
+                <button onClick={() => setSearch('')} className="absolute right-2.5 top-2 text-muted hover:text-txt text-lg leading-none">×</button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1">
+              <button
+                onClick={() => setCircleFilter(null)}
+                className={`px-2 py-0.5 rounded text-[10px] font-semibold border transition-colors ${
+                  !circleFilter ? 'bg-accent2/20 border-accent2/50 text-accent2' : 'border-border text-muted hover:text-txt'
+                }`}
+              >All</button>
+              {HUB_CIRCLE_CODES.map(code => (
+                <button
+                  key={code}
+                  onClick={() => setCircleFilter(f => f === code ? null : code)}
+                  className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors"
+                  style={{
+                    background:   circleFilter === code ? `${HUB_CIRCLE_COLORS[code]}28` : 'transparent',
+                    borderColor:  circleFilter === code ? HUB_CIRCLE_COLORS[code] : '#30363d',
+                    color:        circleFilter === code ? HUB_CIRCLE_COLORS[code] : '#8b949e',
+                  }}
+                >{code}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Sort tabs + count */}
+          <div className="flex items-center border-b border-border flex-shrink-0">
+            {(['vol', 'dist', 'name'] as const).map(s => (
+              <button
+                key={s}
+                onClick={() => setSortBy(s)}
+                className={`flex-1 py-1.5 text-[10px] font-semibold uppercase tracking-wide transition-colors border-b-2 ${
+                  sortBy === s ? 'text-accent2 border-accent2' : 'text-muted hover:text-txt border-transparent'
+                }`}
+              >
+                {s === 'vol' ? 'Volume' : s === 'dist' ? 'Distance' : 'Name'}
+              </button>
+            ))}
+            <span className="px-3 text-[10px] text-muted font-mono">{filtered.length}</span>
+          </div>
+
+          {/* District rows */}
+          <div className="flex-1 overflow-y-auto">
+            {filtered.map(({ conn, vol, distKm, isHub }) => {
+              const key       = distKey(conn);
+              const isPlanned = plannedKeys.has(key);
+              const color     = HUB_CIRCLE_COLORS[conn.hubCircle] ?? '#8b949e';
+              const label     = conn.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+
+              // Existing hub cities cannot be proposed as new DCs
+              if (isHub) {
+                return (
+                  <div
+                    key={key}
+                    className="w-full px-4 py-2.5 border-b border-border/40 flex items-center gap-3 opacity-45 cursor-not-allowed select-none"
+                    title="Existing DC — cannot be proposed"
+                  >
+                    <div className="w-4 h-4 rounded border-2 border-border/40 flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[12px] font-semibold text-txt truncate">{label}</span>
+                        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded flex-shrink-0"
+                          style={{ background: `${color}25`, color }}>{conn.hubCircle}</span>
+                        <span className="text-[9px] px-1.5 py-0.5 rounded flex-shrink-0 bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+                          existing DC
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <button
+                  key={key}
+                  onClick={() => toggleDistrict(conn)}
+                  className={`w-full text-left px-4 py-2.5 border-b border-border/40 transition-colors flex items-center gap-3 ${
+                    isPlanned ? 'bg-amber-950/25 hover:bg-amber-950/35' : 'hover:bg-card/50'
+                  }`}
+                >
+                  {/* Checkbox */}
+                  <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                    isPlanned ? 'bg-amber-500 border-amber-500' : 'border-border'
+                  }`}>
+                    {isPlanned && (
+                      <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                        <polyline points="2,6 5,9 10,3" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[12px] font-semibold text-txt truncate">{label}</span>
+                      <span className="text-[9px] font-bold px-1.5 py-0.5 rounded flex-shrink-0"
+                        style={{ background: `${color}25`, color }}>{conn.hubCircle}</span>
+                    </div>
+                    <div className="text-[10px] text-muted mt-0.5 flex gap-2.5">
+                      <span>{conn.hub.name}</span>
+                      <span className="text-red-400/70">{distKm} km</span>
+                      {vol > 0 && <span className="text-blue-400/70">{vol.toFixed(1)} TB</span>}
+                    </div>
+                  </div>
+
+                  {isPlanned && <span className="text-amber-400 text-[14px] flex-shrink-0">⭐</span>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right – Active DCs + Planned DCs */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 overflow-y-auto">
+
+            {/* ── Section 1: Active / Current DCs ── */}
+            <div className="border-b border-border">
+              <div className="px-5 py-2.5 flex items-center justify-between sticky top-0 bg-[#0d1117]/95 backdrop-blur-sm z-10">
+                <span className="text-[11px] font-bold text-txt uppercase tracking-wider">
+                  Active DCs
+                  <span className="ml-2 text-[10px] font-normal text-muted normal-case tracking-normal">
+                    {circleFilter ? `${circleFilter} circle` : 'all circles'} · {currentHubs.length} hubs
+                  </span>
+                </span>
+                {planned.length > 0 && (
+                  <span className="text-[9px] text-muted italic">grey = unaffected · red = losing traffic</span>
+                )}
+              </div>
+
+              <table className="w-full text-[11px] border-collapse">
+                <thead className="bg-card/40 text-muted">
+                  <tr>
+                    <th className="py-1.5 px-4 text-left font-medium">Hub</th>
+                    <th className="py-1.5 px-2 text-center font-medium">Circle</th>
+                    <th className="py-1.5 px-2 text-right font-medium text-blue-400">4G TB</th>
+                    <th className="py-1.5 px-2 text-right font-medium text-purple-400">5G TB</th>
+                    <th className="py-1.5 px-2 text-right font-medium text-txt">Total</th>
+                    <th className="py-1.5 px-2 text-right font-medium text-muted">Dists</th>
+                    <th className="py-1.5 px-2 text-right font-medium text-cyan-400">Cap Gbps</th>
+                    {planned.length > 0 && <>
+                      <th className="py-1.5 px-2 text-right font-medium text-red-400">−Dists</th>
+                      <th className="py-1.5 px-2 text-right font-medium text-red-400">−TB</th>
+                    </>}
+                    <th className="py-1.5 px-2 text-center font-medium text-muted w-6"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/30">
+                  {currentHubs.map(({ hub, v4, v5, total, districtCount, lostDistricts, lostVol }) => {
+                    const color    = HUB_CIRCLE_COLORS[hub.circle] ?? '#8b949e';
+                    const affected = lostDistricts > 0;
+                    const key      = hubKey(hub);
+                    const excluded = excludedHubs.has(key);
+                    return (
+                      <tr key={key}
+                        className={`transition-colors ${excluded ? 'opacity-35' : affected ? 'bg-red-950/10 hover:bg-red-950/20' : 'hover:bg-card/30'}`}>
+                        <td className="py-2 px-4 font-semibold" style={{ color: affected && !excluded ? '#fca5a5' : '#e2e8f0' }}>
+                          <div className="flex items-center gap-2">
+                            {excluded && <span className="text-[9px] text-muted line-through">{hub.name}</span>}
+                            {!excluded && hub.name}
+                            {excluded && (
+                              <button
+                                onClick={() => setExcludedHubs(prev => { const n = new Set(prev); n.delete(key); return n; })}
+                                className="text-[9px] text-green-400/60 hover:text-green-400 transition-colors"
+                                title="Re-add to pie"
+                              >+add</button>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-2 px-2 text-center">
+                          <span className="text-[9px] font-bold px-1.5 py-0.5 rounded"
+                            style={{ background: `${color}25`, color }}>{hub.circle}</span>
+                        </td>
+                        <td className="py-2 px-2 text-right font-mono text-blue-400">{v4.toFixed(1)}</td>
+                        <td className="py-2 px-2 text-right font-mono text-purple-400">{v5.toFixed(1)}</td>
+                        <td className="py-2 px-2 text-right font-mono font-bold text-txt">{total.toFixed(1)}</td>
+                        <td className="py-2 px-2 text-right font-mono text-muted">{districtCount}</td>
+                        <td className="py-2 px-2 text-right font-mono text-cyan-400/70">{hub.throughput > 0 ? hub.throughput.toLocaleString() : '—'}</td>
+                        {planned.length > 0 && <>
+                          <td className="py-2 px-2 text-right font-mono font-bold" style={{ color: affected && !excluded ? '#f87171' : '#4b5563' }}>
+                            {affected ? `−${lostDistricts}` : '—'}
+                          </td>
+                          <td className="py-2 px-2 text-right font-mono font-bold" style={{ color: affected && !excluded ? '#f87171' : '#4b5563' }}>
+                            {affected ? `−${lostVol.toFixed(1)}` : '—'}
+                          </td>
+                        </>}
+                        <td className="py-2 px-2 text-center">
+                          {!excluded ? (
+                            <button
+                              onClick={() => setExcludedHubs(prev => new Set([...Array.from(prev), key]))}
+                              className="text-muted hover:text-red-400 transition-colors text-[14px] leading-none"
+                              title="Remove from pie"
+                            >×</button>
+                          ) : null}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* ── Section 2: Proposed / Planned DCs ── */}
+            <div>
+              <div className="px-5 py-2.5 flex items-center justify-between sticky top-0 bg-[#0d1117]/95 backdrop-blur-sm z-10 border-b border-border">
+                <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
+                  Proposed DCs
+                  <span className="ml-2 text-[10px] font-normal text-muted normal-case tracking-normal">
+                    {planned.length === 0 ? 'none planned yet' : `${planned.length} planned`}
+                  </span>
+                </span>
+              </div>
+
+              {planned.length === 0 ? (
+                <div className="flex flex-col items-center justify-center text-center px-8 py-12">
+                  <div className="text-[40px] mb-3 opacity-20 select-none">⭐</div>
+                  <div className="text-[13px] text-muted">Select districts on the left to plan new DCs</div>
+                </div>
+              ) : (
+                <>
+                  {/* Combined pie: existing hubs + proposed DCs */}
+                  <div className="flex flex-col items-center pt-4 pb-1 border-b border-border">
+                    <div className="text-[10px] text-muted uppercase tracking-wider mb-1">
+                      Traffic Distribution — Current + Proposed
+                    </div>
+                    <PieChart width={380} height={210}>
+                      <Pie
+                        data={pieData.entries}
+                        cx="50%" cy="50%"
+                        outerRadius={88}
+                        dataKey="value"
+                        labelLine={false}
+                        label={({ cx, cy, midAngle, innerRadius, outerRadius, pct }: {
+                          cx: number; cy: number; midAngle: number;
+                          innerRadius: number; outerRadius: number; pct: number;
+                        }) => {
+                          if (pct < 5) return null;
+                          const r = innerRadius + (outerRadius - innerRadius) * 0.55;
+                          const x = cx + r * Math.cos(-midAngle * Math.PI / 180);
+                          const y = cy + r * Math.sin(-midAngle * Math.PI / 180);
+                          return (
+                            <text x={x} y={y} fill="#000" textAnchor="middle"
+                              dominantBaseline="central" fontSize={10} fontWeight={700}>
+                              {pct.toFixed(0)}%
+                            </text>
+                          );
+                        }}
+                      >
+                        {pieData.entries.map((e, i) => (
+                          <Cell
+                            key={i}
+                            fill={e.color}
+                            stroke={e.isProposed ? '#fff' : 'rgba(0,0,0,0.25)'}
+                            strokeWidth={e.isProposed ? 2 : 1}
+                          />
+                        ))}
+                      </Pie>
+                      <RTooltip
+                        contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 6, fontSize: 11 }}
+                        formatter={(val: number, _: string, props: { payload?: { name: string; pct: number; isProposed: boolean } }) => [
+                          `${val.toFixed(1)} TB/day  (${props.payload?.pct.toFixed(1)}%)`,
+                          props.payload?.name ?? '',
+                        ]}
+                      />
+                    </PieChart>
+                    {/* Legend */}
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 px-4 pb-3 justify-center">
+                      {pieData.entries.map(e => (
+                        <div key={e.name} className="flex items-center gap-1.5 text-[9px]">
+                          <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0"
+                            style={{ background: e.color, outline: e.isProposed ? '1.5px solid #fff' : 'none' }} />
+                          <span className="text-muted">{e.name}</span>
+                          <span className="font-mono text-txt">{e.pct.toFixed(1)}%</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-[10px] text-muted font-mono pb-2">
+                      {pieData.total.toFixed(1)} TB/day total
+                      {planned.length > 0 && ` · amber = proposed DCs`}
+                    </div>
+                  </div>
+
+                  {/* Planned DC cards */}
+                  {planned.map(({ key, rec }) => {
+                    const color   = HUB_CIRCLE_COLORS[rec.circle] ?? '#f59e0b';
+                    const offload = rec.volumeOffloaded4G + rec.volumeOffloaded5G;
+                    const pct     = pieData.entries.find(e => e.isProposed && e.name === `⭐ ${rec.proposedDC.label} (${rec.circle})`)?.pct ?? 0;
+
+                    // Group migrating districts by their source hub
+                    const byHub = new Map<string, { hubName: string; dists: number; vol4g: number; vol5g: number; saved: number }>();
+                    for (const d of rec.migratingDistricts) {
+                      const src = ALL_CONNECTIONS.find(c => c.district === d.district)?.hub;
+                      const k   = src ? `${src.name}` : 'Unknown';
+                      const ex  = byHub.get(k) ?? { hubName: k, dists: 0, vol4g: 0, vol5g: 0, saved: 0 };
+                      ex.dists++; ex.vol4g += d.vol4g; ex.vol5g += d.vol5g; ex.saved += d.distSaved;
+                      byHub.set(k, ex);
+                    }
+                    const sourceHubs = Array.from(byHub.values())
+                      .map(h => ({ ...h, vol: h.vol4g + h.vol5g, avgSaved: Math.round(h.saved / h.dists) }))
+                      .sort((a, b) => b.vol - a.vol);
+
+                    return (
+                      <div key={key} className="border-b border-border/50">
+                        {/* Card header */}
+                        <div className="flex items-center justify-between px-5 py-3 bg-card/10">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] font-black px-2 py-0.5 rounded"
+                              style={{ background: color, color: '#000' }}>{rec.circle}</span>
+                            <span className="text-[14px] font-bold text-txt">⭐ {rec.proposedDC.label}</span>
+                          </div>
+                          <div className="flex items-center gap-2.5">
+                            {planned.length >= 2 && (
+                              <span className="text-[15px] font-black" style={{ color }}>{pct.toFixed(1)}%</span>
+                            )}
+                            <button
+                              onClick={() => setPlanned(prev => prev.filter(p => p.key !== key))}
+                              className="text-muted hover:text-red-400 transition-colors text-[20px] leading-none"
+                            >×</button>
+                          </div>
+                        </div>
+
+                        {/* Summary KPIs */}
+                        <div className="grid grid-cols-4 gap-px bg-border mx-5 mb-3 rounded overflow-hidden mt-2">
+                          {[
+                            { val: `${offload.toFixed(1)}`,         sub: 'Total TB/day',  color: 'text-amber-400' },
+                            { val: String(rec.districtCount),        sub: 'Districts',     color: 'text-txt' },
+                            { val: `${rec.avgDistBefore} km`,        sub: 'Avg dist now',  color: 'text-red-400' },
+                            { val: `${rec.avgDistAfter} km`,         sub: 'Avg after DC',  color: 'text-green-400' },
+                          ].map(({ val, sub, color: c }) => (
+                            <div key={sub} className="bg-card/50 px-2 py-2 text-center">
+                              <div className={`text-[13px] font-black ${c}`}>{val}</div>
+                              <div className="text-[9px] text-muted mt-0.5">{sub}</div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* 4G / 5G split */}
+                        <div className="flex gap-4 px-5 pb-2 text-[11px]">
+                          <span className="text-blue-400">{rec.volumeOffloaded4G.toFixed(1)} TB  4G offload</span>
+                          <span className="text-purple-400">{rec.volumeOffloaded5G.toFixed(1)} TB  5G offload</span>
+                          <span className="text-green-400 ml-auto">save {rec.avgDistBefore - rec.avgDistAfter} km avg</span>
+                        </div>
+
+                        {/* Per-source-hub offload breakdown */}
+                        <div className="px-5 pb-3">
+                          <div className="text-[10px] text-muted uppercase tracking-wider mb-1.5 mt-1">Offload by source hub</div>
+                          <table className="w-full text-[11px] border-collapse">
+                            <thead className="bg-card/40 text-muted">
+                              <tr>
+                                <th className="py-1 px-2 text-left font-medium">Hub</th>
+                                <th className="py-1 px-2 text-right font-medium">Dists</th>
+                                <th className="py-1 px-2 text-right font-medium text-blue-400">4G TB</th>
+                                <th className="py-1 px-2 text-right font-medium text-purple-400">5G TB</th>
+                                <th className="py-1 px-2 text-right font-medium text-amber-400">Total TB</th>
+                                <th className="py-1 px-2 text-right font-medium text-green-400">Avg −km</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-border/30">
+                              {sourceHubs.map(sh => (
+                                <tr key={sh.hubName} className="hover:bg-card/30">
+                                  <td className="py-1.5 px-2 font-semibold text-txt">{sh.hubName}</td>
+                                  <td className="py-1.5 px-2 text-right font-mono text-muted">{sh.dists}</td>
+                                  <td className="py-1.5 px-2 text-right font-mono text-blue-400">{sh.vol4g.toFixed(1)}</td>
+                                  <td className="py-1.5 px-2 text-right font-mono text-purple-400">{sh.vol5g.toFixed(1)}</td>
+                                  <td className="py-1.5 px-2 text-right font-mono font-bold text-amber-400">{sh.vol.toFixed(1)}</td>
+                                  <td className="py-1.5 px-2 text-right font-mono text-green-400">{sh.avgSaved}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── Main component ── */
 export default function MobileHubsMap() {
   const [activeCircles, setActiveCircles]     = useState<Set<string>>(new Set(HUB_CIRCLE_CODES));
@@ -596,7 +1213,8 @@ export default function MobileHubsMap() {
   const [showFixed, setShowFixed]             = useState(false);
   const [dateIdx, setDateIdx]                 = useState(DATES.length - 1);
   const [gen, setGen]                         = useState<GenMode>('both');
-  const [selectedRec, setSelectedRec]         = useState<DCRecommendation | null>(null);
+  const [selectedRecs, setSelectedRecs]       = useState<DCRecommendation[]>([]);
+  const [showDCPlanning, setShowDCPlanning]   = useState(false);
 
   const recommendations = useMemo(() => computeDCRecommendations(dateIdx), [dateIdx]);
 
@@ -649,10 +1267,6 @@ export default function MobileHubsMap() {
     [visibleHubs],
   );
 
-  const stateStyle = useCallback(() => ({
-    fillColor: '#1e293b', fillOpacity: 0.35,
-    color: '#334155', weight: 0.6, opacity: 0.7,
-  }), []);
 
   return (
     <div className="w-full h-full relative">
@@ -665,7 +1279,20 @@ export default function MobileHubsMap() {
           attribution="&copy; OpenStreetMap contributors &copy; CARTO"
           maxZoom={19} subdomains="abcd"
         />
-        <GeoJSON data={indiaStates as any} style={stateStyle} />
+        {/* Gray base for all states */}
+        <GeoJSON
+          key="base"
+          data={indiaStates as any}
+          style={() => ({ fillColor: '#1e293b', fillOpacity: 0.20, color: '#1e293b', weight: 0.5, opacity: 0.4 })}
+        />
+        {/* One colored outline layer per active circle */}
+        {HUB_CIRCLE_CODES.filter(code => activeCircles.has(code) && CIRCLE_GEOJSON[code]?.features.length).map(code => (
+          <GeoJSON
+            key={code}
+            data={CIRCLE_GEOJSON[code]}
+            style={() => ({ fillColor: HUB_CIRCLE_COLORS[code], fillOpacity: 0.08, color: HUB_CIRCLE_COLORS[code], weight: 2, opacity: 0.75 })}
+          />
+        ))}
 
         {/* 1 – Connection lines */}
         {showLines && visibleConnections.map(c => {
@@ -800,56 +1427,57 @@ export default function MobileHubsMap() {
           );
         })}
 
-        {/* 4 – Recommended DC overlays */}
-        {selectedRec && (<>
-          {/* Dashed red lines: migrating districts → overloaded hub */}
-          {selectedRec.migratingDistricts.map(d => (
-            <Polyline
-              key={`old-${d.district}`}
-              positions={[[d.distLat, d.distLng], [selectedRec.parentHub.lat, selectedRec.parentHub.lng]]}
-              pathOptions={{ color: '#ef4444', weight: 1.5, opacity: 0.6, dashArray: '5 4' }}
-            />
-          ))}
-          {/* Green lines: migrating districts → proposed DC */}
-          {selectedRec.migratingDistricts.map(d => (
-            <Polyline
-              key={`new-${d.district}`}
-              positions={[[d.distLat, d.distLng], [selectedRec.proposedDC.lat, selectedRec.proposedDC.lng]]}
-              pathOptions={{ color: '#10b981', weight: 1.8, opacity: 0.85 }}
-            />
-          ))}
-          {/* Migrating district dots highlighted red */}
-          {selectedRec.migratingDistricts.map(d => (
-            <CircleMarker
-              key={`mig-${d.district}`}
-              center={[d.distLat, d.distLng]}
-              radius={5}
-              pathOptions={{ color: '#fca5a5', fillColor: '#ef4444', fillOpacity: 0.9, weight: 1.5 }}
-            >
-              <Tooltip direction="top" offset={[0, -5]}>
-                <div style={TT}>
-                  <div style={{ fontWeight: 700, color: '#fff' }}>{d.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</div>
-                  <div style={{ color: '#ef4444', fontSize: 10 }}>Currently {d.oldDistKm} km from hub</div>
-                  <div style={{ color: '#10b981', fontSize: 10 }}>→ {d.newDistKm} km to proposed DC (save {d.distSaved} km)</div>
-                  <div style={{ color: '#94a3b8', fontSize: 10 }}>{(d.vol4g + d.vol5g).toFixed(1)} TB/day</div>
-                </div>
-              </Tooltip>
-            </CircleMarker>
-          ))}
-          {/* Gold star: proposed DC */}
-          <CircleMarker
-            center={[selectedRec.proposedDC.lat, selectedRec.proposedDC.lng]}
-            radius={14}
-            pathOptions={{ color: '#f59e0b', fillColor: '#fbbf24', fillOpacity: 0.95, weight: 3 }}
-            eventHandlers={{ click: () => setSelectedRec(null) }}
-          >
-            <Tooltip permanent direction="top" offset={[0, -14]}>
-              <span style={{ fontSize: 11, fontWeight: 700, color: '#f59e0b' }}>
-                ⭐ Proposed DC · {selectedRec.proposedDC.label}
-              </span>
-            </Tooltip>
-          </CircleMarker>
-        </>)}
+        {/* 4 – Recommended DC overlays (one per selected rec) */}
+        {selectedRecs.map(rec => {
+          const rcColor = HUB_CIRCLE_COLORS[rec.circle] ?? '#f59e0b';
+          return (
+            <React.Fragment key={`overlay-${rec.circle}`}>
+              {rec.migratingDistricts.map(d => (
+                <Polyline
+                  key={`old-${rec.circle}-${d.district}`}
+                  positions={[[d.distLat, d.distLng], [rec.parentHub.lat, rec.parentHub.lng]]}
+                  pathOptions={{ color: '#ef4444', weight: 1.5, opacity: 0.6, dashArray: '5 4' }}
+                />
+              ))}
+              {rec.migratingDistricts.map(d => (
+                <Polyline
+                  key={`new-${rec.circle}-${d.district}`}
+                  positions={[[d.distLat, d.distLng], [rec.proposedDC.lat, rec.proposedDC.lng]]}
+                  pathOptions={{ color: '#10b981', weight: 1.8, opacity: 0.85 }}
+                />
+              ))}
+              {rec.migratingDistricts.map(d => (
+                <CircleMarker
+                  key={`mig-${rec.circle}-${d.district}`}
+                  center={[d.distLat, d.distLng]}
+                  radius={5}
+                  pathOptions={{ color: '#fca5a5', fillColor: '#ef4444', fillOpacity: 0.9, weight: 1.5 }}
+                >
+                  <Tooltip direction="top" offset={[0, -5]}>
+                    <div style={TT}>
+                      <div style={{ fontWeight: 700, color: '#fff' }}>{d.district.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</div>
+                      <div style={{ color: '#ef4444', fontSize: 10 }}>Currently {d.oldDistKm} km from hub</div>
+                      <div style={{ color: '#10b981', fontSize: 10 }}>→ {d.newDistKm} km to proposed DC (save {d.distSaved} km)</div>
+                      <div style={{ color: '#94a3b8', fontSize: 10 }}>{(d.vol4g + d.vol5g).toFixed(1)} TB/day</div>
+                    </div>
+                  </Tooltip>
+                </CircleMarker>
+              ))}
+              <CircleMarker
+                center={[rec.proposedDC.lat, rec.proposedDC.lng]}
+                radius={14}
+                pathOptions={{ color: rcColor, fillColor: rcColor, fillOpacity: 0.95, weight: 3 }}
+                eventHandlers={{ click: () => setSelectedRecs(prev => prev.filter(r => r.circle !== rec.circle)) }}
+              >
+                <Tooltip permanent direction="top" offset={[0, -14]}>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: rcColor }}>
+                    ⭐ {rec.circle} · {rec.proposedDC.label}
+                  </span>
+                </Tooltip>
+              </CircleMarker>
+            </React.Fragment>
+          );
+        })}
       </MapContainer>
 
       {/* ── Top-centre controls ── */}
@@ -875,6 +1503,14 @@ export default function MobileHubsMap() {
             onClick={() => setShowFixed(f => !f)}
             className={`px-4 py-1.5 transition-colors border-l border-border ${showFixed ? 'text-orange-400' : 'text-muted hover:text-txt'}`}
           >Fixed ({FIXED_DISTRICTS.size})</button>
+          <button
+            onClick={() => setShowDCPlanning(true)}
+            className={`px-4 py-1.5 transition-colors border-l border-border font-semibold ${
+              selectedRecs.length > 0 ? 'text-amber-400' : 'text-muted hover:text-txt'
+            }`}
+          >
+            ⭐ Plan DCs{selectedRecs.length > 0 ? ` (${selectedRecs.length})` : ''}
+          </button>
           {selectedHub && (
             <button onClick={() => setSelectedHub(null)}
               className="px-4 py-1.5 text-muted hover:text-txt transition-colors border-l border-border">
@@ -911,7 +1547,7 @@ export default function MobileHubsMap() {
         {circleStats.map(({ code, hubCount, distCount, throughput }) => {
           const active      = activeCircles.has(code);
           const isSelCircle = selectedCircle === code;
-          const isRecActive = selectedRec?.circle === code;
+          const isRecActive = selectedRecs.some(r => r.circle === code);
           const color       = HUB_CIRCLE_COLORS[code];
           return (
             <div
@@ -934,15 +1570,15 @@ export default function MobileHubsMap() {
               {/* Label — shows recommended DC for this circle on map */}
               <button
                 onClick={() => {
-                  const rec = recommendations.get(code) ?? null;
-                  if (selectedRec?.circle === code) {
-                    setSelectedRec(null);
-                  } else {
-                    setSelectedRec(rec);
-                    setSelectedHub(null);
-                    setSelectedDistrict(null);
-                    setSelectedCircle(null);
-                  }
+                  const rec = recommendations.get(code);
+                  if (!rec) return;
+                  setSelectedRecs(prev => {
+                    const already = prev.some(r => r.circle === code);
+                    return already ? prev.filter(r => r.circle !== code) : [...prev, rec];
+                  });
+                  setSelectedHub(null);
+                  setSelectedDistrict(null);
+                  setSelectedCircle(null);
                 }}
                 className="flex items-center gap-1.5 py-1.5 pr-2 flex-1 text-left hover:opacity-80 transition-opacity"
               >
@@ -951,7 +1587,7 @@ export default function MobileHubsMap() {
                   {HUB_CIRCLE_LABELS[code]?.split(/[+\s]/)[0]}
                 </span>
                 {recommendations.has(code) && (
-                  <span className="text-[9px]" style={{ color: selectedRec?.circle === code ? '#f59e0b' : '#4b5563' }}>⭐</span>
+                  <span className="text-[9px]" style={{ color: selectedRecs.some(r => r.circle === code) ? '#f59e0b' : '#4b5563' }}>⭐</span>
                 )}
                 <span className="ml-auto text-[9px] font-mono" style={{ color: '#8b949e' }}>
                   {throughput.toLocaleString()}G
@@ -1118,11 +1754,157 @@ export default function MobileHubsMap() {
         </div>
       )}
 
-      {/* ── DC Recommendation panel ── */}
-      {selectedRec && !selectedHub && !selectedDistrict && (() => {
-        const rec   = selectedRec;
+      {/* ── DC Recommendation panel (multi-select pie when 2+ selected) ── */}
+      {selectedRecs.length >= 2 && !selectedHub && !selectedDistrict && (() => {
+        const pieData = selectedRecs.map(r => ({
+          name: `${r.circle} · ${r.proposedDC.label}`,
+          code: r.circle,
+          value: r.volumeOffloaded4G + r.volumeOffloaded5G,
+          color: HUB_CIRCLE_COLORS[r.circle] ?? '#f59e0b',
+          hub: r.parentHub.name,
+          districts: r.districtCount,
+          saved: r.avgDistBefore - r.avgDistAfter,
+          v4: r.volumeOffloaded4G,
+          v5: r.volumeOffloaded5G,
+          pct: 0, // filled below
+        }));
+        const totalOffload = pieData.reduce((s, d) => s + d.value, 0);
+        pieData.forEach(d => { d.pct = totalOffload > 0 ? (d.value / totalOffload) * 100 : 0; });
+
+        const RADIAN = Math.PI / 180;
+        const renderLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, pct }: {
+          cx: number; cy: number; midAngle: number;
+          innerRadius: number; outerRadius: number; pct: number;
+        }) => {
+          const r = innerRadius + (outerRadius - innerRadius) * 0.5;
+          const x = cx + r * Math.cos(-midAngle * RADIAN);
+          const y = cy + r * Math.sin(-midAngle * RADIAN);
+          return pct > 7 ? (
+            <text x={x} y={y} fill="#000" textAnchor="middle" dominantBaseline="central" fontSize={10} fontWeight={700}>
+              {pct.toFixed(0)}%
+            </text>
+          ) : null;
+        };
+
+        return (
+          <div className="absolute top-0 right-0 h-full z-[2000] flex flex-col bg-panel border-l border-border shadow-2xl overflow-hidden" style={{ width: 360 }}>
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border flex-shrink-0 bg-amber-950/20">
+              <div>
+                <div className="text-[14px] font-black text-txt">{selectedRecs.length} Proposed DCs Selected</div>
+                <div className="text-[10px] text-muted mt-0.5">Traffic offload comparison · click ⭐ to deselect</div>
+              </div>
+              <button onClick={() => setSelectedRecs([])} className="text-muted hover:text-txt text-xl leading-none">×</button>
+            </div>
+
+            {/* Pie chart */}
+            <div className="flex flex-col items-center pt-3 pb-1 border-b border-border flex-shrink-0">
+              <div className="text-[9px] text-muted uppercase tracking-wider mb-1">Offload Volume Share (TB/day)</div>
+              <PieChart width={300} height={190}>
+                <Pie
+                  data={pieData}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={85}
+                  dataKey="value"
+                  labelLine={false}
+                  label={renderLabel}
+                >
+                  {pieData.map((entry, i) => (
+                    <Cell key={`cell-${i}`} fill={entry.color} stroke="rgba(0,0,0,0.3)" strokeWidth={1} />
+                  ))}
+                </Pie>
+                <RTooltip
+                  contentStyle={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 6, fontSize: 11 }}
+                  formatter={(val: number, _name: string, props: { payload?: { name: string; pct: number } }) => [
+                    `${val.toFixed(1)} TB  (${props.payload?.pct.toFixed(1)}%)`,
+                    props.payload?.name ?? '',
+                  ]}
+                />
+              </PieChart>
+              <div className="text-[10px] text-muted font-mono">Total: {totalOffload.toFixed(1)} TB/day offloaded</div>
+            </div>
+
+            {/* Per-DC rows */}
+            <div className="flex-1 overflow-y-auto">
+              {pieData.map((d) => (
+                <div
+                  key={d.code}
+                  className="px-4 py-2.5 border-b border-border/50 hover:bg-card/30 transition-colors"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: d.color }} />
+                    <span className="text-[12px] font-black" style={{ color: d.color }}>{d.code}</span>
+                    <span className="text-[11px] text-txt font-semibold truncate">{d.name.split(' · ')[1]}</span>
+                    <span className="ml-auto text-[13px] font-black text-amber-300">{d.pct.toFixed(1)}%</span>
+                  </div>
+                  <div className="flex gap-3 text-[10px] text-muted">
+                    <span>Hub: <span className="text-txt">{d.hub}</span></span>
+                    <span>{d.districts} districts</span>
+                    <span className="text-green-400">−{d.saved} km avg</span>
+                  </div>
+                  <div className="flex gap-3 text-[10px] mt-0.5">
+                    <span className="text-blue-400">{d.v4.toFixed(1)} TB 4G</span>
+                    <span className="text-purple-400">{d.v5.toFixed(1)} TB 5G</span>
+                    <button
+                      onClick={() => setSelectedRecs(prev => prev.filter(r => r.circle !== d.code))}
+                      className="ml-auto text-red-400/60 hover:text-red-400 text-[10px]"
+                    >
+                      remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* ── DC Recommendation panel (single) ── */}
+      {selectedRecs.length === 1 && !selectedHub && !selectedDistrict && (() => {
+        const rec   = selectedRecs[0];
         const color = HUB_CIRCLE_COLORS[rec.circle];
         const totalVol = rec.volumeOffloaded4G + rec.volumeOffloaded5G;
+
+        // ── DC share computation ──────────────────────────────────────────
+        const circleHubs = HUBS.filter(h => h.circle === rec.circle);
+        const hubVols = circleHubs.map(hub => {
+          const entry = hubVolIndex[`${hub.circle}::${hub.name}`];
+          const vol = (entry?.vals4g[dateIdx] ?? 0) + (entry?.vals5g[dateIdx] ?? 0);
+          return { name: hub.name, vol };
+        });
+        const circleTotal = hubVols.reduce((s, h) => s + h.vol, 0);
+        const offloaded = totalVol;
+
+        // Assign a stable color per hub using index
+        const hubColors = ['#22d3ee','#a78bfa','#34d399','#f87171','#fb923c','#60a5fa','#e879f9','#fbbf24'];
+
+        type ShareEntry = { name: string; pct: number; vol: number; color: string; isNew?: boolean };
+        const actual: ShareEntry[] = hubVols.map((h, i) => ({
+          name: h.name,
+          pct:  circleTotal > 0 ? (h.vol / circleTotal) * 100 : 0,
+          vol:  h.vol,
+          color: hubColors[i % hubColors.length],
+        }));
+
+        const proposed: ShareEntry[] = hubVols.map((h, i) => {
+          const isParent = h.name === rec.parentHub.name;
+          const pVol = isParent ? Math.max(0, h.vol - offloaded) : h.vol;
+          return {
+            name: h.name,
+            pct:  circleTotal > 0 ? (pVol / circleTotal) * 100 : 0,
+            vol:  pVol,
+            color: hubColors[i % hubColors.length],
+          };
+        });
+        proposed.push({
+          name: `New DC · ${rec.proposedDC.label}`,
+          pct:  circleTotal > 0 ? (offloaded / circleTotal) * 100 : 0,
+          vol:  offloaded,
+          color: '#f59e0b',
+          isNew: true,
+        });
+
         return (
           <div className="absolute top-0 right-0 h-full z-[2000] flex flex-col bg-panel border-l border-border shadow-2xl overflow-hidden" style={{ width: 360 }}>
             {/* Header */}
@@ -1137,7 +1919,7 @@ export default function MobileHubsMap() {
                   <span className="ml-2 text-cyan-400">{rec.parentHub.throughput.toLocaleString()} Gbps</span>
                 </div>
               </div>
-              <button onClick={() => setSelectedRec(null)} className="text-muted hover:text-txt text-xl leading-none">×</button>
+              <button onClick={() => setSelectedRecs([])} className="text-muted hover:text-txt text-xl leading-none">×</button>
             </div>
 
             {/* KPIs */}
@@ -1166,6 +1948,79 @@ export default function MobileHubsMap() {
                 <span className="font-bold text-txt">{rec.districtCount}</span> districts migrate ·{' '}
                 <span className="font-bold text-txt">{totalVol.toFixed(1)} TB</span> total offload/day ·{' '}
                 <span className="text-green-400 font-bold">save {rec.avgDistBefore - rec.avgDistAfter} km avg</span>
+              </div>
+            </div>
+
+            {/* ── DC Share: Actual vs Proposed ── */}
+            <div className="px-4 pt-3 pb-2 border-b border-border flex-shrink-0">
+              <div className="text-[10px] font-semibold text-muted uppercase tracking-wider mb-2">Traffic Share — Actual vs Proposed</div>
+
+              {/* Actual bar */}
+              <div className="mb-2">
+                <div className="text-[10px] text-muted mb-1">Actual</div>
+                <div className="flex h-5 w-full rounded overflow-hidden">
+                  {actual.filter(s => s.pct > 0.5).map(s => (
+                    <div
+                      key={s.name}
+                      style={{ width: `${s.pct}%`, background: s.color }}
+                      className="relative group flex-shrink-0"
+                      title={`${s.name}: ${s.pct.toFixed(1)}% (${s.vol.toFixed(1)} TB)`}
+                    >
+                      {s.pct > 8 && (
+                        <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-black/70 truncate px-0.5">
+                          {s.pct.toFixed(0)}%
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Proposed bar */}
+              <div className="mb-2.5">
+                <div className="text-[10px] text-muted mb-1">Proposed</div>
+                <div className="flex h-5 w-full rounded overflow-hidden">
+                  {proposed.filter(s => s.pct > 0.5).map(s => (
+                    <div
+                      key={s.name}
+                      style={{ width: `${s.pct}%`, background: s.color, outline: s.isNew ? '1.5px solid #f59e0b' : 'none' }}
+                      className="relative group flex-shrink-0"
+                      title={`${s.name}: ${s.pct.toFixed(1)}% (${s.vol.toFixed(1)} TB)`}
+                    >
+                      {s.pct > 8 && (
+                        <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-black/70 truncate px-0.5">
+                          {s.pct.toFixed(0)}%
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Legend chips */}
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                {actual.map(s => {
+                  const after = proposed.find(p => p.name === s.name);
+                  const delta = after ? after.pct - s.pct : 0;
+                  return (
+                    <div key={s.name} className="flex items-center gap-1 text-[9px]">
+                      <span className="w-2 h-2 rounded-sm flex-shrink-0" style={{ background: s.color }} />
+                      <span className="text-muted">{s.name}</span>
+                      <span className="font-mono text-txt">{s.pct.toFixed(1)}%</span>
+                      {delta !== 0 && (
+                        <span className={`font-mono font-bold ${delta < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                          {delta > 0 ? '+' : ''}{delta.toFixed(1)}%
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+                <div className="flex items-center gap-1 text-[9px]">
+                  <span className="w-2 h-2 rounded-sm flex-shrink-0 border border-amber-400" style={{ background: '#f59e0b' }} />
+                  <span className="text-amber-400 font-semibold">{rec.proposedDC.label}</span>
+                  <span className="font-mono text-amber-300">{proposed[proposed.length - 1].pct.toFixed(1)}%</span>
+                  <span className="font-mono font-bold text-green-400">new</span>
+                </div>
               </div>
             </div>
 
@@ -1305,7 +2160,7 @@ export default function MobileHubsMap() {
                 <button
                   onClick={() => {
                     const rec = computeManualDCRecommendation(c, dateIdx);
-                    if (rec) { setSelectedRec(rec); setSelectedDistrict(null); }
+                    if (rec) { setSelectedRecs([rec]); setSelectedDistrict(null); }
                   }}
                   className="mt-2 w-full py-1.5 rounded text-[11px] font-semibold bg-amber-500/15 border border-amber-500/40 text-amber-400 hover:bg-amber-500/25 transition-colors"
                 >
@@ -1349,6 +2204,15 @@ export default function MobileHubsMap() {
           </div>
         );
       })()}
+
+      {/* ── DC Planning Overlay ── */}
+      {showDCPlanning && (
+        <DCPlanningOverlay
+          dateIdx={dateIdx}
+          onApply={recs => setSelectedRecs(recs)}
+          onClose={() => setShowDCPlanning(false)}
+        />
+      )}
     </div>
   );
 }

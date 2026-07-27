@@ -10,7 +10,18 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
       "Bash(python3 *)",
       "Bash(node *)",
-      "Skill(run)"
+      "Skill(run)",
+      "Bash(docker *)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:3011/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" \"http://localhost:3011/api/bng/load?date=2026-01-01\")",
+      "Bash(find / -maxdepth 4 -iname \"*july13*\")",
+      "Read(//root/**)",
+      "Bash(tar -tvf july13.tar)",
+      "Bash(curl -sSI http://localhost:313/)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "shadcn"
+  ]
 }

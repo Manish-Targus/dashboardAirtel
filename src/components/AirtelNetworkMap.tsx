@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, CircleMarker, Polyline, GeoJSON, Tooltip, useM
 import 'leaflet/dist/leaflet.css';
 import indiaStates from '@/data/india_states_simple.json';
 import { processedAirtelData, CIRCLE_NAMES } from '@/lib/airtelDataHelper';
+import { haversineKm, CIRCLE_CODE_MAP, computeIdealBngMap } from '@/lib/idealBngRouting';
 
 type MsanRecord = { msan: string; vlan: string; count: number };
 type BrasEntry = { bras: string; msans: MsanRecord[] };
@@ -16,64 +17,14 @@ type CityData = {
 };
 type CircleData = { hub: string; lat: number; lng: number; color: string; cities: CityData[] };
 
-const data = processedAirtelData as unknown as Record<string, CircleData>;
-
-/* ── Haversine distance ── */
-function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 6371;
-  const toRad = (d: number) => d * Math.PI / 180;
-  const dLat = toRad(lat2 - lat1);
-  const dLng = toRad(lng2 - lng1);
-  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
+let data = processedAirtelData as unknown as Record<string, CircleData>;
 
 /* ── All unique BNG city positions (across every circle) ── */
-const ALL_BNG_POSITIONS = (() => {
-  const map = new Map<string, { lat: number; lng: number }>();
-  for (const circle of Object.values(data)) {
-    for (const city of circle.cities) {
-      if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && !map.has(city.bngCity)) {
-        map.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
-      }
-    }
-  }
-  return map;
-})();
-
-/* ── Assign a distinct color to each BNG city using golden-angle hue spread ──
-   137.508° golden angle maximises perceptual separation between adjacent entries,
-   unlike even spacing which clusters hues at the ends of the visible spectrum.
-   Alternating lightness (60 / 68) adds a second visual dimension so nearby hues
-   look less alike at a glance. */
-const ALL_BNG_CITY_NAMES = Array.from(ALL_BNG_POSITIONS.keys()).sort();
-const BNG_CITY_COLORS: Record<string, string> = {};
-ALL_BNG_CITY_NAMES.forEach((bng, i) => {
-  const hue = Math.round((i * 137.508) % 360);
-  const light = i % 2 === 0 ? 60 : 68;
-  BNG_CITY_COLORS[bng] = `hsl(${hue}, 82%, ${light}%)`;
-});
-
-/* ── Pre-compute max totalCount for log-scale dot sizing ── */
-const MAX_OLT_COUNT = (() => {
-  let max = 1;
-  for (const circle of Object.values(data)) {
-    for (const city of circle.cities) {
-      if (city.totalCount > max) max = city.totalCount;
-    }
-  }
-  return max;
-})();
-
-const MAX_COMPLAINTS = (() => {
-  let max = 1;
-  for (const circle of Object.values(data)) {
-    for (const city of circle.cities) {
-      if ((city.complaints || 0) > max) max = city.complaints!;
-    }
-  }
-  return max;
-})();
+let ALL_BNG_POSITIONS = new Map<string, { lat: number; lng: number }>();
+let ALL_BNG_CITY_NAMES: string[] = [];
+let BNG_CITY_COLORS: Record<string, string> = {};
+let MAX_OLT_COUNT = 1;
+let MAX_COMPLAINTS = 1;
 
 /* ── Log10 radius: 2.5 px (1 connection) → 9 px (max connections) ── */
 function oltRadius(count: number): number {
@@ -89,25 +40,9 @@ function complaintRadius(count: number): number {
 }
 
 /* ── Pre-compute the nearest alternative BNG city for each OLT connection ── */
-const ALL_BNG_ENTRIES = Array.from(ALL_BNG_POSITIONS.entries());
-const SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
-for (const [circleName, circleData] of Object.entries(data)) {
-  for (const city of circleData.cities) {
-    if (city.bngCityLat == null || city.bngCityLng == null || city.distanceKm <= 0) continue;
-    let nearest: { name: string; distKm: number } | null = null;
-    for (const [bngName, bngPos] of ALL_BNG_ENTRIES) {
-      if (bngName === city.bngCity) continue;
-      const d = Math.round(haversineKm(city.lat, city.lng, bngPos.lat, bngPos.lng));
-      if (d < city.distanceKm && (!nearest || d < nearest.distKm)) {
-        nearest = { name: bngName, distKm: d };
-      }
-    }
-    if (nearest) {
-      SHORTER_BNG_MAP.set(`${circleName}-${city.name}-${city.bngCity}`, nearest);
-    }
-  }
-}
-const SHORTER_BNG_SET = new Set(SHORTER_BNG_MAP.keys());
+let ALL_BNG_ENTRIES: [string, { lat: number; lng: number }][] = [];
+let SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
+let SHORTER_BNG_SET = new Set<string>();
 
 /* ── Side panel ── */
 function CityPanel({ city, circleName, color, shorterBng, onClose, onSelectBng }: {
@@ -513,45 +448,8 @@ function exportIdealViewExcel() {
   XLSX.writeFile(wb, 'BNG_Ideal_View.xlsx');
 }
 
-/* ── Circle code mapping from FINAL.xlsx ── */
-const CIRCLE_CODE_MAP: Record<string, string> = {
-  'Andaman And Nicobar Islands': 'KO',
-  'Andhra Pradesh': 'AP',
-  'Arunachal Pradesh': 'AS',
-  'Assam': 'AS',
-  'Bihar': 'BH',
-  'Chhattisgarh': 'MP',
-  'Dadra And Nagar Haveli': 'GJ',
-  'Goa': 'MH',
-  'Gujarat': 'GJ',
-  'Haryana': 'UN',
-  'Himachal Pradesh': 'UN',
-  'Jammu And Kashmir': 'JK',
-  'Jharkhand': 'BH',
-  'Karnataka': 'KK',
-  'Kerala': 'TN',
-  'Ladakh': 'JK',
-  'Madhya Pradesh': 'MP',
-  'Maharashtra': 'MH',
-  'Manipur': 'AS',
-  'Meghalaya': 'AS',
-  'Mizoram': 'AS',
-  'NCR': 'DL',
-  'Nagaland': 'AS',
-  'Orissa': 'OD',
-  'Pondicherry': 'TN',
-  'Punjab': 'UN',
-  'Rajasthan': 'RJ',
-  'Sikkim': 'AS',
-  'Tamil Nadu': 'TN',
-  'Telangana': 'AP',
-  'Tripura': 'AS',
-  'Uttar Pradesh East': 'UE',
-  'Uttar Pradesh West': 'UW',
-  'Uttarakhand': 'UN',
-  'West Bengal': 'KO',
-};
-
+/* ── Circle code mapping (imported from idealBngRouting.ts — shared with the
+ *    Network Optimised simulation in BngScreen.tsx) ── */
 const CIRCLES_BY_CODE: Record<string, string[]> = {};
 for (const [circleName, code] of Object.entries(CIRCLE_CODE_MAP)) {
   if (!CIRCLES_BY_CODE[code]) CIRCLES_BY_CODE[code] = [];
@@ -566,51 +464,70 @@ UNIQUE_CIRCLE_CODES.forEach((code, i) => {
   CIRCLE_CODE_COLORS[code] = `hsl(${hue}, 82%, ${light}%)`;
 });
 
-/* ── BNG hub → its PRIMARY circle code (the code with the most OLT connections) ──
-   Using the dominant code (not every code it ever serves) prevents a hub like Okhla
-   (which incidentally serves a handful of UPE cities) from being treated as a UPE hub
-   when computing the ideal topology. */
-const _bngCircleCount = new Map<string, Map<string, number>>();
-for (const [circleName, circleData] of Object.entries(data)) {
-  const code = CIRCLE_CODE_MAP[circleName] ?? '';
-  for (const city of circleData.cities) {
-    if (!city.bngCity) continue;
-    if (!_bngCircleCount.has(city.bngCity)) _bngCircleCount.set(city.bngCity, new Map());
-    const cnt = _bngCircleCount.get(city.bngCity)!;
-    cnt.set(code, (cnt.get(code) ?? 0) + 1);
-  }
-}
-const BNG_PRIMARY_CODE = new Map<string, string>();
-for (const [bng, counts] of Array.from(_bngCircleCount.entries())) {
-  let primary = '', max = 0;
-  for (const [code, n] of Array.from(counts.entries())) { if (n > max) { primary = code; max = n; } }
-  BNG_PRIMARY_CODE.set(bng, primary);
-}
+/* ── Ideal topology rerouting map ── */
+let IDEAL_SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
 
-/* ── Ideal-mode: enforce within-circle connections ──
-   For each OLT city we find the nearest BNG hub whose PRIMARY circle code matches
-   the OLT city's circle code.
-   - If the current hub is already in-circle: only reroute when a closer option exists.
-   - If the current hub is out-of-circle (e.g. Okhla for a UPE city): force-reroute
-     to the nearest in-circle hub regardless of distance. */
-const IDEAL_SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
-for (const [circleName, circleData] of Object.entries(data)) {
-  const myCode = CIRCLE_CODE_MAP[circleName] ?? '';
-  for (const city of circleData.cities) {
-    if (city.bngCityLat == null || city.bngCityLng == null || city.distanceKm <= 0) continue;
-    const currentHubInCircle = BNG_PRIMARY_CODE.get(city.bngCity!) === myCode;
-    let nearest: { name: string; distKm: number } | null = null;
-    for (const [bngName, bngPos] of ALL_BNG_ENTRIES) {
-      if (bngName === city.bngCity) continue;
-      if (BNG_PRIMARY_CODE.get(bngName) !== myCode) continue; // only same-primary-circle hubs
-      const d = Math.round(haversineKm(city.lat, city.lng, bngPos.lat, bngPos.lng));
-      // Force reroute when out-of-circle; optimise when already in-circle
-      if ((!currentHubInCircle || d < city.distanceKm) && (!nearest || d < nearest.distKm)) {
-        nearest = { name: bngName, distKm: d };
+/* ── (Re)compute all data-derived module constants ── */
+function recomputeAllConstants() {
+  // BNG positions
+  ALL_BNG_POSITIONS = new Map<string, { lat: number; lng: number }>();
+  for (const circle of Object.values(data)) {
+    for (const city of circle.cities) {
+      if (city.bngCity && city.bngCityLat != null && city.bngCityLng != null && !ALL_BNG_POSITIONS.has(city.bngCity)) {
+        ALL_BNG_POSITIONS.set(city.bngCity, { lat: city.bngCityLat, lng: city.bngCityLng });
       }
     }
-    if (nearest) IDEAL_SHORTER_BNG_MAP.set(`${circleName}-${city.name}-${city.bngCity}`, nearest);
   }
+
+  // BNG colors (golden-angle hue spread)
+  ALL_BNG_CITY_NAMES = Array.from(ALL_BNG_POSITIONS.keys()).sort();
+  BNG_CITY_COLORS = {};
+  ALL_BNG_CITY_NAMES.forEach((bng, i) => {
+    const hue = Math.round((i * 137.508) % 360);
+    const light = i % 2 === 0 ? 60 : 68;
+    BNG_CITY_COLORS[bng] = `hsl(${hue}, 82%, ${light}%)`;
+  });
+
+  // Max counts for log-scale sizing
+  MAX_OLT_COUNT = 1;
+  MAX_COMPLAINTS = 1;
+  for (const circle of Object.values(data)) {
+    for (const city of circle.cities) {
+      if (city.totalCount > MAX_OLT_COUNT) MAX_OLT_COUNT = city.totalCount;
+      if ((city.complaints || 0) > MAX_COMPLAINTS) MAX_COMPLAINTS = city.complaints!;
+    }
+  }
+
+  // Shorter-BNG map (nearest alternative hub)
+  ALL_BNG_ENTRIES = Array.from(ALL_BNG_POSITIONS.entries());
+  SHORTER_BNG_MAP = new Map<string, { name: string; distKm: number }>();
+  for (const [circleName, circleData] of Object.entries(data)) {
+    for (const city of circleData.cities) {
+      if (city.bngCityLat == null || city.bngCityLng == null || city.distanceKm <= 0) continue;
+      let nearest: { name: string; distKm: number } | null = null;
+      for (const [bngName, bngPos] of ALL_BNG_ENTRIES) {
+        if (bngName === city.bngCity) continue;
+        const d = Math.round(haversineKm(city.lat, city.lng, bngPos.lat, bngPos.lng));
+        if (d < city.distanceKm && (!nearest || d < nearest.distKm)) nearest = { name: bngName, distKm: d };
+      }
+      if (nearest) SHORTER_BNG_MAP.set(`${circleName}-${city.name}-${city.bngCity}`, nearest);
+    }
+  }
+  SHORTER_BNG_SET = new Set(SHORTER_BNG_MAP.keys());
+
+  // Ideal topology rerouting (extracted to idealBngRouting.ts — shared with
+  // the BNG Optimisation tab's Network Optimised simulation)
+  IDEAL_SHORTER_BNG_MAP = computeIdealBngMap(data);
+}
+
+// Initialise constants from static data on first load
+recomputeAllConstants();
+
+/* ── Called from MapView when new BRAS upload is loaded ── */
+export function updateBrasData(newData: Record<string, CircleData>) {
+  // Merge: uploaded circles override static data, remaining static circles preserved
+  data = { ...processedAirtelData as unknown as Record<string, CircleData>, ...newData };
+  recomputeAllConstants();
 }
 
 /* ── Ideal BNG panel ── */
@@ -1140,6 +1057,45 @@ function CirclePanel({ circleCode, onClose, onSelectBng, mode = 'network' }: {
   );
 }
 
+/* ── GeoJSON state name → Airtel circle code ── */
+const GEO_TO_CIRCLE: Record<string, string> = {
+  'Andaman and Nicobar':    'KO',
+  'Andhra Pradesh':         'AP',
+  'Arunachal Pradesh':      'AS',
+  'Assam':                  'AS',
+  'Bihar':                  'BH',
+  'Chandigarh':             'UN',
+  'Chhattisgarh':           'MP',
+  'Dadra and Nagar Haveli': 'GJ',
+  'Daman and Diu':          'MH',
+  'Delhi':                  'DL',
+  'Goa':                    'MH',
+  'Gujarat':                'GJ',
+  'Haryana':                'UN',
+  'Himachal Pradesh':       'UN',
+  'Jammu and Kashmir':      'JK',
+  'Jharkhand':              'BH',
+  'Karnataka':              'KK',
+  'Kerala':                 'TN',
+  'Lakshadweep':            'TN',
+  'Madhya Pradesh':         'MP',
+  'Maharashtra':            'MH',
+  'Manipur':                'AS',
+  'Meghalaya':              'AS',
+  'Mizoram':                'AS',
+  'Nagaland':               'AS',
+  'Orissa':                 'OD',
+  'Puducherry':             'TN',
+  'Punjab':                 'UN',
+  'Rajasthan':              'RJ',
+  'Sikkim':                 'AS',
+  'Tamil Nadu':             'TN',
+  'Tripura':                'AS',
+  'Uttar Pradesh':          'UE',
+  'Uttaranchal':            'UN',
+  'West Bengal':            'KO',
+};
+
 /* ── Fly-to helper ── */
 function FlyTo({ lat, lng }: { lat: number; lng: number }) {
   const map = useMap();
@@ -1181,14 +1137,15 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
     });
   }
 
-  /* Uniform gray state fills — circle identity no longer drives state color */
-  const stateStyle = useCallback(() => ({
-    fillColor: '#1e293b',
-    fillOpacity: 0.35,
-    color: '#334155',
-    weight: 0.6,
-    opacity: 0.7,
-  }), []);
+  /* State fills — active circles get a colored outline; inactive remain gray */
+  const stateStyle = useCallback((feature: any) => {
+    const code = GEO_TO_CIRCLE[feature?.properties?.name as string ?? ''];
+    const active = code ? activeCircleCodes.has(code) : false;
+    const color = code ? (CIRCLE_CODE_COLORS[code] ?? '#334155') : '#334155';
+    return active
+      ? { fillColor: color, fillOpacity: 0.08, color, weight: 2, opacity: 0.75 }
+      : { fillColor: '#1e293b', fillOpacity: 0.20, color: '#1e293b', weight: 0.5, opacity: 0.4 };
+  }, [activeCircleCodes]);
 
   /* Lines: one per (OLT city → BNG city), colored by BNG city */
   const lines = useMemo(() =>
@@ -1277,8 +1234,12 @@ export default function AirtelNetworkMap({ mode = 'network' }: { mode?: 'network
 
         {selected && <FlyTo lat={selected.city.lat} lng={selected.city.lng} />}
 
-        {/* State boundary fills — uniform subtle gray, no circle coloring */}
-        <GeoJSON data={indiaStates as any} style={stateStyle} />
+        {/* State boundaries — colored outline per active circle */}
+        <GeoJSON
+          key={Array.from(activeCircleCodes).sort().join(',')}
+          data={indiaStates as any}
+          style={stateStyle}
+        />
 
         {/* Lines: OLT → BNG hub, colored by BNG city, kept dim so dots read first */}
         {lines.map(line => (

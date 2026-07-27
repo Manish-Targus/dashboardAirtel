@@ -1,0 +1,1910 @@
+[
+  {
+    "node": "AIRBRAS_AP-HYD-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-6",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-HYD-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-3",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-4",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AP-VJW-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Vijaywada",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-GHY-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Guwahati",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-GHY-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Guwahati",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-GHY-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Guwahati",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-GHY-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Guwahati",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-JOR-1",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Johrat",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-JOR-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Johrat",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_AS-JOR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Johrat",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-PTN-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-RCH-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Ranchi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BH-RCH-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Ranchi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_BLR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Whitefeild",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Santhome",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-10",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-3",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-4",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CHN-SSE-DC2-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "SerisuriDC2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_CLT-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Calicut",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GGN-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GGN-2",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GGN-3",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GGN-4",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GHT-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Guwahati",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GJ-RJK-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Rajkot",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GJ-RJK-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Rajkot",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GJ-RJK-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Rajkot",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GJ-RJK-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Rajkot",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GUJ-CGR-1",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Chandoghar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GUJ-CGR-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Chandoghar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GUJ-CGR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Chandoghar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_GUJ-CGR-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Chandoghar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_HAR-AMB-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Ambala",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_HAR-AMB-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Ambala",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_HAR-AMB-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Ambala",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_HAR-AMB-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Ambala",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_HYD-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_JAMMU-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Jammu",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_JK-SRI-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Srinagar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_JK-SRI-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Srinagar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_JPR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Jaipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KHR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Kharagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-BGL-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Hosurroad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-BGL-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Hosurroad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-BGL-3",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Whitefeild",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-BGL-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Hosurroad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-BGL-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Hosurroad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-10",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-11",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-12",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-4",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KK-MLR-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KL-CLT-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Calicut",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KL-PLC-1",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KL-PLC-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-4",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_KTN-PLC-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_LDH-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Ludhiana",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-NGP-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Nagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-NGP-R-BNG",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Nagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-10",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-11",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-12",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-4",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-5",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-8",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MH-PUN-9",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MLR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Manglore",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MOH-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-3",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-BPL-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MP-RPR-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Raipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MUM-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Spectrum",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MUM-CDV-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Chadiwali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MUM-SPT-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "4D -Spectrum",
+    "shuttingDown": true
+  },
+  {
+    "node": "AIRBRAS_MUM-SPT-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Spectrum",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_MUM-SPT-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Spectrum",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-3",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-4",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-MNR-7",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-NOD-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Noida81",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-NOD-4",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-NOD-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-NOD-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NCR-NOD-7",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_NOI-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_OR-BSV-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Sambalpur\nBSV",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_OR-BWR-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Infocity",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_OR-BWR-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Infocity",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_OR-BWR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Infocity",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PATNA-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Patliputra",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-LDH-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Ludhiana",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-LDH-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Ludhiana",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-LDH-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Ludhiana",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-MOH-3",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-MOH-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-MOH-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-MOH-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PB-MOH-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Mohali",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PBL-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Portblare",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PLC-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Pollachi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PUN-2",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_PUN-3",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Kharadi",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JDH-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Jodhpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JDH-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Jodhpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JDH-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Jodhpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JDH-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Jodhpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JDH-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Jodhpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JPR-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Jaipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JPR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Jaipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JPR-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Jaipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RAJ-JPR-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Jaipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_RPR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Raipur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-1",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-5",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-GNJ-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Gangaganj",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-LKO-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Lucknow",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-VAR-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Tarna",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-VAR-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Tarna",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPE-VAR-3",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Tarna",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-1",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-2",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-5",
+    "fabricType": "Fabric",
+    "bngType": "FTTH",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-6",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Moradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MBD-7",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Noida81\nMoradabad",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MRT-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Merrut",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-MRT-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Merrut",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_UPW-NOD-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Govindpura",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-BSV-1",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "BSV",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-BSV-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "BSV",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-BSV-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FTTH",
+    "site": "Sambalpur\nBSV",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KHR-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Kharagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KHR-2",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Kharagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KHR-3",
+    "fabricType": "Fabric",
+    "bngType": "CFWA BNG",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Kharagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KHR-4",
+    "fabricType": "Fabric",
+    "bngType": "CFWA RBNG",
+    "status": "Live",
+    "services": "FWA",
+    "site": "Kharagpur",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KOL-1",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Infinity2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIRBRAS_WB-KOL-2",
+    "fabricType": "Fabric",
+    "bngType": "Non CFWA",
+    "status": "Live",
+    "services": "FTTH+FWA",
+    "site": "Infinity2",
+    "shuttingDown": false
+  },
+  {
+    "node": "AIR_BRAS_IDR-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Indore",
+    "shuttingDown": true
+  },
+  {
+    "node": "AIR_BRAS_PUN-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "E-space",
+    "shuttingDown": false
+  },
+  {
+    "node": "BRASAMD-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Chandoghar",
+    "shuttingDown": false
+  },
+  {
+    "node": "BRASDEL-4",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "BRASDEL-5",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "BRASDEL-6",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "BRASDEL-8",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "BRASKOL-1",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Globsyn",
+    "shuttingDown": true
+  },
+  {
+    "node": "BRASLKO-2",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Lucknow",
+    "shuttingDown": false
+  },
+  {
+    "node": "MUMBRAS-5",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "4D -Spectrum",
+    "shuttingDown": true
+  },
+  {
+    "node": "New",
+    "fabricType": "Fabric",
+    "bngType": "CFWA",
+    "status": "Non Live",
+    "services": "FWA",
+    "site": "Manesar",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasblr4",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Whitefeild",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasblr7",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Whitefeild",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasblr8",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Hosurroad",
+    "shuttingDown": false
+  },
+  {
+    "node": "braschen7",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "SersuriDC1",
+    "shuttingDown": false
+  },
+  {
+    "node": "braschen8",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Santhome",
+    "shuttingDown": false
+  },
+  {
+    "node": "braschen9",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "SersuriDC1",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasdel-4",
+    "fabricType": "Non Fabric",
+    "bngType": null,
+    "status": null,
+    "services": null,
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "brasdel-5",
+    "fabricType": "Non Fabric",
+    "bngType": null,
+    "status": null,
+    "services": null,
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "brasdel-6",
+    "fabricType": "Non Fabric",
+    "bngType": null,
+    "status": null,
+    "services": null,
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "brasdel-8",
+    "fabricType": "Non Fabric",
+    "bngType": null,
+    "status": null,
+    "services": null,
+    "site": "Okhla224",
+    "shuttingDown": true
+  },
+  {
+    "node": "brashyd5",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Uppal",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasmp7",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Center Point",
+    "shuttingDown": true
+  },
+  {
+    "node": "brasnoi-2",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "brasnoi-3",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Noida57",
+    "shuttingDown": false
+  },
+  {
+    "node": "mxbrasmoh-2",
+    "fabricType": "Non Fabric",
+    "bngType": "FTTH",
+    "status": "Live",
+    "services": "FTTH",
+    "site": "Mohali",
+    "shuttingDown": false
+  }
+]

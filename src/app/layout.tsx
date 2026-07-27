@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'NetPulse — India Network Dashboard',
-  description: 'Real-time telecom network monitoring across India',
+  title: 'PRISM — Network Intelligence Dashboard',
+  description: 'Performance & Real-time Intelligence for Service Management',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

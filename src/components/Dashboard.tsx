@@ -4,7 +4,6 @@ import Header from './Header';
 import MapView from './MapView';
 import AlertsSidebar from './AlertsSidebar';
 import BngScreen from './BngScreen';
-import MobileNetworkScreen from './MobileNetworkScreen';
 import MobileHubsScreen from './MobileHubsScreen';
 import MobileFlowScreen from './MobileFlowScreen';
 
@@ -23,10 +22,8 @@ function DashboardInner() {
           <BngScreen />
         ) : screenMode === 'hubs' ? (
           <MobileHubsScreen />
-        ) : screenMode === 'mobileflow' ? (
-          <MobileFlowScreen />
         ) : (
-          <MobileNetworkScreen />
+          <MobileFlowScreen />
         )}
       </div>
     </div>

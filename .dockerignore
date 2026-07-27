@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.git
+.venv
+*.tar
+
+# working documents/spreadsheets that aren't part of the app
+*.xlsx
+*.docx
+*.pptx
+*.csv
+AIRTEL.json
+grouped.json
+index.html

@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useDashboard } from '@/context/DashboardContext';
 import type { ScreenMode } from '@/context/DashboardContext';
 import { formatNumber } from '@/lib/utils';
+import { logout } from '@/lib/auth';
 
 interface KpiProps {
   label: string;
@@ -80,10 +81,10 @@ return []
   return (
     <header className="bg-panel border-b border-border px-4 py-2.5 flex items-center gap-6 flex-shrink-0">
       <div className="flex flex-col">
-        <span className="text-base font-bold text-txt leading-tight">
-          <span className="text-accent2">NET</span>PULSE
+        <span className="text-base font-bold text-txt leading-tight tracking-widest">
+          <span className="text-accent2">PRI</span>SM
         </span>
-        <span className="text-[10px] text-muted">v{metadata.dataVersion}</span>
+        <span className="text-[10px] text-muted leading-tight">Performance & Real-time Intelligence<br/>for Service Management</span>
       </div>
 
       <div className="w-px h-8 bg-border flex-shrink-0" />
@@ -91,7 +92,7 @@ return []
       {mapMode === 'network' ? (
         <div className="flex-1 flex items-center gap-2">
           <span className="text-[13px] font-semibold text-txt">OLT Network Map</span>
-          <span className="text-[11px] text-muted">· Airtel Circle → OLT City topology</span>
+          <span className="text-[11px] text-muted">· Circle → OLT City topology</span>
         </div>
       ) : (
         <div className="flex gap-6 flex-1 flex-wrap">
@@ -110,7 +111,7 @@ return []
 
       {/* Screen toggle */}
       <div className="flex bg-card border border-border rounded-md text-[11px] font-semibold overflow-hidden ml-auto">
-        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['mobile', 'Mobile Networks'], ['hubs', 'Hub Map'], ['mobileflow', 'Transport Flow']] as [ScreenMode, string][]).map(([mode, label]) => (
+        {([['map', 'Network Map'], ['bng', 'BNG Utilization'], ['hubs', 'Mobile Networks'], ['mobileflow', 'Transport Flow']] as [ScreenMode, string][]).map(([mode, label]) => (
           <button
             key={mode}
             onClick={() => setScreenMode(mode)}
@@ -138,6 +139,14 @@ return []
           <span className="w-1.5 h-1.5 rounded-full bg-good animate-pulse" />
           LIVE · {ts}
         </div>
+
+        <button
+          onClick={() => { logout(); window.location.reload(); }}
+          className="hover:text-danger transition-colors"
+          title="Log out"
+        >
+          Logout
+        </button>
       </div>
     </header>
   );

@@ -1,9 +1,17 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import mobileNetFlowData from '@/data/mobileNetFlowData.json';
 import mobileIdealFlowData from '@/data/mobileIdealFlowData.json';
 import rawCityCoords from '@/data/cityCoords.json';
 import IdealFlowView from './IdealFlowView';
+
+interface UploadMeta {
+  filename: string;
+  uploadedAt: number;
+  linkCount: number;
+  circleCount: number;
+  label: string;
+}
 
 const cityCoords = rawCityCoords as unknown as Record<string, [number, number]>;
 
@@ -707,7 +715,69 @@ function HubFlowView({ allLinks }: { allLinks: LinkData[] }) {
 }
 
 export default function MobileFlowScreen() {
-  const circles = Object.keys(mobileNetFlowData);
+  const [flowData, setFlowData]           = useState<Record<string, any[]>>(mobileNetFlowData as Record<string, any[]>);
+  const [uploads, setUploads]             = useState<UploadMeta[]>([]);
+  const [activeLabel, setActiveLabel]     = useState<string>('default');
+  const [uploading, setUploading]         = useState(false);
+  const [uploadError, setUploadError]     = useState<{ message: string; details?: string[] } | null>(null);
+  const fileInputRef                      = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    fetch('/api/transport/list')
+      .then(r => r.json())
+      .then((list: UploadMeta[]) => {
+        setUploads(list);
+        if (list.length > 0) {
+          fetch(`/api/transport/load?file=${encodeURIComponent(list[0].filename)}`)
+            .then(r => r.json())
+            .then((data: Record<string, any[]>) => { setFlowData(data); setActiveLabel(list[0].label); });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  async function handleFile(file: File) {
+    setUploading(true);
+    setUploadError(null);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res  = await fetch('/api/transport/upload', { method: 'POST', body: form });
+      const data = await res.json() as { label?: string; error?: string; details?: string[] };
+      if (!res.ok || data.error) {
+        setUploadError({ message: data.error ?? 'Upload failed.', details: data.details });
+        return;
+      }
+      const fresh = await (await fetch('/api/transport/list')).json() as UploadMeta[];
+      const meta  = fresh.find(u => u.label === data.label!)!;
+      const loaded = await (await fetch(`/api/transport/load?file=${encodeURIComponent(meta.filename)}`)).json() as Record<string, any[]>;
+      setUploads(fresh);
+      setFlowData(loaded);
+      setActiveLabel(data.label!);
+      setSelectedCircle(Object.keys(loaded)[0] || '');
+    } catch {
+      setUploadError({ message: 'Network error — could not reach the upload API.' });
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function switchToDataset(label: string) {
+    if (label === 'default') {
+      setFlowData(mobileNetFlowData as Record<string, any[]>);
+      setActiveLabel('default');
+      setSelectedCircle(Object.keys(mobileNetFlowData)[0] || '');
+    } else {
+      const meta = uploads.find(u => u.label === label);
+      if (!meta) return;
+      const data = await (await fetch(`/api/transport/load?file=${encodeURIComponent(meta.filename)}`)).json() as Record<string, any[]>;
+      setFlowData(data);
+      setActiveLabel(label);
+      setSelectedCircle(Object.keys(data)[0] || '');
+    }
+  }
+
+  const circles = Object.keys(flowData);
   const [selectedCircle, setSelectedCircle] = useState(circles[0] || '');
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'city' | 'hubs'>('city');
@@ -721,7 +791,7 @@ export default function MobileFlowScreen() {
   const { nodes, links, totalRerouted, totalTraffic, canvasHeight } = useMemo(() => {
     if (!selectedCircle) return { nodes: [], links: [], totalRerouted: 0, totalTraffic: 0, canvasHeight: 600 };
 
-    const rawLinks = (mobileNetFlowData as Record<string, any[]>)[selectedCircle] || [];
+    const rawLinks = flowData[selectedCircle] || [];
 
     const sourceGroups: Record<string, any[]> = {};
     rawLinks.forEach(l => {
@@ -789,7 +859,7 @@ export default function MobileFlowScreen() {
       totalTraffic: total,
       canvasHeight: height
     };
-  }, [selectedCircle]);
+  }, [selectedCircle, flowData]);
 
   const getNodeMap = useMemo(() => {
     const map = new Map<string, NodeData>();
@@ -828,11 +898,63 @@ export default function MobileFlowScreen() {
 
   return (
     <div className="flex flex-col h-full w-full bg-bg overflow-hidden">
+
+      {/* Data source bar */}
+      <div className="flex-shrink-0 px-4 py-1.5 bg-card/60 border-b border-border flex items-center gap-3 flex-wrap">
+        <span className="text-[10px] text-muted uppercase tracking-wider font-semibold">Data source</span>
+
+        <label className={`flex items-center gap-1.5 px-2.5 py-1 rounded border text-[11px] font-semibold cursor-pointer transition-colors select-none
+          ${uploading ? 'border-accent2/40 text-accent2/60' : 'border-border text-muted hover:text-txt hover:border-txt/40 bg-card'}`}>
+          {uploading ? '⏳ Parsing…' : '↑ Upload csv'}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".csv"
+            className="hidden"
+            onChange={e => { const f = e.target.files?.[0]; if (f) handleFile(f); e.target.value = ''; }}
+          />
+        </label>
+
+        {uploads.length > 0 && (
+          <select
+            value={activeLabel}
+            onChange={e => switchToDataset(e.target.value)}
+            className="bg-card border border-border rounded px-2 py-1 text-[11px] text-txt focus:outline-none focus:border-accent2 max-w-[320px]"
+          >
+            {uploads.map(u => (
+              <option key={u.label} value={u.label}>
+                {u.label.slice(0, 40)}{u.label.length > 40 ? '…' : ''} · {u.linkCount} links · {u.circleCount} circles
+              </option>
+            ))}
+            <option value="default">Default (built-in snapshot)</option>
+          </select>
+        )}
+
+        {activeLabel !== 'default' && (
+          <span className="text-[10px] text-accent2 font-semibold ml-1">
+            Viewing {activeLabel.slice(0, 36)}{activeLabel.length > 36 ? '…' : ''}
+          </span>
+        )}
+      </div>
+
+      {/* Upload error banner */}
+      {uploadError && (
+        <div className="flex-shrink-0 px-4 py-2.5 bg-red-950/60 border-b border-red-700/50 flex items-start gap-3">
+          <span className="text-red-400 text-[11px] font-black mt-0.5 flex-shrink-0">Upload failed</span>
+          <div className="flex flex-col gap-1 flex-1 min-w-0">
+            <span className="text-red-300 text-[11px] font-semibold">{uploadError.message}</span>
+            {uploadError.details?.map((d, i) => (
+              <span key={i} className="text-red-400/80 text-[10px] font-mono">{d}</span>
+            ))}
+          </div>
+          <button onClick={() => setUploadError(null)} className="text-red-500 hover:text-red-300 text-lg leading-none flex-shrink-0">×</button>
+        </div>
+      )}
+
       {/* Header Stats */}
-      
       <div className="flex items-center justify-between bg-card px-4 py-3 border-b border-border/50 shadow-sm flex-shrink-0">
         <div className="flex items-center gap-3">
-          <h2 className="text-[15px] font-semibold text-text">Mobile Network Flow</h2>
+          <h2 className="text-[15px] font-semibold text-text">Transport Flow</h2>
           <select
             className="bg-bg border border-border rounded px-3 py-1.5 text-text text-[13px] font-medium focus:outline-none cursor-pointer"
             value={selectedCircle}

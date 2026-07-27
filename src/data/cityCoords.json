@@ -6754,5 +6754,217 @@
   "ZIRO": [
     27.538668,
     93.815355
+  ],
+  "AURANGABAD::MAHARASHTRA": [
+    19.877263,
+    75.339024
+  ],
+  "BILASPUR::MADHYA PRADESH": [
+    22.163849,
+    82.136592
+  ],
+  "BHADRAVATI::KARNATAKA": [
+    13.850207,
+    75.703786
+  ],
+  "DHARAMPUR::GUJARAT": [
+    22.541652,
+    70.537893
+  ],
+  "FATEHABAD::HARYANA": [
+    29.535921,
+    75.57529
+  ],
+  "HAMIRPUR::HIMACHAL PRADESH": [
+    31.653987,
+    76.540363
+  ],
+  "JAGDISHPUR::UTTAR PRADESH": [
+    26.0104,
+    81.1929
+  ],
+  "KHARAGPUR::WEST BENGAL": [
+    22.346,
+    87.232
+  ],
+  "MANSA::PUNJAB": [
+    29.876413,
+    75.488956
+  ],
+  "NOKHA::RAJASTHAN": [
+    27.555271,
+    73.475596
+  ],
+  "PATAN::GUJARAT": [
+    23.8493,
+    72.1266
+  ],
+  "PRATAPGARH::UTTAR PRADESH": [
+    25.8971,
+    81.994
+  ],
+  "RAMGARH::BIHAR": [
+    23.693479,
+    85.521599
+  ],
+  "RAMNAGAR::UTTAR PRADESH": [
+    29.394835,
+    79.126934
+  ],
+  "RAMPUR::UTTAR PRADESH": [
+    28.793,
+    79.0028
+  ],
+  "UDAIPUR::RAJASTHAN": [
+    24.578721,
+    73.686257
+  ],
+  "UNA::HIMACHAL PRADESH": [
+    31.583464,
+    76.235145
+  ],
+  "ADAMPUR::PUNJAB": [
+    31.4333,
+    75.75
+  ],
+  "BISHNUPUR::WEST BENGAL": [
+    23.0741,
+    87.3219
+  ],
+  "CHAPRA::BIHAR": [
+    25.773344,
+    84.784977
+  ],
+  "KHARKHODA::HARYANA": [
+    28.902767,
+    76.903736
+  ],
+  "RANIGANJ::WEST BENGAL": [
+    23.621755,
+    87.092742
+  ],
+  "SRINAGAR::JAMMU AND KASHMIR": [
+    34.0837,
+    74.7973
+  ],
+  "RUDRAPUR::UTTAR PRADESH": [
+    28.970718,
+    79.397284
+  ],
+  "AURANGABAD::BIHAR": [
+    24.80332,
+    84.41102
+  ],
+  "AURANGABAD::UTTAR PRADESH": [
+    25.963637,
+    83.542474
+  ],
+  "BILASPUR::HARYANA": [
+    30.361211,
+    77.322965
+  ],
+  "BILASPUR::HIMACHAL PRADESH": [
+    31.338096,
+    76.761163
+  ],
+  "BHADRAVATI::MAHARASHTRA": [
+    20.106459,
+    79.115706
+  ],
+  "DHARAMPUR::HIMACHAL PRADESH": [
+    30.900437,
+    77.024784
+  ],
+  "FATEHABAD::UTTAR PRADESH": [
+    27.027668,
+    78.207434
+  ],
+  "FATEHPUR::RAJASTHAN": [
+    25.111676,
+    76.581123
+  ],
+  "FATEHPUR::UTTAR PRADESH": [
+    25.834802,
+    80.915455
+  ],
+  "HAMIRPUR::UTTAR PRADESH": [
+    25.75,
+    80.0
+  ],
+  "JAGDISHPUR::BIHAR": [
+    25.188108,
+    86.980152
+  ],
+  "KHARAGPUR::BIHAR": [
+    25.132982,
+    86.524849
+  ],
+  "MANSA::GUJARAT": [
+    23.425103,
+    72.658302
+  ],
+  "NOKHA::BIHAR": [
+    25.08316,
+    84.093164
+  ],
+  "PATAN::MAHARASHTRA": [
+    17.356527,
+    73.863421
+  ],
+  "PRATAPGARH::RAJASTHAN": [
+    24.023222,
+    74.625028
+  ],
+  "RAMGARH::JAMMU AND KASHMIR": [
+    32.50792,
+    74.964226
+  ],
+  "RAMNAGAR::JAMMU AND KASHMIR": [
+    32.844886,
+    75.150971
+  ],
+  "RAMPUR::HIMACHAL PRADESH": [
+    31.509137,
+    77.770974
+  ],
+  "UDAIPUR::ASSAM": [
+    25.965649,
+    92.872004
+  ],
+  "UNA::GUJARAT": [
+    20.81989,
+    71.039164
+  ],
+  "ADAMPUR::HARYANA": [
+    29.285773,
+    75.478905
+  ],
+  "ASHTA::MADHYA PRADESH": [
+    21.661992,
+    78.168749
+  ],
+  "ASHTA::MAHARASHTRA": [
+    20.779217,
+    78.284846
+  ],
+  "BISHNUPUR::ASSAM": [
+    27.553315,
+    95.684403
+  ],
+  "CHAPRA::WEST BENGAL": [
+    23.559171,
+    88.571087
+  ],
+  "KHARKHODA::UTTAR PRADESH": [
+    28.902767,
+    76.903736
+  ],
+  "RANIGANJ::BIHAR": [
+    26.085092,
+    87.235511
+  ],
+  "SRINAGAR::UTTAR PRADESH": [
+    27.257684,
+    82.204579
   ]
 }
